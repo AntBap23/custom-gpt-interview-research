@@ -1,0 +1,12 @@
+streamlit
+openai
+pandas
+scikit-learn
+python-docx
+openpyxl
+nltk
+transformers
+graphviz
+fpdf
+docx2pdf
+python-dotenv
