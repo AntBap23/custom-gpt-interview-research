@@ -5,8 +5,10 @@ from dotenv import load_dotenv
 from scripts.simulate_interviews import simulate_interview
 from scripts.analyze_gioia import analyze_gioia
 from scripts.export_results import export_both
+from supabase_utils import sign_up, sign_in, get_user, get_user_plan, set_user_plan, insert_interview, upload_file, list_files
+from stripe_utils import create_checkout_session
 
-st.set_page_config(page_title="GPT Research Assistant", layout="wide")
+st.set_page_config(page_title="GPT Research SaaS", layout="wide")
 
 # Initialize session state
 if 'questions' not in st.session_state:
@@ -19,6 +21,10 @@ if 'uploaded_files' not in st.session_state:
     }
 if 'personas' not in st.session_state:
     st.session_state.personas = []
+if "user" not in st.session_state:
+    st.session_state.user = None
+if "plan" not in st.session_state:
+    st.session_state.plan = "free"
 
 # Load API key and validate
 load_dotenv()
@@ -217,3 +223,59 @@ with tab4:
                     st.success("✅ Exported interview to PDF")
                 except Exception as e:
                     st.error(f"❌ Error exporting to PDF: {str(e)}")
+
+def login_ui():
+    st.header("Login / Sign Up")
+    email = st.text_input("Email")
+    password = st.text_input("Password", type="password")
+    if st.button("Login"):
+        res = sign_in(email, password)
+        if res.user:
+            st.session_state.user = res.user
+            st.session_state.plan = get_user_plan(res.user.id)
+            st.success("Logged in!")
+        else:
+            st.error("Login failed.")
+    if st.button("Sign Up"):
+        res = sign_up(email, password)
+        if res.user:
+            st.success("Sign up successful! Please log in.")
+        else:
+            st.error("Sign up failed.")
+
+def plan_ui():
+    st.subheader(f"Your plan: {st.session_state.plan.title()}")
+    if st.session_state.plan == "free":
+        st.info("Upgrade to Pro for unlimited interviews and exports.")
+        if st.button("Upgrade to Pro"):
+            url = create_checkout_session(st.session_state.user.id, st.session_state.user.email)
+            st.markdown(f"[Go to Stripe Checkout]({url})", unsafe_allow_html=True)
+    else:
+        st.success("You are a Pro user!")
+
+def main_app():
+    plan_ui()
+    st.header("Upload Persona & Questions")
+    persona = st.file_uploader("Persona JSON")
+    questions = st.file_uploader("Questions TXT")
+    if st.button("Upload Files") and persona and questions:
+        upload_file(st.session_state.user.id, persona, persona.name)
+        upload_file(st.session_state.user.id, questions, questions.name)
+        st.success("Files uploaded!")
+    st.header("Simulate Interview")
+    if st.button("Run Interview"):
+        if st.session_state.plan == "free":
+            st.warning("Free users can only run 1 interview. Upgrade for more.")
+        else:
+            # Call your interview logic here
+            st.success("Interview simulated! (placeholder)")
+    st.header("Export Results")
+    if st.session_state.plan == "pro":
+        st.button("Export to DOCX/PDF")
+    else:
+        st.info("Upgrade to Pro to export results.")
+
+if st.session_state.user is None:
+    login_ui()
+else:
+    main_app()
