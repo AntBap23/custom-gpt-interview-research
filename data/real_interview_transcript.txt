@@ -1,0 +1,1389 @@
+WEBVTT
+
+1
+00:00:01.700 --> 00:00:15.960
+Mehmet Yetim: Yes, I am recording this meeting. Individual names, company names will be the identified. They will not be shared on anywhere, and then this recording will not be shared anywhere only for Trans. And a few purposes for my dissertation and for my
+
+2
+00:00:16.260 --> 00:00:19.120
+Mehmet Yetim: projects. Hopefully in the future, if they are published.
+
+3
+00:00:19.180 --> 00:00:20.420
+Persona 17: Okay, Great.
+
+4
+00:00:20.480 --> 00:00:22.490
+Mehmet Yetim: Yeah. Just can you introduce yourself?
+
+5
+00:00:22.570 --> 00:00:37.980
+Persona 17: Yeah. So my Name's Persona 17 Delay Glacier and I work at center for family life in Sunset Park, which is a neighborhood in Brooklyn, a primarily immigrant neighborhood.
+
+6
+00:00:37.980 --> 00:00:46.840
+So where the organization is a social services organization and we offer a variety of different services to the local community.
+
+7
+00:00:48.190 --> 00:00:53.480
+Persona 17: We've been around since 1,978. So we're pretty deeply rooted in the in the community.
+
+8
+00:00:54.120 --> 00:01:01.400
+Persona 17: And the program I work for is the cooperative development program, which is one of again of many programs at center for family life.
+
+9
+00:01:01.530 --> 00:01:10.560
+and we help organize people into into work our own businesses. And so we help kind of like, coordinate the process.
+
+10
+00:01:10.770 --> 00:01:24.970
+Persona 17: form the co-OP and guide the whole training process, and then we provide technical assistance to the businesses after they're up and running, and we help kind of facilitate the decision making and other aspects of running the businesses.
+
+11
+00:01:25.010 --> 00:01:29.880
+Persona 17: I've been working in this program for 2 years. So since April of
+
+12
+00:01:29.940 --> 00:01:31.340
+Persona 17: 2021
+
+13
+00:01:31.460 --> 00:01:37.190
+and my main role now is is coordinating and managing up and go, which is
+
+14
+00:01:37.410 --> 00:01:44.040
+Persona 17: the online platform that a lot of the cooperatives we support use to sell their services.
+
+15
+00:01:44.760 --> 00:01:52.350
+Mehmet Yetim: So yeah, that's my brief introduction
+
+16
+00:01:52.560 --> 00:01:54.010
+Mehmet Yetim: in terms of rawls.
+
+17
+00:01:55.370 --> 00:01:59.380
+Persona 17: Yes, you mean for our program or for the cooperatives.
+
+18
+00:02:00.450 --> 00:02:12.740
+Persona 17: I can get both. Yeah. there's our program, and our organization is a center for family life. The whole social Services organization is a nonprofit.
+
+19
+00:02:12.970 --> 00:02:23.830
+Persona 17: So 5 0 1 3, c. Nonprofit. and the businesses we support our private entity so the co-ops that we help form our llc
+
+20
+00:02:24.120 --> 00:02:25.760
+Persona 17: private businesses
+
+21
+00:02:25.850 --> 00:02:38.400
+and we're kind of just in. We don't have any legal relationship to the cooperatives. We're just in the we sign mo use with them like an agreement of services we provide and support we provide to the businesses.
+
+22
+00:02:38.400 --> 00:02:52.710
+Persona 17: But our program is really just providing technical assistance and guidance to these businesses. But the businesses are their own entities, and the workers are also owners, and they're the ones who run the businesses and make all the decisions about them.
+
+23
+00:02:52.930 --> 00:02:56.160
+Persona 17: So yeah, the co-ops themselves are our Llcs.
+
+24
+00:02:57.440 --> 00:02:58.130
+Mehmet Yetim: Okay?
+
+25
+00:02:58.450 --> 00:03:01.040
+Persona 17: And then do you guys who like
+
+26
+00:03:02.440 --> 00:03:07.780
+Mehmet Yetim: maybe the managers, or like me and Ceos? Or how does the the structure?
+
+27
+00:03:08.060 --> 00:03:10.850
+Persona 17: Yeah. So
+
+28
+00:03:11.340 --> 00:03:24.570
+Persona 17: cooperatives. The way cooperatives are structured is usually there's Well, yeah, there are several different types of cooperatives, but the ones we support. All of the members have an equal share of the business. So.
+
+29
+00:03:24.570 --> 00:03:37.950
+Persona 17: for example, if it's cooperative of 7 worker owners, all of the workers are also co-owners of the business, there's no hierarchy. 
+They all vote collectively on any business decision. and in terms of like governance and running the business. They have different roles, so usually they have like committees. So some will be in charge of marketing, Others will do coordinate the finances and the co-ops also sometimes hire external consultants to help with some aspects of managing the business. So, for example, most of the cooperatives we support pay a bookkeeper to do their like payroll and manage their finances.
+
+32
+00:04:07.190 --> 00:04:19.260
+Persona 17: And that's something that also is decided among the members. They decide how much of their payment, how much money they want to leave in the co-OP to use for like administrative purposes and to cover business costs.
+
+33
+00:04:19.360 --> 00:04:20.390
+so
+
+34
+00:04:20.610 --> 00:04:37.140
+Persona 17: most of them they'll keep about 85 of their earnings, and then they'll leave 15 in the business to kind of help operate and run the business. But yeah, in terms of there's no like bosses. There's no manager. It's it's all of the people in the cooperative, collectively running it.
+
+35
+00:04:37.870 --> 00:04:41.810
+Mehmet Yetim: Okay, that's great. And then in terms of their like.
+
+36
+00:04:43.230 --> 00:04:48.290
+Mehmet Yetim: If you want to call in to say capital when they build a business like, how do they get that money?
+
+37
+00:04:49.780 --> 00:04:51.710
+Yeah. So
+
+38
+00:04:51.770 --> 00:05:03.100
+Persona 17: they all invest in the cooperative. They depending on the co-OP. They have different kind of like an investment costs, and they'll put in some money into the business when they join.
+
+39
+00:05:03.200 --> 00:05:19.980
+Persona 17: and then, if they ever leave the cooperative that money they get that investment back. So it's it's an investment that they put in, and that's separate from the money that they the money that they take out of their paycheck. That's just money that goes to the business, and it's used. That's not an investment.
+
+40
+00:05:19.980 --> 00:05:26.690
+and that's separate from money that they invest that they then get back if they leave the business. So there's kind of like 2 separate pools of money.
+
+41
+00:05:27.990 --> 00:05:47.130
+Persona 17: Okay, yeah, that's very interesting.
+
+42
+00:05:47.130 --> 00:05:56.850
+Persona 17: Cover the cost of their like training. We help them sometimes by their insurance and some of like those initial costs that they need to get the business running.
+
+43
+00:05:57.610 --> 00:06:00.450
+Mehmet Yetim: Okay, that's yeah, okay, that's it.
+
+44
+00:06:00.860 --> 00:06:01.940
+Mehmet Yetim: Interesting
+
+45
+00:06:02.210 --> 00:06:12.590
+Mehmet Yetim: right to look at it. So Are there any instances, For example, some members They have more investments, or, like some of them, they have less in terms of having their power in the organization.
+
+46
+00:06:13.290 --> 00:06:23.020
+Persona 17: No, not in, not in the co-ops that we support, and usually the way co-ops are structured is that there's equal shares of everyone
+
+47
+00:06:23.060 --> 00:06:35.020
+Persona 17: that are in the business. So yeah, so all of the workers contribute the same amount when they join the business, and they all have an equal equal vote and equal share in the business.
+
+48
+00:06:36.390 --> 00:06:37.890
+Mehmet Yetim: Okay, that's
+
+49
+00:06:38.310 --> 00:06:48.090
+Mehmet Yetim: cool. And so just one of the after questions that I wrote here. So it's just so. Opinion: question. So what do you think? How do you describe the benefits of like
+
+50
+00:06:48.120 --> 00:06:50.760
+Mehmet Yetim: starting like business as a call?
+
+51
+00:06:51.690 --> 00:07:00.120
+Persona 17: Yeah. there are many, I think we really believe in this model because
+
+52
+00:07:00.500 --> 00:07:15.800
+Persona 17: a it it empowers people to have power and decision and their businesses to choose their own prices, to choose their own schedule, to work collaboratively and help kind of like build this movement of
+
+53
+00:07:15.880 --> 00:07:25.850
+Persona 17: non-hierarchical workplaces and workplaces that are really centered around, like you know. more humanistic values I would say.
+
+54
+00:07:25.880 --> 00:07:40.220
+Persona 17: and also most of the communities we support are immigrant Spanish speaking women who are kind of like, locked out of a lot of work opportunities in the Us. Because of so many structural barriers that they face.
+
+55
+00:07:40.240 --> 00:07:42.160
+Persona 17: So.
+
+56
+00:07:42.450 --> 00:08:01.310
+Persona 17: being a coner in a in a cooperative business, is an opportunity for them to earn a living wage to also own a business without needing documentation or other resources, they might not have access to. So it's just like, yeah, it's. It's a really valuable tool for people who are kind of locked out of the traditional
+
+57
+00:08:02.090 --> 00:08:02.990
+work
+
+58
+00:08:03.140 --> 00:08:04.360
+Persona 17: market
+
+59
+00:08:05.000 --> 00:08:07.720
+Persona 17: to have to have an opportunity to
+
+60
+00:08:08.030 --> 00:08:09.700
+Persona 17: support themselves.
+
+61
+00:08:11.810 --> 00:08:12.640
+Persona 17: Yeah.
+
+62
+00:08:14.330 --> 00:08:14.900
+Mehmet Yetim: Great.
+
+63
+00:08:15.040 --> 00:08:17.100
+Mehmet Yetim: And then. So that's some.
+
+64
+00:08:17.590 --> 00:08:21.720
+Mehmet Yetim: and form up questions about like decision making. So in in general, how do you
+
+65
+00:08:21.790 --> 00:08:24.110
+Mehmet Yetim: It's Grabbed your decision making process?
+
+66
+00:08:24.830 --> 00:08:42.690
+Persona 17: Yeah. So usually. And again, we, this is where we kind of help facilitate the process. So a lot of times you'll be in the meetings with them, and we'll help like, Bring a proposal, or we'll help guide the conversation when members are making a decision.
+
+67
+00:08:42.830 --> 00:08:49.050
+Usually when something needs to be decided related to the business. They’ll bring it up in a meeting and discuss it. And there's like always space for discussion for people to express their different opinions, and how they feel. And then at some point there's a formal vote. So again, a lot of times. That's where we'll help facilitate the process and be like, okay. Here's a proposal based on what we're hearing in the group. or based on recommendations. You know that that we've heard that would be good for you all to employ in your business. And at that point the all of the worker owners vote.
+
+70
+00:09:19.230 --> 00:09:30.540
+Persona 17: and they have different rules and their co-ops different agreements on like what percentage needs to approve something in order for it to pass. And sometimes it depends on the type of decision.
+
+71
+00:09:30.740 --> 00:09:37.050
+Persona 17: But yeah, basically everyone votes. And if the right percentage of people are in agreement, then
+
+72
+00:09:37.260 --> 00:09:41.060
+Persona 17: whatever the decision is would be passed and implemented.
+
+73
+00:09:41.830 --> 00:09:54.040
+Mehmet Yetim: Okay, that's great. So I have one. Then question their follow up. So I heard that you said It may like the day rewarding style, or maybe the
+
+74
+00:09:55.480 --> 00:10:02.520
+Mehmet Yetim: maybe how what percentage is needed, maybe depending on the position that needs to be made so.
+
+75
+00:10:02.550 --> 00:10:11.500
+Mehmet Yetim: or me to categorize like what kind of decisions they make, and then what kind of structure they may need for those can you identify elaborate on that more?
+
+76
+00:10:11.770 --> 00:10:26.890
+Persona 17: Yeah. So usually, though in their manuals they'll describe the types of of decision that might require, like a super majority. So, for example, if most decisions just require a majority, more than 50% are in agreement
+
+77
+00:10:27.180 --> 00:10:40.610
+Persona 17: for everyday decisions that may not not have as much impact on the business, and then they might describe like, okay for more important decisions, that, and they all define these differently. But it could be like decisions that impact
+
+78
+00:10:41.130 --> 00:10:55.610
+Persona 17: that could impact like revenue for the business that could involve like changing the business name, or where they offer services, or to accept or get rid of a member right to like expel a member from the Cooperative
+
+79
+00:10:55.660 --> 00:11:10.730
+Persona 17: or to decide to grow the cooperative. All of those are our big business decisions, so usually they'll have some sort of like outline of like. These are the types of decisions that we require a super majority for, and that could be like 75% in approval, for example.
+
+80
+00:11:11.140 --> 00:11:18.780
+Persona 17: And yeah, that depends. Each cooperative does that differently and has different decisions that they consider need
+
+81
+00:11:19.640 --> 00:11:21.390
+Persona 17: more people in approval.
+
+82
+00:11:22.600 --> 00:11:25.260
+Mehmet Yetim: Okay, great. So
+
+83
+00:11:25.770 --> 00:11:36.790
+Mehmet Yetim: couple of questions here. So just one thing before I forget. So the what would make a cooperative to the sides or forward for to expel a number
+
+84
+00:11:38.530 --> 00:11:40.380
+Persona 17: again. That
+
+85
+00:11:40.400 --> 00:11:47.230
+Persona 17: is, it varies a little in each cooperative. They they decide that internally usually.
+
+86
+00:11:47.630 --> 00:12:03.850
+Persona 17: But, for example. we had a case recently where there was one member who for like 3 months wasn't accepting any jobs. And they were just kind of like inactive. And so when, since they weren't accepting jobs. They also weren't, contributing financially to the cooperative. And at that point the members discussed it and made the decision that that person couldn't be in the cooperative anymore, if they weren't going to be contributing. So that's an example. It could be like if you're not contributing your your fees to the Co-OP.
+
+88
+00:12:18.500 --> 00:12:32.940
+Or if, for example, there's been problems in like your the service that that member is providing and it's affecting the image of the business, most of the crops we support right now we're in the cleaning industry, so they provide like domestic services.
+
+89
+00:12:33.010 --> 00:12:40.610
+Persona 17: So maybe if they're getting a lot of complaints from clients that could be something that could prompt the co-OP to
+
+90
+00:12:40.870 --> 00:12:43.630
+have a conversation about expelling a member.
+
+91
+00:12:43.770 --> 00:12:46.370
+Persona 17: and then obviously anything that's like
+
+92
+00:12:49.400 --> 00:12:58.220
+Persona 17: anything the members doing that's like unethical if they were causing problems in the co-OP. Or. yeah. you know, you can imagine situations where
+
+93
+00:12:58.860 --> 00:13:07.620
+Persona 17: maybe something is happening that would have caused the group to want to vote someone out. But yeah, we haven't had any extreme examples like that.
+
+94
+00:13:08.050 --> 00:13:08.710
+Persona 17: Yeah.
+
+95
+00:13:09.400 --> 00:13:14.930
+Mehmet Yetim: Okay, Great. Yeah. Thank you so much that those are great examples, and I like examples because they are more like
+
+96
+00:13:15.180 --> 00:13:29.000
+Mehmet Yetim: Yes, I will be happy if I get more examples. Great. Thank you so much. I know you all right. Great knowledge on that area. So
+
+97
+00:13:29.280 --> 00:13:38.420
+Mehmet Yetim: I appreciate that. So just it's it doesn't have to be very relevant. But just make sure that I completely got this process.
+
+98
+00:13:38.450 --> 00:13:42.190
+Mehmet Yetim: So when I try it when they try to expel a member.
+
+99
+00:13:42.230 --> 00:13:43.600
+Mehmet Yetim: so that's member
+
+100
+00:13:43.640 --> 00:13:48.090
+Mehmet Yetim: possibly will not be watching in, or will not be joined in that meeting right? So
+
+101
+00:13:52.080 --> 00:13:53.840
+they could. And again.
+
+102
+00:13:54.110 --> 00:13:55.110
+Persona 17: I think
+
+103
+00:13:55.250 --> 00:14:04.030
+Persona 17: it's kind of case by case, and it would be up to the coop members to decide. I think that member could be present and could be part of the conversation.
+
+104
+00:14:04.850 --> 00:14:16.090
+Persona 17: But yeah, i'm not. I haven't like, been present for many of those conversations in the past. I'm not sure how they've because i'm a little more macro. I'm more managing like the platform and the administration.
+
+105
+00:14:18.040 --> 00:14:28.570
+Persona 17: But yeah, usually it would be one of us like someone on our team kind of facilitating and saying, okay, we've been noticing this like. Do you all want to discuss this and discuss how to proceed with the member.
+
+106
+00:14:28.830 --> 00:14:40.660
+Persona 17: Sometimes they might also decide to give them like a trial period or something right to say like, okay, we? We're noticing this problem with clients.
+
+107
+00:14:40.760 --> 00:14:46.580
+Persona 17: Do you need our? How can we support you to like fix this this problem? If you do want to stay in the Co. OP.
+
+108
+00:14:46.910 --> 00:14:59.880
+Persona 17: And maybe it can be like taking extra trainings, or you know. Yeah, whatever they whatever they need in order to improve their performance. And at that point, if they give them like a time period and they see improvement, they might decide to.
+
+109
+00:15:00.160 --> 00:15:01.980
+Persona 17: They can stay.
+
+110
+00:15:02.770 --> 00:15:09.850
+Persona 17: Yeah. So I would imagine it would probably make more sense for the conversation to happen without the member in question present.
+
+111
+00:15:10.020 --> 00:15:13.110
+But yeah, we haven't had too many situations where
+
+112
+00:15:14.400 --> 00:15:15.900
+Persona 17: that's happened. So far.
+
+113
+00:15:16.210 --> 00:15:21.830
+Mehmet Yetim: Okay, great. Thank you so much. And so one more do you have.
+
+114
+00:15:21.860 --> 00:15:24.020
+Mehmet Yetim: for example, an example for
+
+115
+00:15:26.050 --> 00:15:28.170
+Mehmet Yetim: like one for
+
+116
+00:15:28.730 --> 00:15:33.130
+Mehmet Yetim: important decision that you say like require maybe someone to 80% of what?
+
+117
+00:15:37.940 --> 00:15:53.680
+Persona 17: Yeah, I guess recently we and this is kind of an example I gave earlier. But recently the several of the cooperatives. The cleaning cooperatives decided that they want to grow. They want to invite new members. which would mean, you know, they they would do like an open house. They would invite people to come, learn about the cooperative. Then they would invite people to apply and join their business, and there'd be like a training process that they would have to do with the new members to kind of like, integrate them, and teach them how to be part of the Co-OP.
+
+119
+00:16:11.440 --> 00:16:23.130
+Persona 17: So, before starting that whole process, the cooperatives had to decide how to vote, to decide. Yes, we want to like start this process. We want to welcome new people to the cooperative.
+
+120
+00:16:23.480 --> 00:16:32.220
+Persona 17: So that's the type of decision that would require. and most cooperative to super majority. So it'd require, like most of the members to be on board with
+
+121
+00:16:32.230 --> 00:16:34.740
+welcoming new people into the business.
+
+122
+00:16:35.230 --> 00:16:37.090
+Persona 17: Yeah.
+
+123
+00:16:37.130 --> 00:16:41.660
+Persona 17: Are there any like during the decision making process? Are there any discussions on going?
+
+124
+00:16:42.090 --> 00:16:46.260
+Mehmet Yetim: What will be that? Like the typical meeting?
+
+125
+00:16:47.060 --> 00:16:48.910
+Yeah. I guess
+
+126
+00:16:49.340 --> 00:16:59.700
+Persona 17: a recent example that I was more directly involved in, Not as recent now, I guess, but with the vaccination with Covid vaccinations. We were starting to notice that a lot of
+
+127
+00:16:59.840 --> 00:17:11.750
+Persona 17: this was in right. After the vaccine came out, or recently after the vaccine came out. We were noticing that a lot of businesses, a lot of the competition, cleaning businesses, or other people offering services were, including that they were vaccinated on their websites, and that was like a an important for clients to know that people that are, you know, coming to their homes and offering a service are vaccinated. So at that point we brought it to the Cooperative to cleaning cooperatives. And we said, like, you know, our recommendation is that you all think about having a vaccine requirement, because it, you know, it will affect your business, and most of the competition is saying that they're vaccinated, and it would be like an important step for the business. And so then there was a period of discussion, and the co-ops there were some members who were against it for like health reasons or religious reasons, and there was like a lot of back and forth conversations, meetings that were had where members would express their different points of view. And eventually we did come to a decision, and it was approved by the majority, and there were a few members who didn't want to get vaccinated who had to actually leave the cooperative because they collectively decided that they did think it was important to require vaccines. But yeah, I guess that's an example where there was like several meetings actually of discussion before members were able to decide.
+
+136
+00:18:34.710 --> 00:18:49.740
+Persona 17: And then they made some exceptions to. At first they were like, okay, maybe we'll. We'll require vaccinations. But with certain exceptions, for, like, you know, if someone can't get a vaccine for a health reason or religious reason, maybe you will make an exception for them.
+
+137
+00:18:50.880 --> 00:18:54.940
+Persona 17: So yeah, there are always a lot of factors to consider, and there's a lot of like discussion, and it it can take a while to make decisions. I think that's like one of the downsides of a coop like of course when there isn't one boss just deciding, and everyone has to be involved in the process that can make it more difficult to move things forward.
+
+140
+00:19:11.960 --> 00:19:18.960
+Mehmet Yetim: Yeah, that was one of the things that came to my mind. You were talking about the vaccination. I was like. if I am not like
+
+141
+00:19:19.310 --> 00:19:28.410
+Mehmet Yetim: agreeing with this decision in the beginning that it like it's Probably people can't make me agreed in in the next couple of hours, like I need more time.
+
+142
+00:19:28.580 --> 00:19:31.750
+Persona 17: and sometimes it sometimes that does happen sometimes
+
+143
+00:19:31.760 --> 00:19:44.670
+Persona 17: in the process of having the conversation and hearing people's perspective. Some members start to change their perspective, and I think that's like that's part of the process is like having those conversations and
+
+144
+00:19:44.780 --> 00:19:48.150
+Persona 17: having people express why they feel the way they do.
+
+145
+00:19:50.360 --> 00:19:54.580
+Persona 17: but not always. Sometimes there are strong opinions that
+
+146
+00:19:54.830 --> 00:19:55.790
+Persona 17: remain
+
+147
+00:19:56.590 --> 00:20:03.310
+Mehmet Yetim: okay, and that's even make me feel like they might be empathetic in terms of like they hear other people's opinion than they may
+
+148
+00:20:03.920 --> 00:20:07.320
+Mehmet Yetim: change your opinion. That's an interesting aspect.
+
+149
+00:20:07.710 --> 00:20:14.050
+Persona 17: Yeah. yeah. And it's interesting to think of a business as also like a social group in that way, like there are.
+
+150
+00:20:14.300 --> 00:20:21.060
+Persona 17: They're always conflict. There's always complicated group dynamics, but that's like part of  being in a business where you're all working collaboratively. And that's part of what I think is like, really like unique and beautiful about the model, too.
+
+152
+00:20:32.510 --> 00:20:33.170
+Mehmet Yetim: Hmm.
+
+153
+00:20:35.280 --> 00:20:41.430
+Mehmet Yetim: So then, the one that one of my follow up questions was that like, how are the conflicts result overall.
+
+154
+00:20:43.410 --> 00:20:44.940
+Persona 17: Yeah.
+
+155
+00:20:45.640 --> 00:21:01.310
+Persona 17: that again is something where, like our team will sometimes guide the process like and not me specifically as much anymore. Because, like I said, I'm, a little removed from working directly from the co-ops. But if we're noticing that there's conflict like that, a lot of members are
+
+156
+00:21:01.460 --> 00:21:06.320
+Persona 17: that some members are like upset at other members in the group, or there's like a recurring problem.
+
+157
+00:21:06.790 --> 00:21:24.340
+Persona 17: Usually the approach is to create space to address it and talk about it. So we'll bring that to a meeting and say, like, you know, we're noticing that this is happening that there's conflict for this reason, and just create space for people to like, talk about it and express like what's wrong, what they need to change and to see like what kind of agreement they can come to, or what steps we can take to resolve the conflict. and also normalizing that, like conflict, is, is normal and healthy. It's part of the process. So I think a lot of it is trying not to shy away from it, and like talking about it openly and finding ways to resolve it in the group. Yeah, and that's easier said than done. But usually the approach is to kind of like, create space to address it openly.
+
+161
+00:21:57.690 --> 00:21:59.900
+Mehmet Yetim: Okay, Great? Yes.
+
+162
+00:21:59.990 --> 00:22:03.230
+Mehmet Yetim: that that that that's correct. I agree with that.
+
+163
+00:22:03.800 --> 00:22:05.510
+Persona 17: Yeah.
+
+164
+00:22:05.930 --> 00:22:11.470
+Mehmet Yetim: So i'll go a little bit to my central point that, like, were there any
+
+165
+00:22:11.550 --> 00:22:23.230
+Mehmet Yetim: examples when one of the startups. We're not able to deliver the like anticipated outcomes that they have like. They plan something.
+
+166
+00:22:23.710 --> 00:22:28.500
+Mehmet Yetim: or they plan on customer or something else. And then thanks for not going. Well.
+
+167
+00:22:37.900 --> 00:22:46.520
+Persona 17: Yeah, I don't know if I exactly understand the question like you mean in terms of the service that they're offering to the customer like not being able to deliver it correctly.
+
+168
+00:22:46.730 --> 00:22:47.840
+Mehmet Yetim: Yes.
+
+169
+00:22:48.220 --> 00:22:49.110
+Persona 17: okay.
+
+170
+00:22:50.590 --> 00:22:53.550
+yeah. I think there are definitely a few.
+
+171
+00:22:54.130 --> 00:23:04.220
+Persona 17: The cases where there's been problems with delivering the service and complaints from customers like one thing that comes to mind is. it can be difficult, in this kind of structure, a lot of a lot of standardization in terms of the service, because the whole idea of the coop is to create flexibility, and to give the workers power to kind of set their own requirements and schedules and decide how they run things. But when we’re offering things through a website that's branded, and we're trying to deliver like a consistent product to customers that can be difficult. So, I think one complaint we get sometimes is that every workers service is a little different in terms of how they clean, how long they take. So, for example, if one of the worker owners has a recurring client, and they go to this client, every week to clean their house, for example. And then someone else in the cooperative covers for them one week because they're not available a lot of times. We'll get complaints from the client saying like, oh, the service was different this time, or it took longer, or they didn't clean like the windows the way I wanted to, or whatever. So I think we see that a lot like each person in the co-OP kind of has their own style, their own approach. and that can make it difficult to maintain like a
+
+176
+00:24:18.510 --> 00:24:35.040
+Persona 17: a brand image right, and to really feel like we can like, scale the brand and deliver a consistent service every time, I think, with a lot of these like bigger companies, everything is very standardized, and it's like, okay, You follow these rules. You do this checklist and it's kind of difficult.
+
+177
+00:24:35.040 --> 00:24:43.860
+Persona 17: more difficult to establish that within a co-OP, because members aren't as like driven to to establish those kinds of like strict standards for themselves?
+Mehmet: And so what? How did you guys, for example, overcome. Or if you guys overcome this challenge like,
+
+178
+00:24:46.550 --> 00:25:04.680
+Persona 17: That's [standardizing the quality] actually an ongoing challenge. I don't think we've we've done some things to try to address it. So, for example, we've we've brought this concern to members and said like we know we've gotten these complaints from clients in order to like improve your business and get more clients. It'd be important to standardize some aspects. And so we have over time standardized some aspects of the cleaning. And, for example. we created kind of like a a guide of like a checklist of like, okay, these are the things that everyone should do, and in each cleaning and members voted to implement that and use that. But it's still difficult, more difficult in practice.
+
+182
+00:25:33.350 --> 00:25:36.290
+And I think we still have challenges with that. Yeah.
+
+183
+00:25:37.660 --> 00:25:41.480
+Mehmet Yetim: okay, that's very interesting. And then
+
+184
+00:25:41.980 --> 00:25:50.270
+Mehmet Yetim: so are there any like instances where members they need to make decisions when they like to their daily work there.
+
+185
+00:25:51.020 --> 00:25:52.770
+Mehmet Yetim: so they can change the process.
+
+186
+00:25:53.230 --> 00:26:05.410
+Persona 17: Yeah, so they can. They have like a pricing structure. That's it has ranges for each home size. But when a when a a worker arrives at the
+
+187
+00:26:05.500 --> 00:26:24.160
+Persona 17: At the whatever space that they're cleaning, they do a walk through, and they can edit the price they can choose within the range, or they can even like, increase it a little, based on what they see in the moment. And again, this is to give them like power, and to for them to be able to like. Set a price that's fair for the service they're delivering and it's like the 2, the double edge sort of that sort of flexibility right where it's like the balance between giving the worker power to like, set their price and be flexible in the moment; while also, having, like a consistent and standardized way of doing pricing and other things for the client. So yeah, members, when they arrive they can adjust the price.
+
+190
+00:26:47.840 --> 00:26:57.840
+Persona 17: And that's the main thing that they can really like change in the moment at the job, and then they can also negotiate with the client with the client if they want like.
+
+191
+00:27:00.000 --> 00:27:14.520
+Persona 17: If the client wants some things cleaned or others not, or the client doesn't want to pay as much. Maybe they'll say, okay, we can clean just the common areas, but not the bedrooms. So they do. I think there is a little more flexibility than like a traditional cleaning service. Maybe
+
+192
+00:27:15.860 --> 00:27:18.470
+Mehmet Yetim: Okay. So okay. So then they.
+
+193
+00:27:18.780 --> 00:27:22.370
+Mehmet Yetim: the member has like some flexibility to decide
+
+194
+00:27:22.800 --> 00:27:26.350
+Mehmet Yetim: how much it how much money takes to like
+
+195
+00:27:26.860 --> 00:27:28.200
+Persona 17: in the area.
+
+196
+00:27:28.900 --> 00:27:30.310
+Persona 17: Yeah, it does.
+
+197
+00:27:30.380 --> 00:27:32.340
+Mehmet Yetim: That's interesting. Yeah, that's
+
+198
+00:27:32.550 --> 00:27:49.690
+Persona 17: and that's part of yeah, the challenge as well, because also members might have different ideas of how to price. And it's hard to standardize that. So, one member might say like, yeah, i'll do this for a $100. And another member might see the same space and say, like to me, this is a $150. So, it's difficult to standardize like. Okay, how exactly are we choosing the price like what exactly is included, and what would constitute or justify a price increase. And that's something that I think we're continually working on, but is a little difficult.
+
+201
+00:28:07.300 --> 00:28:17.100
+Mehmet Yetim: Okay, yeah, that's like, maybe concerned about what? Reflect 2 different member group goes to the client
+
+202
+00:28:17.180 --> 00:28:24.500
+Mehmet Yetim: at the at different times, and I give you different price. Then how could this be explained to the clients.
+
+203
+00:28:24.680 --> 00:28:40.580
+Persona 17: Yeah, so that's a great point, because that's actually one of the steps that we took to try to avoid that problem. So with recurring clients. If one of if a one member is covering for another member, so they go to their job instead of them.
+
+204
+00:28:40.580 --> 00:28:48.760
+Persona 17: They have to keep the price consistent unless they're actually like changing the service. So that is something that
+
+205
+00:28:48.870 --> 00:28:56.560
+Persona 17: that the co-ops agreed on so at least in that case we're avoiding like one client getting different prices from 2 different
+
+206
+00:28:56.810 --> 00:28:58.000
+Persona 17: members.
+
+207
+00:28:58.950 --> 00:28:59.650
+Mehmet Yetim: Okay.
+
+208
+00:28:59.820 --> 00:29:00.840
+Mehmet Yetim: yeah.
+
+209
+00:29:00.920 --> 00:29:03.850
+Mehmet Yetim: when there is not a consistency
+
+210
+00:29:04.400 --> 00:29:09.690
+Mehmet Yetim: like in previous examples. How did you guys like communicate this with the clients.
+
+211
+00:29:14.660 --> 00:29:15.930
+Persona 17: Usually
+
+212
+00:29:16.290 --> 00:29:22.460
+Persona 17: the office will explain like what the members reasoning was like for
+
+213
+00:29:22.470 --> 00:29:26.050
+Persona 17: anytime. There's a price increase at the or a price change
+
+214
+00:29:26.110 --> 00:29:37.040
+Persona 17: that the client doesn't agree with. We'll just talk to the member and ask the member what were the factors that cause them to increase the price, and we'll say we'll explain it to the client
+
+215
+00:29:37.250 --> 00:29:50.600
+Persona 17: like oh, they justify this price increase because I don't know. Maybe your home hadn't been cleaned in a while, and it needed extra attention, or they were cleaning an extra room or whatever it is.
+
+216
+00:29:52.930 --> 00:30:06.650
+Persona 17: Yeah, and so that's but again, we haven't really needed to explain, like we've kept price consistent for customers that are recurring, even if a different member goes. So that hasn't been an issue as much. But clients will sometimes just ask like.
+
+217
+00:30:06.710 --> 00:30:14.990
+Persona 17: how did they arrive at this price? And at that point we'll have to like. Give them a little more of like an explanation and a breakdown.
+
+218
+00:30:15.220 --> 00:30:22.360
+Persona 17: and it doesn't come from us. It comes from the members. So we're just kind of like mediating between the client and the the worker. Owners.
+
+219
+00:30:23.420 --> 00:30:25.530
+Mehmet Yetim: Okay, great. Thank you so much.
+
+220
+00:30:25.570 --> 00:30:28.170
+Persona 17: Yeah. And one
+
+221
+00:30:29.510 --> 00:30:32.820
+Mehmet Yetim: here one question. Are there any like
+
+222
+00:30:32.880 --> 00:30:37.930
+Persona 17: is she making? I think we were mentioning something like committees or something? And it
+
+223
+00:30:37.940 --> 00:30:40.910
+Mehmet Yetim: any places, or any
+
+224
+00:30:42.010 --> 00:30:43.810
+Mehmet Yetim: a formation of the bad
+
+225
+00:30:44.810 --> 00:30:48.240
+Mehmet Yetim: specific members they come together and need need to make decisions.
+
+226
+00:30:50.360 --> 00:30:52.110
+Persona 17: Yeah.
+
+227
+00:30:52.270 --> 00:31:09.460
+Persona 17: So usually the coop will have meetings every now and then. That's like the whole coop. And so that's where they'll meet and they can make decisions like that means everyone involved, but They also have meetings for each committee. So, for example, the Finance Committee will meet to coordinate like payments for that month, or to check expenses. or the Marketing Committee will meet to plan like a marketing event like oh, they're we're planning to go and like hand out flyers at the Park, and so they'll meet to coordinate that and plan it. So yeah, there are spaces where each individual committee meets, and there are some decisions that maybe Don't need full group approval, and they can just be coordinated within the committees. And usually the co-ops also like, describe that in their they have membership manuals, which is basically like the guiding
+
+230
+00:31:43.780 --> 00:31:49.880
+Persona 17: legal agreement and document for their co-ops. So that's where they'll decide like. Okay.
+
+231
+00:31:50.200 --> 00:32:00.190
+Persona 17: you know we have these committees and these types of decisions are made within the committees, and so some maybe don't need to be brought to the whole group for discussion.
+
+232
+00:32:01.560 --> 00:32:03.570
+Mehmet Yetim: And now are there any.
+
+233
+00:32:03.590 --> 00:32:09.870
+Mehmet Yetim: for example, the core values when they like different committees, they make position on behalf of the rest of the call.
+
+234
+00:32:12.120 --> 00:32:14.720
+Persona 17: Are there Core values
+
+235
+00:32:14.870 --> 00:32:19.670
+Mehmet Yetim: this or anything that you like. Say they're representing the majority.
+
+236
+00:32:19.730 --> 00:32:31.150
+Persona 17: Yeah, definitely. So each coop has as part of this same document. They collectively decide on their mission as a business. Their core values. Yeah, they decide on like some core kind of like tenants and and guidelines. Yeah. So that guides all of their decisions.
+
+238
+00:32:42.320 --> 00:32:55.300
+Mehmet Yetim: Okay, yeah, just was curious like how we can make sure that rather than the Finance Committee is making decision on behalf of the Co-OP, but the decision is for the benefit of everyone in the call. Not only the people
+
+239
+00:32:55.460 --> 00:32:57.380
+Mehmet Yetim: who are in the Finance Committee.
+
+240
+00:32:57.490 --> 00:33:09.110
+Persona 17: Yeah, yeah. And I would say it's not as often the committees are making decisions. Usually the committee work is more like actually like carrying out activities. So, for example, like every month, the
+
+241
+00:33:09.140 --> 00:33:16.940
+Persona 17: cooperative members have to receive their share of, however, however many, however much work they did, however many jobs they received.
+
+242
+00:33:16.960 --> 00:33:29.450
+Persona 17: so the Finance Committee might meet just to like. distribute the payments and make those transfers, so usually that I would say the committees are meeting more to like, do administrative work for the co-OP
+
+243
+00:33:29.480 --> 00:33:35.910
+Persona 17: and not as much like make big decisions. I think usually the decision making is done in the whole group.
+
+244
+00:33:36.870 --> 00:33:37.990
+Mehmet Yetim: Okay, that's
+
+245
+00:33:39.010 --> 00:33:42.230
+Mehmet Yetim: interesting. Nice to hear. And
+
+246
+00:33:43.580 --> 00:33:49.010
+Mehmet Yetim: are there any? So i'm not sure if this is completely relevant. But are there any
+
+247
+00:33:49.140 --> 00:33:53.030
+Mehmet Yetim: mechanism sort of anyways that these cops
+
+248
+00:33:54.930 --> 00:33:59.120
+Mehmet Yetim: make sure or monitor the risks related to their business?
+
+249
+00:34:04.920 --> 00:34:18.800
+Persona 17: Not exactly. I think we right now we do a lot of that like us in in our supporting role as an organization. We're the ones that will generate reports on like how sales are going.
+
+250
+00:34:18.860 --> 00:34:19.949
+Persona 17: Maybe
+
+251
+00:34:20.540 --> 00:34:39.290
+Persona 17: we'll notice, like you know, an issue with pricing or something. So I think, in our role as kind of like almost consultants to the co-OP. We do some of that, like more Macro, like looking at the data looking at sales, looking at the competition and and where their pricing is in comparison to the competition.
+
+252
+00:34:39.290 --> 00:34:50.920
+Persona 17: So we bring in some more of that kind of like Macro strategy. It's not as much, not as much in the individual businesses that they're actually tracking those things.
+
+253
+00:34:51.040 --> 00:35:01.460
+Persona 17: but they could in the future, and they could They could have. They could assign that role to a few members of the Cooperative, or they could hire someone to help guide them.
+
+254
+00:35:02.110 --> 00:35:16.650
+Persona 17: But again, I think, like. I think, part of the reason that we've stuck to the cleaning industry, and we've been pretty successful with supporting co-ops in that industry. Is that it's always in demand
+
+255
+00:35:16.770 --> 00:35:21.630
+Persona 17: and it's. It's a it there's a large market for it. And in New York City, especially like
+
+256
+00:35:21.730 --> 00:35:29.280
+Persona 17: there's plenty of people with wealth that want to get their homes cleaned regularly, so we haven't run into as many.
+
+257
+00:35:29.540 --> 00:35:34.020
+Persona 17: too many issues with like not having enough of a market for it.
+
+258
+00:35:34.310 --> 00:35:36.850
+Persona 17: Luckily, yeah.
+
+259
+00:35:37.050 --> 00:35:39.210
+Mehmet Yetim: that's great. Yeah.
+
+260
+00:35:39.470 --> 00:35:49.360
+Mehmet Yetim: New York has a lot of approaches. So I did. My masters in New York and my university. Yeah, it's a beautiful place.
+
+261
+00:35:49.790 --> 00:35:54.600
+Persona 17: I I I lived in Brooklyn. Yeah, I live in Brooklyn now. So.
+
+262
+00:35:54.980 --> 00:35:59.790
+Persona 17: Yeah.
+
+263
+00:36:00.470 --> 00:36:02.720
+Mehmet Yetim: a couple more questions.
+
+264
+00:36:03.000 --> 00:36:09.520
+Mehmet Yetim: Then. I don't make you so tired. Thank you for your time. So we were talking about for
+
+265
+00:36:10.370 --> 00:36:13.930
+Mehmet Yetim: it rising committee or advising people
+
+266
+00:36:14.130 --> 00:36:20.070
+Mehmet Yetim: they may hire like, but not be like you. It was just mentioned, and then it's gone. So can you?
+
+267
+00:36:20.130 --> 00:36:33.860
+Persona 17: Yeah, yeah. None of the co-ops right now have hired anyone to do like general strategic advising again. I think that's kind of our role, and
+
+268
+00:36:34.840 --> 00:36:47.760
+Persona 17: we offer services for free to the cooperative. So we we're there to provide technical assistance. We offer several years of support, as the cooperatives are up getting running. And
+
+269
+00:36:47.970 --> 00:36:52.320
+Persona 17: yeah kind of like building a customer base. And so yeah, that's
+
+270
+00:36:52.390 --> 00:37:01.170
+Persona 17: I think that's part of the reason that these co-ops are like in many cases able to be successful is that they have like our free support
+
+271
+00:37:01.260 --> 00:37:10.260
+as just like a community based organization that does this work. And there are several organizations that do co-OP development. In the us. It's kind of like a growing movement.
+
+272
+00:37:12.280 --> 00:37:13.540
+Persona 17: Yeah. So
+
+273
+00:37:13.880 --> 00:37:18.140
+Persona 17: as of now, the co-ops usually the only kind of outside
+
+274
+00:37:18.310 --> 00:37:26.910
+Persona 17: people that they hire are bookkeepers like, I said, because that's one area where, like we, Don't, necessarily have financial expertise.
+
+275
+00:37:26.990 --> 00:37:41.330
+Persona 17: and usually members do need some support with managing the books and the finances of their co-ops, so they usually hire a bookkeeper, and I would say, that's and they they buy insurance. And I would say those are kind of the big like external
+
+276
+00:37:42.880 --> 00:37:58.700
+Persona 17: expenses that they have. But yeah, like I said as they as we cause we usually after. I would say around 5 years, we kind of like ease out our support and the ideas for these crops to be like sustainable and independent long term, and some of them have already
+
+277
+00:37:58.760 --> 00:38:02.240
+Persona 17: began to be more independent from us.
+
+278
+00:38:02.630 --> 00:38:13.040
+Persona 17: The idea is that then, yeah, they would. They would be, you know, on their own, and they would be able to manage their own finances and make decisions about if they wanted to hire someone
+
+279
+00:38:13.090 --> 00:38:15.480
+Persona 17: for example, to. I don't know
+
+280
+00:38:15.530 --> 00:38:25.370
+Persona 17: to manage the co-OP in a more strategic way, or to manage more of the Admin. So that the individual workers don't have to do as much of the administrative work.
+
+281
+00:38:26.780 --> 00:38:27.400
+Mehmet Yetim: Okay.
+
+282
+00:38:27.510 --> 00:38:29.290
+Mehmet Yetim: cool. And then
+
+283
+00:38:29.410 --> 00:38:31.260
+Mehmet Yetim: one of the last questions. So
+
+284
+00:38:32.110 --> 00:38:37.400
+Mehmet Yetim: in terms of planning, so like, how how do they plan, and how far? And then
+
+285
+00:38:38.210 --> 00:38:41.100
+Mehmet Yetim: today plan ahead
+
+286
+00:38:45.860 --> 00:38:50.080
+Persona 17: a little? I think there are different, and I might get to.
+
+287
+00:38:50.170 --> 00:38:53.120
+Persona 17: I don't want to get to and Louise with the government and stuff. But
+
+288
+00:38:55.020 --> 00:39:01.330
+Persona 17: in terms of planning for, like the financial future of the cooperatives, for example, and like long term sustainability.
+
+289
+00:39:01.390 --> 00:39:10.520
+Persona 17: Like I said, several of these smaller cleaning businesses, they all use this website up and go to sell their services, and
+
+290
+00:39:10.520 --> 00:39:25.690
+Persona 17: that website, and is also a cooperative. So that booking platform is collectively like governed by the multiple businesses that use it, and they all set pricing together, and they like set some of the standards for the website together
+
+291
+
+00:39:26.330 --> 00:39:46.150
+Interviewee 17: and up and go. The collective has a board of directors that has representatives from the cooperatives, and it also has a few external seats of just people who have, like knowledge, business knowledge, or knowledge about the industry. So, I would say that governance body is where we think more strategically about like the financial future of ***[firm name], because right now it still has a lot of external funding. So, thinking about like, how can we make it sustainable long term? How can we grow our sales? What does marketing strategy look like so all of those kind of like bigger picture. 
+Long-term strategic decisions happen, I would say, within the board with input, from the co-ops. So, like anytime, even the board makes a decision. There are representatives there from the businesses, and we a lot of times get input from all of the members of the cooperative. So we try to even have like that decision making be pretty democratic, like more of a representative democracy. So that's kind of where those bigger decisions happen.
+
+
+
+
+
+296
+00:40:31.020 --> 00:40:36.050
+Mehmet Yetim: Okay? And then this up and go. So it's like a alliance between.
+
+297
+00:40:36.750 --> 00:40:52.080
+Persona 17: Yeah, yeah. So up and go itself is a is a platform cooperative. So up and go is also a private entity. It's an Llc. And it's it's owned collectively owned by several cooperative businesses.
+
+298
+00:40:52.080 --> 00:41:04.780
+So right now there are 6 cleaning businesses that are cooperative that we support, and they all use this central platform up and go. They all sell their services through up and go, and they collectively own it as well.
+
+299
+00:41:05.800 --> 00:41:06.880
+Mehmet Yetim: Okay, that's
+
+300
+00:41:07.180 --> 00:41:18.640
+Persona 17: yeah. So it's like the same structure as a cooperative. But instead of the members being individual people. The members are businesses.
+
+301
+00:41:18.910 --> 00:41:25.320
+Mehmet Yetim: and just couple of more questions there. How about the representatives to up and go like? How
+
+302
+00:41:25.580 --> 00:41:27.030
+Mehmet Yetim: How are they
+
+303
+00:41:27.790 --> 00:41:38.060
+Mehmet Yetim: how they are? They selected from cooperatives who becomes the representative? Yeah. 
+
+304
+00:41:38.210 --> 00:41:46.630
+Persona 17: So, the people, who in the cooperatives, who are interested, they basically apply [for being a representative]. They say, I’m interested. This is why this is like the knowledge that I have and the expertise that I bring. There are so many different bodies. I don't want to confuse you, but there's also a membership committee that's just like a committee that has representatives from each of the cooperatives. So, and that's a group that I kind of help, facilitate and plan the meetings for. And so, in that space they would basically have elections and choose who they want to send to the board. So, it's the members themselves who are electing and choosing. Okay, let's send these representatives to the Board to make these decisions.
+
+308
+00:42:18.980 --> 00:42:19.770
+Persona 17: Okay.
+
+309
+00:42:20.320 --> 00:42:21.570
+Mehmet Yetim: our
+
+310
+00:42:21.700 --> 00:42:36.350
+Persona 17: everyone in the organization, a member of membership committee in this case
+
+311
+00:42:36.610 --> 00:42:53.170
+Persona 17: people in the membership committee. And so that's that also functions like a representative democracy, right where they, we make decisions about *** [firm name] the platform as a whole, and each cooperative has a vote through the representatives that they send.
+
+312
+00:42:54.720 --> 00:42:56.130
+Mehmet Yetim: Okay, that's
+
+313
+00:42:56.270 --> 00:43:01.260
+Persona 17: very interesting. Yeah. hmm.
+
+314
+00:43:01.690 --> 00:43:06.570
+Persona 17: And I know it's a lot to digest.
+
+315
+00:43:07.790 --> 00:43:09.920
+Persona 17: And I even like I have like a.
+
+316
+00:43:10.670 --> 00:43:11.410
+and
+
+317
+00:43:11.510 --> 00:43:17.120
+Persona 17: it might help. I have just like a a visual of the structure. If you want to see
+
+318
+00:43:17.380 --> 00:43:18.560
+Mehmet Yetim: that would be great.
+
+319
+00:43:18.750 --> 00:43:20.640
+Persona 17: Yeah. So i'll show you.
+
+320
+00:43:21.660 --> 00:43:27.000
+Mehmet Yetim: Did you share the screen? Oh, yeah, I think you need to enable share screen share.
+
+321
+00:43:28.340 --> 00:43:29.120
+Persona 17: Okay.
+
+322
+00:43:30.150 --> 00:43:33.940
+Persona 17: So it's in Spanish. But
+
+323
+00:43:34.700 --> 00:43:44.960
+Persona 17: so this is like the structure of up and go right. So each of these are cooperative. So we have Brightly is kind of like a cooperative franchise. So all of these cooperatives share a brand.
+
+324
+00:43:44.960 --> 00:43:55.150
+Persona 17: But they're all different separate entities and businesses. So we have Brightly, Port Richmond, brightly Tribeca, brightly carol gardens. These are all just based in different parts of New York City.
+
+325
+00:43:55.350 --> 00:44:01.680
+and then Apple echo cleaning, which is not a brightly. It's just a different cleaning cooperative. That's also part of up and go.
+
+326
+00:44:02.370 --> 00:44:08.850
+Persona 17: So these 6 6 businesses are co-owners of
+
+327
+00:44:08.950 --> 00:44:17.240
+Persona 17: the platform of up and go, and they collectively run it, and then we have these 2 governing bodies that I mentioned. We have the Board of Directors, which its role is like more macro strategic thinking and more like long term strategic thinking, and they have representatives from the cooperatives, and they have some external seats that are like people with expertise in the industry. And then we have the membership committee which their role is more like coordinating day to day operations, making decisions about pricing about like customer service policies about like, how do we adjust pricing? How do we? What should our home sizes look like so more day to day operations? And this committee has representatives from each of the 6 cooperatives
+
+332
+00:44:58.520 --> 00:45:15.510
+Persona 17: and then center for family life. Our organization basically just like facilitates and coordinates these governance structures. We help like prepare the agendas. We help coordinate the vote or like guide the voting process. But we don't actually have any like legal stakes. These are independent
+
+333
+00:45:15.650 --> 00:45:18.270
+Persona 17: entities.
+
+334
+00:45:18.660 --> 00:45:21.640
+Mehmet Yetim: Cool. That's great. And so the
+
+335
+00:45:23.140 --> 00:45:32.480
+Persona 17: this is the up, just to show you. I don't know if you looked at it. But this is what the website actually looks like. So this is up and go, and if i'm a client, I can just book
+
+336
+00:45:32.630 --> 00:45:34.460
+Persona 17: a cleaning. Normally.
+
+337
+00:45:34.580 --> 00:45:40.210
+Persona 17: this is where I would choose all the aspects of my cleaning, like my home size.
+
+338
+00:45:42.170 --> 00:45:47.730
+Persona 17: and once I book my cleaning, it would be assigned to one of the cooperatives. So
+
+339
+00:45:48.020 --> 00:45:58.740
+Persona 17: members use this platform, and it looks kind of like a traditional booking platform. But the jobs are assigned to the the cooperative businesses that use up and go.
+
+340
+00:45:59.190 --> 00:46:02.900
+Mehmet Yetim: and we don't know which call partners will be assigned to the job.
+
+341
+00:46:02.970 --> 00:46:20.740
+Persona 17: No. So as a client you don't know, unless you specifically, unless you do know about the cooperatives. Maybe that's what brought you here because you like, are interested, or I don't know. And if you request a specific cooperative, then we can assign you one. But otherwise there's just like a rotation of cooperative. So we trade off assigning.
+
+342
+00:46:21.900 --> 00:46:25.370
+Mehmet Yetim: Okay, so it. And then in the back stage. So it's like.
+
+343
+00:46:25.630 --> 00:46:29.160
+Mehmet Yetim: hey? Everyone takes one customer, and
+
+344
+00:46:29.760 --> 00:46:32.110
+Persona 17: is it demand for call purchase.
+
+345
+00:46:32.690 --> 00:46:33.510
+Yeah.
+
+346
+00:46:33.680 --> 00:46:48.200
+Persona 17: basically it's a little more complicated because different cooperatives have different availability, too. So it depends. If a member is free on the day that that customer needs a cleaning. But basically we trade off between all the co-ops. Yeah.
+
+347
+00:46:48.250 --> 00:46:50.730
+Mehmet Yetim: okay. And then the
+
+348
+00:46:50.860 --> 00:46:58.280
+Mehmet Yetim: Board of director members are not in the Member Committee. Right? So those are different people. That's why there is a coordination.
+
+349
+00:47:00.470 --> 00:47:09.700
+Mehmet Yetim: Okay? And then in your where it's. So how do you describe the difference between board of director members. And then.
+
+350
+00:47:10.280 --> 00:47:15.750
+Mehmet Yetim: yeah, the Board of Directors is
+
+351
+00:47:15.860 --> 00:47:24.960
+Persona 17: more again, more like Macro and thinking more about long-term strategy and sustainability of the platform.
+
+352
+00:47:25.170 --> 00:47:32.860
+Persona 17: So it kind of has like a I would say, like a broader lens, and also more expertise specifically in like
+
+353
+00:47:32.980 --> 00:47:36.960
+Persona 17: finances and marketing strategy.
+
+354
+00:47:37.590 --> 00:47:51.920
+So yeah, I I think a little more. Macro is like the best way I can describe it, whereas the membership committee is coordinating more like day to day operations that directly impact the worker owners. Which is why that's just like all comprised of of worker owners from the cooperatives.
+
+355
+00:47:51.990 --> 00:47:56.120
+So, for example, if they're saying like, oh, we think the price for
+
+356
+00:47:56.180 --> 00:48:14.920
+Persona 17: 2 bedroom is too low. It should be higher. That's something that they would talk about in a membership committee, and they would decide to adjust that price. Or if they're like, oh, we're having this problem where sometimes we arrive at a client's house, and we can't reach the client, and they didn't leave us a key, and we should have like a policy, a cancellation policy
+
+357
+00:48:14.920 --> 00:48:26.730
+Persona 17: where we can charge clients if they're if we're not able to reach them. That's something. They would decide in the membership committee. So more like day to day operations, smaller scale decisions.
+
+358
+00:48:27.020 --> 00:48:30.590
+Mehmet Yetim: Okay. And then one more thing here. So then, in my
+
+359
+00:48:30.600 --> 00:48:34.520
+Mehmet Yetim: observation, the membership coming to me on demands.
+
+360
+00:48:34.700 --> 00:48:38.130
+Mehmet Yetim: and then board of Director meets periodically. Is it?
+
+361
+00:48:38.270 --> 00:48:43.950
+Persona 17: No, they actually both meet periodically. The membership committee meets every 3 weeks
+
+362
+00:48:44.340 --> 00:48:47.550
+just because it's important to have a space even just to like.
+
+363
+00:48:47.790 --> 00:48:58.640
+Persona 17: We usually have things to talk about and like policies to update and things like that. But even if we don't just to have a space where members can talk about what's been happening, if anything needs to be like looked at or addressed.
+
+364
+00:48:58.750 --> 00:49:03.590
+Persona 17: So we do meet every 3 weeks, and then the Board of Directors meets quarterly.
+
+365
+00:49:05.210 --> 00:49:06.530
+Mehmet Yetim: Okay, that's
+
+366
+00:49:08.300 --> 00:49:12.740
+Mehmet Yetim: very interesting. Thank you so much, for
+
+367
+00:49:13.250 --> 00:49:15.690
+Mehmet Yetim: like they're fine.
+
+368
+00:49:15.770 --> 00:49:25.480
+Mehmet Yetim: Sometimes. Having a visual is helpful. Yeah, in Spanish. But you get I got the concept there. So yeah.
+
+369
+00:49:26.230 --> 00:49:27.700
+Mehmet Yetim: Yeah.
+
+370
+00:49:27.990 --> 00:49:36.490
+Persona 17: after that I don't have anything for now in my mind. So that's like I asked you so many questions. I bombarded you with my questions.
+
+371
+00:49:36.660 --> 00:49:44.530
+Persona 17: Yeah, and I know there's a lot of information. But if you have any, follow up questions, feel free to email me, and i'd be interested to see what you end up
+
+372
+00:49:44.980 --> 00:50:00.690
+Mehmet Yetim: publishing, if anything so feel free to share that as well
+
+373
+00:50:00.740 --> 00:50:02.260
+Mehmet Yetim: like. You have broad
+
+374
+00:50:02.780 --> 00:50:07.300
+Persona 17: information about this like style at this like concept. So it's.
+
+375
+00:50:07.460 --> 00:50:17.060
+Mehmet Yetim: If i'm trying to draw a model like of this issue making, I can try to like, meet you and then ask your opinion. Okay, Does it look like correct out if there is any suggestions on that.
+
+376
+00:50:17.380 --> 00:50:27.540
+Mehmet Yetim: because when I meet organizations they have their own way, like I usually meet with organization cops, and they have their own way to describe things, but, like they only have one way right. But
+
+377
+00:50:27.550 --> 00:50:31.140
+Mehmet Yetim: based on your experience, actually, you are experiencing many different areas.
+
+378
+00:50:31.150 --> 00:50:34.680
+Persona 17: and I can see that it can be very useful. Yeah.
+
+379
+00:50:35.020 --> 00:50:46.790
+Persona 17: Yeah, we're gonna yeah, I'm: happy to help in the future, If you need more.
+
+380
+00:50:46.850 --> 00:50:48.920
+Mehmet Yetim: i'll say it to.
+
+381
+00:50:49.740 --> 00:51:00.980
+Mehmet Yetim: I don't know if I add you on Linkedin. I'm not sure like, oh, yeah, yeah, you can look me up. It's just my first and last name, Persona 17 the
+
+382
+00:51:01.050 --> 00:51:20.910
+Mehmet Yetim: I'll add you there, too. Any other questions to me? No, I don't think so. It was good meeting you. Yeah. Good luck with the with the paper. Yeah, it is challenging. And then, yeah, it was a good meeting, you, too. And then I appreciate your time. It was. It was a great help like I i'm very excited to include this in my
+
+383
+00:51:20.910 --> 00:51:22.010
+Mehmet Yetim: data analysis.
+
+384
+00:51:22.210 --> 00:51:23.300
+Persona 17: Yeah, i'm glad.
+
+385
+00:51:24.050 --> 00:51:28.990
+Mehmet Yetim: Cool. And then for sure, If you think like, anyone can be helpful. Just feel free to like. Send my
+
+386
+00:51:29.100 --> 00:51:31.920
+Mehmet Yetim: information to them that I can interview like
+
+387
+00:51:31.930 --> 00:51:34.690
+Mehmet Yetim: as many organizations as possible, to make sure that I
+
+388
+00:51:35.160 --> 00:51:38.820
+Mehmet Yetim: have all the data to make sure that we are a good model for that.
+
+389
+00:51:38.870 --> 00:51:39.670
+Persona 17: Yeah.
+
+390
+00:51:39.710 --> 00:51:45.050
+Persona 17: Okay, Great. Thank you so much.

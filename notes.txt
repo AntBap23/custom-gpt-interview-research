@@ -1,0 +1,139 @@
+# GPT Research Interview Assistant - Running Instructions
+
+## Overview
+This is a Streamlit application for conducting AI-powered research interviews with PDF parsing capabilities and intelligent question extraction.
+
+## Prerequisites
+1. Python 3.8 or higher
+2. OpenAI API key
+
+## Installation Steps
+
+### 1. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Set up Environment Variables
+Create a `.env` file in the root directory with:
+```
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+### 3. Create Required Directories
+The app will automatically create these directories, but you can create them manually:
+```bash
+mkdir -p personas data/ai_responses outputs questions
+```
+
+## Running the Application
+
+### Start the Streamlit App
+```bash
+streamlit run app.py
+```
+
+The app will be available at: http://localhost:8501
+
+## How to Use
+
+### Tab 1: Upload Inputs
+1. **Research Context**: Upload a .docx file with your research context
+2. **Interviewee Table**: Upload an .xlsx file with participant information
+3. **Interview Questions**: 
+   - Upload a .txt file with questions (one per line)
+   - **NEW**: Upload a PDF file - the app will:
+     - Extract all text from the PDF
+     - Use AI to identify interview questions
+     - Allow you to improve questions with AI
+     - Let you manually edit questions before saving
+
+### Tab 2: Add Personas
+1. Fill out the persona form with:
+   - Name, Age, Job, Education
+   - Personality traits
+   - Opinions on AI and Remote Work
+2. Click "Save Persona" to create a JSON file
+
+### Tab 3: Simulate Interviews
+1. Ensure you have uploaded questions and created personas
+2. Click "Run Interview" for each persona
+3. The app will generate AI responses and save them as JSON files
+
+### Tab 4: Analyze Themes
+1. Select an interview response file
+2. Run Gioia Method Analysis for thematic analysis
+3. Export results to DOCX or PDF format
+
+## New PDF Features
+
+### PDF Text Extraction
+- Uses multiple parsing methods (pdfplumber, PyMuPDF, PyPDF2) for best results
+- Handles various PDF formats and structures
+- Shows extraction progress and character count
+
+### AI-Powered Question Extraction
+- Automatically identifies interview questions from PDF content
+- Uses GPT-3.5-turbo to analyze text and extract relevant questions
+- Filters out irrelevant content and formats questions properly
+
+### Question Improvement
+- AI reviews and improves extracted questions
+- Fixes grammar and clarity issues
+- Ensures questions are suitable for research interviews
+
+### Manual Editing
+- Preview extracted text before processing
+- Edit questions manually after AI extraction
+- Save final question set for interviews
+
+## File Structure
+```
+├── app.py                 # Main Streamlit application
+├── requirements.txt       # Python dependencies
+├── .env                  # Environment variables (create this)
+├── utils/
+│   └── pdf_parser.py     # PDF parsing and AI question extraction
+├── scripts/
+│   ├── simulate_interviews.py
+│   ├── analyze_gioia.py
+│   └── export_results.py
+├── personas/             # Generated persona JSON files
+├── questions/            # Saved question files
+├── data/
+│   └── ai_responses/     # Interview response JSON files
+└── outputs/              # Analysis and export files
+```
+
+## Troubleshooting
+
+### Common Issues
+1. **Import errors**: Make sure all dependencies are installed with `pip install -r requirements.txt`
+2. **OpenAI API errors**: Verify your API key is correct and has sufficient credits
+3. **PDF parsing fails**: Try a different PDF or check if the PDF contains selectable text
+4. **No questions extracted**: The PDF might not contain clear interview questions - try manual upload
+
+### PDF Processing Issues
+- If PDF text extraction fails, try converting the PDF to a different format
+- Scanned PDFs (images) won't work - use OCR tools first
+- Very large PDFs might hit API token limits - consider splitting them
+
+### Performance Tips
+- Large PDF files may take time to process
+- AI question extraction uses OpenAI API calls (costs apply)
+- Keep PDF files under 10MB for best performance
+
+## API Usage and Costs
+- PDF text extraction: Free (local processing)
+- AI question extraction: ~$0.001-0.01 per PDF (depending on size)
+- Question improvement: ~$0.001-0.005 per set of questions
+- Interview simulation: Varies based on length and complexity
+
+## Support
+- Check the Streamlit logs for detailed error messages
+- Ensure all environment variables are properly set
+- Verify file permissions for the working directory
+
+## Version History
+- v2.0: Added PDF parsing and AI-powered question extraction
+- v1.0: Basic Streamlit app with manual file uploads
