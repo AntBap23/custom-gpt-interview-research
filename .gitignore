@@ -35,6 +35,8 @@ ENV/
 *.swp
 *.swo
 
+.streamlit/secrets.toml
+
 # Project specific
 data/ai_responses/*
 !data/ai_responses/.gitkeep
