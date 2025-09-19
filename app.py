@@ -2,7 +2,7 @@ import streamlit as st
 import json
 import os
 import openai
-from dotenv import load_dotenv
+from config import get_secret
 from scripts.simulate_interviews import simulate_interview
 from scripts.analyze_gioia import analyze_gioia
 from scripts.export_results import export_both
@@ -23,14 +23,13 @@ if 'uploaded_files' not in st.session_state:
 if 'personas' not in st.session_state:
     st.session_state.personas = []
 
-# Load API key and validate
-load_dotenv()
-
-# Check API key availability (without exposing it)
-api_key = os.getenv("OPENAI_API_KEY")
+# Load API key from secrets (no .env dependency)
+api_key = get_secret("OPENAI_API_KEY")
 if not api_key:
-    st.sidebar.error("❌ No OpenAI API key found in environment")
-    st.sidebar.warning("⚠️ Please create a .env file with: OPENAI_API_KEY=your-key-here")
+    st.sidebar.error("❌ No OpenAI API key configured")
+    st.sidebar.warning(
+        "⚠️ Set OPENAI_API_KEY in Streamlit secrets (secrets.toml or Cloud Secrets)."
+    )
 
 # Ensure required directories exist
 for dir_path in ["personas", "data/ai_responses", "outputs", "questions"]:
@@ -481,7 +480,7 @@ with tab4:
                     ai_responses = json.load(f)
                 
                 # Create comparison analysis using AI
-                client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+                client = openai.OpenAI(api_key=get_secret("OPENAI_API_KEY"))
                 
                 ai_text = "\n".join([f"Q: {item['question']}\nA: {item['answer']}" for item in ai_responses])
                 
@@ -552,7 +551,7 @@ with tab4:
                     # Create analysis of real interview
                     real_analysis_path = os.path.join("outputs", "real_interview_analysis.md")
                     
-                    client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+                    client = openai.OpenAI(api_key=get_secret("OPENAI_API_KEY"))
                     
                     real_analysis_prompt = f"""
                     Analyze this real interview transcript using the Gioia methodology:

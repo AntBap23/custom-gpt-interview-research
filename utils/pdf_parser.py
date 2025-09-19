@@ -53,7 +53,8 @@ def extract_questions_with_ai(text_content: str) -> List[str]:
         return []
     
     try:
-        client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        from config import get_secret
+        client = openai.OpenAI(api_key=get_secret("OPENAI_API_KEY"))
         
         prompt = f"""
         Please analyze the following text and extract all interview questions. 
@@ -105,7 +106,8 @@ def validate_and_improve_questions(questions: List[str]) -> List[str]:
         return []
     
     try:
-        client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        from config import get_secret
+        client = openai.OpenAI(api_key=get_secret("OPENAI_API_KEY"))
         
         questions_text = "\n".join([f"{i+1}. {q}" for i, q in enumerate(questions)])
         

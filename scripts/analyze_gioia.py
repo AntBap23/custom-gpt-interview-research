@@ -1,9 +1,8 @@
 import openai
 import os
 import json
-from dotenv import load_dotenv
+from config import get_secret
 
-load_dotenv()
 
 def analyze_gioia(interview_json_path, output_path):
     """
@@ -13,7 +12,7 @@ def analyze_gioia(interview_json_path, output_path):
     with open(interview_json_path, 'r') as f:
         interview_data = json.load(f)
     
-    client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    client = openai.OpenAI(api_key=get_secret("OPENAI_API_KEY"))
     
     all_text = "\n".join([f"Q: {item['question']}\nA: {item['answer']}" for item in interview_data])
     

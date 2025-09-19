@@ -68,7 +68,8 @@ def extract_persona_info_with_ai(text_content: str, persona_counter: int) -> Dic
         return create_default_persona(persona_counter)
     
     try:
-        client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        from config import get_secret
+        client = openai.OpenAI(api_key=get_secret("OPENAI_API_KEY"))
         
         prompt = f"""
         Please analyze the following text and extract persona information for creating an interview character.

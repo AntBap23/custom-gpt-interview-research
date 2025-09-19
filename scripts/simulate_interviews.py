@@ -1,9 +1,8 @@
 import openai
 import json
 import os
-from dotenv import load_dotenv
+from config import get_secret
 
-load_dotenv()
 
 def simulate_interview(persona_path, questions_path, output_path):
     """
@@ -17,7 +16,7 @@ def simulate_interview(persona_path, questions_path, output_path):
     with open(questions_path, 'r') as f:
         questions = [line.strip() for line in f.readlines() if line.strip()]
     
-    client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    client = openai.OpenAI(api_key=get_secret("OPENAI_API_KEY"))
     
     intro = f"You are {persona['name']}, a {persona['age']} year old {persona['job']} with traits: {persona['personality']}. Based on this persona, answer the following questions authentically."
     
