@@ -26,17 +26,9 @@ if 'personas' not in st.session_state:
 # Load API key and validate
 load_dotenv()
 
-# Debug: Check if .env file is found
-env_path = os.path.join(os.path.dirname(__file__), '.env')
-st.sidebar.write(f"Looking for .env at: {env_path}")
-st.sidebar.write(f"File exists: {os.path.exists(env_path)}")
-
-# Debug: Show environment variables (masked for security)
+# Check API key availability (without exposing it)
 api_key = os.getenv("OPENAI_API_KEY")
-if api_key:
-    st.sidebar.success("✅ OpenAI API key found")
-    st.sidebar.write(f"Key starts with: {api_key[:5]}...{api_key[-4:]}")
-else:
+if not api_key:
     st.sidebar.error("❌ No OpenAI API key found in environment")
     st.sidebar.warning("⚠️ Please create a .env file with: OPENAI_API_KEY=your-key-here")
 
