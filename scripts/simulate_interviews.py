@@ -18,7 +18,14 @@ def simulate_interview(persona_path, questions_path, output_path):
     
     client = openai.OpenAI(api_key=get_secret("OPENAI_API_KEY"))
     
-    intro = f"You are {persona['name']}, a {persona['age']} year old {persona['job']} with traits: {persona['personality']}. Based on this persona, answer the following questions authentically."
+    # Build intro using original text if available, otherwise use structured fields
+    if persona.get("original_text") and persona["original_text"].strip():
+        # Use original text as the primary source
+        intro = f"You are {persona['name']}. Here is information about you:\n\n{persona['original_text']}\n\nBased on this information, answer the following questions authentically and in character."
+    else:
+        # Fallback to structured fields
+        age_part = f", {persona['age']} years old" if persona.get("age") else ""
+        intro = f"You are {persona['name']}{age_part}, a {persona['job']} with traits: {persona['personality']}. Based on this persona, answer the following questions authentically."
     
     responses = []
     for q in questions:

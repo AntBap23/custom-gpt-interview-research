@@ -4,10 +4,10 @@ import os
 import platform
 
 def install():
-    print("📦 Creating virtual environment...")
+    print("Creating virtual environment...")
     subprocess.check_call([sys.executable, "-m", "venv", ".venv"])
     
-    print("✅ Virtual environment created.")
+    print("Virtual environment created.")
     
     # Detect OS and set correct paths
     is_windows = platform.system() == "Windows"
@@ -18,17 +18,17 @@ def install():
         python_path = ".venv/bin/python"
         activate_cmd = "source .venv/bin/activate"
     
-    print("📍 To activate it:")
+    print("To activate it:")
     print(f"Run: {activate_cmd}")
 
-    print("⬆️ Upgrading pip...")
+    print("Upgrading pip...")
     subprocess.check_call([python_path, "-m", "pip", "install", "--upgrade", "pip"])
 
-    print("📥 Installing requirements...")
+    print("Installing requirements...")
     subprocess.check_call([python_path, "-m", "pip", "install", "-r", "requirements.txt"])
 
-    print("✅ Setup complete!")
-    print(f"🚀 To run the app:")
+    print("Setup complete!")
+    print(f"To run the app:")
     print(f"1. {activate_cmd}")
     print("2. streamlit run app.py")
 

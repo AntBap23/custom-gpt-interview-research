@@ -32,7 +32,7 @@ def analyze_responses(responses_dir="data/ai_responses", output_dir="outputs"):
     total_questions = len(all_responses)
     unique_questions = len(set([r['question'] for r in all_responses]))
     
-    print(f"📊 Analysis Summary:")
+    print(f"Analysis Summary:")
     print(f"Total responses: {total_questions}")
     print(f"Unique questions: {unique_questions}")
     print(f"Personas analyzed: {len(personas)}")
@@ -51,7 +51,7 @@ def analyze_responses(responses_dir="data/ai_responses", output_dir="outputs"):
         for persona in personas:
             f.write(f"- {persona}\n")
     
-    print(f"✅ Summary saved to {summary_path}")
+    print(f"Summary saved to {summary_path}")
     return summary_path
 
 if __name__ == "__main__":

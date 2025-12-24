@@ -76,7 +76,7 @@ def extract_persona_info_with_ai(text_content: str, persona_counter: int) -> Dic
         Extract the following information if available:
         
         1. Name (if not available, leave empty)
-        2. Age (estimate if not explicitly stated)
+        2. Age (ONLY if explicitly stated in the text, otherwise leave as null)
         3. Job/Profession
         4. Education level
         5. Personality traits
@@ -86,7 +86,7 @@ def extract_persona_info_with_ai(text_content: str, persona_counter: int) -> Dic
         Format your response as JSON with these exact keys:
         {{
             "name": "extracted name or empty string",
-            "age": estimated_age_number,
+            "age": null or number if explicitly stated,
             "job": "job/profession",
             "education": "education level",
             "personality": "personality traits description",
@@ -94,7 +94,8 @@ def extract_persona_info_with_ai(text_content: str, persona_counter: int) -> Dic
             "remote_work_opinion": "opinion on remote work"
         }}
         
-        If information is not available, make reasonable assumptions based on context.
+        Do NOT estimate or make up ages. Only include age if it is explicitly stated in the text.
+        For other fields, if information is not available, use "Not specified".
         
         Text to analyze:
         {text_content[:3000]}  # Limit to avoid token limits
@@ -118,19 +119,30 @@ def extract_persona_info_with_ai(text_content: str, persona_counter: int) -> Dic
         if not persona_data.get("name") or persona_data["name"].strip() == "":
             persona_data["name"] = f"Persona {persona_counter}"
         
-        # Ensure all required fields exist
-        required_fields = ["name", "age", "job", "education", "personality", "ai_opinion", "remote_work_opinion"]
+        # Ensure all required fields exist (except age, which can be null)
+        required_fields = ["name", "job", "education", "personality", "ai_opinion", "remote_work_opinion"]
         for field in required_fields:
             if field not in persona_data or not persona_data[field]:
                 persona_data[field] = "Not specified"
         
-        # Convert to the format expected by the app
+        # Handle age - only convert if it's a valid number, otherwise leave as null
+        age = persona_data.get("age")
+        if age is not None and age != "null" and str(age).strip() != "":
+            try:
+                age = int(age)
+            except (ValueError, TypeError):
+                age = None
+        else:
+            age = None
+        
+        # Convert to the format expected by the app, including original text
         formatted_persona = {
             "name": persona_data["name"],
-            "age": int(persona_data["age"]) if str(persona_data["age"]).isdigit() else 30,
+            "age": age,  # Can be None if not found
             "job": persona_data["job"],
             "education": persona_data["education"],
             "personality": persona_data["personality"],
+            "original_text": text_content[:5000],  # Store original text for AI to use
             "opinions": {
                 "AI": persona_data["ai_opinion"],
                 "Remote Work": persona_data["remote_work_opinion"]
@@ -149,10 +161,11 @@ def create_default_persona(persona_counter: int) -> Dict:
     """
     return {
         "name": f"Persona {persona_counter}",
-        "age": 30,
+        "age": None,
         "job": "Professional",
         "education": "College Graduate",
         "personality": "Thoughtful and analytical",
+        "original_text": "",
         "opinions": {
             "AI": "Cautiously optimistic about AI technology",
             "Remote Work": "Appreciates flexibility of remote work"
@@ -163,10 +176,9 @@ def validate_persona_data(persona_data: Dict) -> Dict:
     """
     Validate and clean persona data.
     """
-    # Ensure required fields exist
+    # Ensure required fields exist (age can be None)
     required_fields = {
         "name": "Unnamed Persona",
-        "age": 30,
         "job": "Professional",
         "education": "Not specified",
         "personality": "Not specified",
@@ -177,11 +189,18 @@ def validate_persona_data(persona_data: Dict) -> Dict:
         if field not in persona_data or not persona_data[field]:
             persona_data[field] = default_value
     
-    # Ensure age is a number
-    try:
-        persona_data["age"] = int(persona_data["age"])
-    except (ValueError, TypeError):
-        persona_data["age"] = 30
+    # Handle age - only set if it's a valid number, otherwise None
+    if "age" not in persona_data or persona_data["age"] is None:
+        persona_data["age"] = None
+    else:
+        try:
+            persona_data["age"] = int(persona_data["age"])
+        except (ValueError, TypeError):
+            persona_data["age"] = None
+    
+    # Ensure original_text exists
+    if "original_text" not in persona_data:
+        persona_data["original_text"] = ""
     
     # Ensure opinions is a dict
     if not isinstance(persona_data.get("opinions"), dict):
