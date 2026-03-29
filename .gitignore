@@ -37,7 +37,12 @@ ENV/
 
 .streamlit/secrets.toml
 
+# macOS
+.DS_Store
+
 # Project specific
+exports/*
+!exports/.gitkeep
 data/ai_responses/*
 !data/ai_responses/.gitkeep
 outputs/*

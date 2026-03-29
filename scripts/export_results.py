@@ -41,12 +41,12 @@ def export_interview_to_pdf(data, pdf_path):
     pdf.output(pdf_path)
     return pdf_path
 
-def export_both(input_json_path, output_basename):
+def export_both(input_json_path, output_basename, output_dir="outputs"):
     """Export interview data to both DOCX and PDF formats."""
     with open(input_json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
-    
-    output_dir = "outputs"
+
+    os.makedirs(output_dir, exist_ok=True)
     docx_path = os.path.join(output_dir, f"{output_basename}.docx")
     pdf_path = os.path.join(output_dir, f"{output_basename}.pdf")
     
