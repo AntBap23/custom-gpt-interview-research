@@ -1,95 +1,226 @@
-# AI vs. Real Interview Comparison (Streamlit)
+# Qualitative AI Interview Studio
 
-A Streamlit app for **qualitative interview research** that:
+A Streamlit application for examining qualitative interview workflows that compare real interview transcripts with persona-based AI interview simulations.
 
-1. Ingests a **human interview transcript** and an **interview guide** (questions as plain text or extracted from a PDF).
-2. Defines **synthetic participant personas** (manual text or PDF/DOCX), then **simulates** how a large language model answers the same questions in character.
-3. Produces **Gioia-style** thematic comparisons—first-order concepts, themes, and aggregate dimensions—contrasting real vs. AI-generated material, with exports to Markdown, DOCX, and PDF.
+This repository presents a research-oriented tool rather than a general-purpose chatbot or a production data platform. Its purpose is to support methodological exploration around the use of AI in interview-based qualitative research, especially in cases where a researcher wants to compare AI-generated interview material against real interview data using a shared interview guide.
 
-It is aimed at workflows where you want a structured, reproducible way to probe **what LLM-based “participants” say** next to **actual interview data**, using familiar qualitative coding language rather than ad hoc summaries alone.
+## Research Purpose
 
-## What you need
+The central methodological question behind this project is:
 
-- **Python 3.10+** (3.11/3.12 recommended).
-- An **OpenAI API key** with access to the Chat Completions API (the app uses `gpt-3.5-turbo` by default in the codebase).
+`How can AI-generated interview material be examined alongside real interview material in a structured qualitative workflow?`
 
-## Quick start (local)
+The application is intended to support inquiry into issues such as:
 
-```bash
-git clone <your-fork-or-repo-url>
-cd custom-gpt-interview-research
+- the degree to which AI-generated interviews resemble or diverge from real interviews
+- whether persona-conditioned prompting yields data that is analytically useful
+- where AI-generated responses become overly generic, overly polished, or insufficiently grounded in lived context
+- how AI may assist with early-stage qualitative comparison without replacing interpretive judgment
 
-# Optional helper: creates .venv and installs dependencies
-python install.py
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
+Rather than assuming AI output is either valid by default or invalid by default, the tool is designed to make differences visible and reviewable.
 
-# Or manually:
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-```
+## Scope Of The Application
 
-Configure the API key **either**:
+The application supports a bounded qualitative workflow:
 
-- **Environment variable:** `export OPENAI_API_KEY="sk-..."`, or a `.env` file in the project root with `OPENAI_API_KEY=...` (loaded via `python-dotenv`), **or**
-- **Streamlit secrets** (recommended on [Streamlit Community Cloud](https://streamlit.io/cloud)): add `OPENAI_API_KEY` in *App settings → Secrets*.
+- upload a real interview transcript
+- upload or extract a shared interview guide
+- create participant personas from text or documents
+- simulate AI interviews from those personas
+- compare real and AI-generated interview material
+- review differences through tables, quotes, themes, and narrative outputs
+- export interview and analysis artifacts
 
-Run the app:
+This workflow is particularly relevant to exploratory studies of AI-assisted qualitative methods, synthetic respondent workflows, and comparative evaluation of interview outputs.
 
-```bash
-streamlit run app.py
-```
+## Intended Users
 
-Or: `./run.sh` (expects `.venv` or `venv`).
+This project is most likely to be useful for:
 
-Open the URL shown in the terminal (default `http://localhost:8501`).
+- qualitative researchers
+- interview-based management and social science researchers
+- doctoral students and faculty working with qualitative methods
+- market, organizational, and UX researchers using semi-structured interviews
+- researchers investigating AI-supported methodological workflows
 
-## Using the four tabs
+## Current Analytical Structure
 
-| Tab | Purpose |
-|-----|---------|
-| **Upload Real Interview** | Upload the **real transcript** (TXT, PDF, or DOCX). Upload **questions** as `.txt` (one per line) or `.pdf` (text is extracted, then questions are inferred with the API). |
-| **Add Personas** | Create personas from **manual description** or **PDF/DOCX**; the app uses the API to normalize fields (name, role, personality, etc.) and saves JSON under `personas/`. |
-| **Simulate AI Interviews** | For each persona JSON, runs **simulated answers** and writes `data/ai_responses/<persona>_responses.json`. |
-| **Compare & Analyze** | Runs **real vs. AI** comparison and optional **Gioia-style** analyses; download Markdown analyses; export simulated interviews to **DOCX/PDF** under `exports/`. |
+The application is organized into four sections:
 
-## Repository layout
+- `Study Design`
+  Researchers upload a real transcript, upload an interview guide, and define a simple study protocol to guide simulation and analysis.
 
-```
-app.py                 # Streamlit entrypoint
-config.py              # OPENAI_API_KEY: st.secrets → .env / environment
-utils/
-  pdf_parser.py       # PDF text + AI question extraction
-  persona_parser.py   # DOCX/PDF persona text + AI structuring
+- `Persona Studio`
+  Researchers create personas from manual descriptions or uploaded source documents and review extracted fields before saving.
+
+- `Simulation Lab`
+  Researchers run persona-conditioned AI interviews using the shared guide and inspect generated responses.
+
+- `Analysis Studio`
+  Researchers compare real and AI interview material, review extracted quotes and themes, generate Gioia-style outputs, and export files.
+
+## Current Features
+
+- transcript upload in `txt`, `docx`, and `pdf`
+- interview guide upload in `txt` and `pdf`
+- persona creation from text, `docx`, or `pdf`
+- persona-conditioned AI interview simulation
+- reusable study protocol fields:
+  - `Shared study context`
+  - `Interview style guidance`
+  - `Consistency rules`
+  - `Analysis focus`
+- structured comparison review through:
+  - `Comparison Matrix`
+  - `Quote Review`
+  - `Theme Review`
+  - `Narrative Report`
+- Gioia-style analysis generation
+- researcher-authored notes within theme review
+- export support for AI interview transcripts in `docx`, `pdf`, `csv`, `txt`, and `html`
+
+## Methodological Orientation
+
+The design of the application reflects several methodological commitments:
+
+- AI-generated material should be reviewable rather than taken at face value.
+- Persona conditioning should be explicit and inspectable.
+- Shared interview guides matter for comparability across real and simulated interviews.
+- Differences in specificity, emotional texture, context, and interpretive richness are analytically important.
+- AI can be useful as an augmentative device without functioning as a substitute for qualitative interpretation.
+
+The application should therefore be understood as a methodological aid for comparison, exploration, and reflective analysis, not as an automated replacement for qualitative research practice.
+
+## Deployment Status
+
+At its current stage, the application is suitable for:
+
+- pilot deployment
+- demonstrations
+- exploratory use by a small number of researchers
+- early-stage methodological testing
+
+It is not yet intended as:
+
+- a production multi-user platform
+- a persistent collaborative research environment
+- a full research project management system
+
+For the practical question, `Can this be deployed so researchers can try it online?`, the answer is yes.
+
+## Technical Stack
+
+- Streamlit
+- OpenAI API
+- Python
+- `python-docx`
+- `PyPDF2`
+- `pdfplumber`
+- `pymupdf`
+- `fpdf2`
+
+## Repository Structure
+
+```text
+app.py
+config.py
+requirements.txt
+run.sh
+install.py
+
+personas/
+questions/
+study_protocols/
+data/
+  ai_responses/
+outputs/
+exports/
+
 scripts/
   simulate_interviews.py
   analyze_gioia.py
   export_results.py
-personas/              # Persona JSON (repo keeps .gitkeep only)
-questions/             # Saved questions.txt
-data/
-  ai_responses/       # Simulated interview JSON
-  real_interview_transcript.txt   # Written when you upload a real transcript
-outputs/               # Generated Markdown analyses
-exports/               # DOCX/PDF exports from the Compare tab
+
+utils/
+  pdf_parser.py
+  persona_parser.py
 ```
 
-Generated paths under `data/ai_responses`, `outputs`, `exports`, and `personas` are mostly **gitignored** except placeholder `.gitkeep` files—clone the repo clean and produce artifacts locally or on Streamlit Cloud’s ephemeral filesystem.
+## Local Setup
 
-## PDF and DOCX behavior
+Recommended:
 
-- **Text must be selectable** in PDFs; scanned images need OCR elsewhere first.
-- Extraction tries **pdfplumber**, then **PyMuPDF**, with **PyPDF2** as fallback—best-effort depending on how the PDF was produced.
+```bash
+python install.py
+./run.sh
+```
 
-## API usage and cost
+Manual setup:
 
-Every step that calls the model (question extraction, persona parsing, simulation, Gioia analysis, comparison) consumes tokens. **Monitor usage** in the OpenAI dashboard. For production or heavy studies, consider upgrading models or batching in the code.
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+streamlit run app.py
+```
 
-## Troubleshooting
+## Environment Configuration
 
-- **“No OpenAI API key configured”** in the sidebar: set `OPENAI_API_KEY` via `.env`, shell, or Streamlit secrets.
-- **Empty PDF text**: file may be image-only or protected; try export-to-text from your PDF tool.
-- **Simulation errors**: confirm `questions/questions.txt` exists and persona JSON files are under `personas/`.
+Set `OPENAI_API_KEY` through one of the following:
 
-## Research context
+- shell environment variable
+- `.env`
+- Streamlit secrets
 
-Companion materials (e.g. presentation decks, interview scripts, and manuscripts such as *Yetim et al.*—Academy of Management–related qualitative work) live outside this repository. This codebase is the **implementation** of the workflow: **human transcript + shared questions + persona-conditioned LLM responses + Gioia-style comparison**.
+Example:
+
+```bash
+export OPENAI_API_KEY="your-key-here"
+```
+
+## Deployment
+
+The simplest deployment path is Streamlit Community Cloud.
+
+High-level deployment steps:
+
+1. Push the repository to GitHub.
+2. Create a Streamlit app from the repository.
+3. Set `app.py` as the entry point.
+4. Add `OPENAI_API_KEY` in Streamlit secrets.
+5. Deploy.
+
+## Current Limitations
+
+- model outputs are variable across runs
+- AI-generated interviews may become repetitive when persona inputs are thin
+- local file storage is convenient but not persistent across all hosting environments
+- PDF extraction quality depends on source file quality
+- the current system is better suited to individual or light pilot use than sustained collaborative research use
+
+## Appropriate Uses
+
+- methodological experimentation with AI-assisted qualitative workflows
+- comparison of real and AI-generated interview material
+- pilot testing of interview guides
+- production of structured comparison artifacts for analytic reflection
+- early-stage thematic and Gioia-style scaffolding
+
+## Less Appropriate Uses
+
+- replacing human qualitative interpretation
+- large-scale collaborative project management
+- long-term persistent storage without added infrastructure
+- high-stakes use cases that require deterministic outputs
+
+## Future Directions
+
+- local named workspaces
+- persistent study storage
+- collaborative annotation
+- stronger project-level organization
+- richer review workflows around quotes and themes
+
+## License
+
+Add the license you want if you plan to distribute the repository publicly.
