@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview Guide | Qualitative AI Interview Studio</title>
+    <link rel="stylesheet" href="/frontend/styles.css" />
+  </head>
+  <body data-page="interview-guide">
+    <div class="site-shell">
+      <header class="site-header" data-site-header></header>
+
+      <main class="page page--detail">
+        <section class="hero hero--detail hero--guide">
+          <div class="hero__copy">
+            <p class="eyebrow">Interview Guide</p>
+            <h1>Prepare the shared guide that anchors comparison work.</h1>
+            <p class="hero__lede">
+              Use one interview guide across real and AI-generated material so differences in response quality are
+              easier to inspect and interpret.
+            </p>
+          </div>
+        </section>
+
+        <nav class="workspace-nav" data-workspace-nav></nav>
+
+        <section class="content-grid content-grid--two">
+          <article class="panel-card">
+            <span class="panel-card__label">Question Extraction</span>
+            <h2>Extract and save a guide</h2>
+            <p class="muted-copy">
+              Upload an interview guide document first, then refine the extracted text and generate questions from it.
+            </p>
+            <form id="guide-upload-form" class="stack-form upload-form">
+              <label>
+                Upload guide document
+                <input type="file" name="file" accept=".pdf,.docx,.txt,.md" required />
+              </label>
+              <button class="button button--secondary" type="submit">Load guide text</button>
+            </form>
+            <form id="questions-form" class="stack-form">
+              <label>
+                Guide text
+                <textarea name="text" rows="10" required></textarea>
+              </label>
+              <label class="check-row">
+                <input type="checkbox" name="improve_with_ai" />
+                Improve question wording with AI
+              </label>
+              <button class="button button--primary" type="submit">Extract questions</button>
+            </form>
+            <div id="questions-output" class="message-box">No questions extracted yet.</div>
+
+            <form id="guide-save-form" class="stack-form stack-form--inline">
+              <label>
+                Guide name
+                <input type="text" name="name" placeholder="Interview Guide" required />
+              </label>
+              <button class="button button--secondary" type="submit">Save extracted guide</button>
+            </form>
+          </article>
+
+          <article class="panel-card">
+            <span class="panel-card__label">Saved Guides</span>
+            <h2>Current study records</h2>
+            <div id="guide-list" class="resource-list">
+              <p class="muted-copy">No guides loaded yet.</p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="/frontend/app.js" type="module"></script>
+  </body>
+</html>

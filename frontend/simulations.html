@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulations | Qualitative AI Interview Studio</title>
+    <link rel="stylesheet" href="/frontend/styles.css" />
+  </head>
+  <body data-page="simulations">
+    <div class="site-shell">
+      <header class="site-header" data-site-header></header>
+
+      <main class="page page--detail">
+        <section class="hero hero--detail hero--simulations">
+          <div class="hero__copy">
+            <p class="eyebrow">Simulations</p>
+            <h1>Run study-scoped AI interviews from prepared materials.</h1>
+            <p class="hero__lede">
+              Simulations depend on grounded personas, a shared guide, and protocol discipline. This page separates
+              generation work from setup so the workflow feels deliberate rather than cramped.
+            </p>
+          </div>
+        </section>
+
+        <nav class="workspace-nav" data-workspace-nav></nav>
+
+        <section class="content-grid content-grid--two">
+          <article class="panel-card">
+            <span class="panel-card__label">Run Simulation</span>
+            <h2>Create a new AI interview</h2>
+            <form id="simulation-form" class="stack-form">
+              <label>
+                Persona
+                <select name="persona_id" id="simulation-persona-select" required></select>
+              </label>
+              <label>
+                Question guide
+                <select name="question_guide_id" id="simulation-guide-select" required></select>
+              </label>
+              <label>
+                Protocol
+                <select name="protocol_id" id="simulation-protocol-select"></select>
+              </label>
+              <button class="button button--primary" type="submit">Run simulation</button>
+            </form>
+            <div id="simulation-output" class="message-box">No simulation run yet.</div>
+          </article>
+
+          <article class="panel-card">
+            <span class="panel-card__label">Saved Simulations</span>
+            <h2>Current study records</h2>
+            <div id="simulation-list" class="resource-list">
+              <p class="muted-copy">No simulations loaded yet.</p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="/frontend/app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studies | Qualitative AI Interview Studio</title>
+    <link rel="stylesheet" href="/frontend/styles.css" />
+  </head>
+  <body data-page="studies">
+    <div class="site-shell">
+      <header class="site-header" data-site-header></header>
+
+      <main class="page page--studies">
+        <section class="hero hero--studies">
+          <div class="hero__copy">
+            <p class="eyebrow">Studies</p>
+            <h1>Create, select, and manage research workspaces.</h1>
+            <p class="hero__lede">
+              Each study acts as the organizing unit for protocols, personas, interview guides, transcripts,
+              simulations, and comparisons.
+            </p>
+          </div>
+
+          <aside class="hero__panel">
+            <div class="panel-card panel-card--highlight">
+              <span class="panel-card__label">Portfolio</span>
+              <h2 id="studies-portfolio-count">0 studies loaded</h2>
+              <p id="studies-portfolio-copy">
+                Create a study to start building a structured workflow around a specific research question.
+              </p>
+            </div>
+          </aside>
+        </section>
+
+        <section class="content-grid content-grid--two">
+          <article class="panel-card">
+            <span class="panel-card__label">Create Study</span>
+            <h2>Start a new workspace</h2>
+            <form id="study-create-form" class="stack-form">
+              <label>
+                Study name
+                <input type="text" name="name" required />
+              </label>
+              <label>
+                Description
+                <textarea name="description" rows="5"></textarea>
+              </label>
+              <button class="button button--primary" type="submit">Create study</button>
+            </form>
+            <div id="study-create-output" class="message-box">No study created yet.</div>
+          </article>
+
+          <article class="panel-card">
+            <span class="panel-card__label">Active Study</span>
+            <h2>Current selection</h2>
+            <div id="active-study-card" class="stack-list">
+              <p class="muted-copy">No study selected yet.</p>
+            </div>
+            <a class="text-link" href="/workspace">Open workspace</a>
+          </article>
+        </section>
+
+        <section class="panel-card">
+          <span class="panel-card__label">Study Library</span>
+          <h2>Available studies</h2>
+          <div id="study-list" class="resource-list">
+            <p class="muted-copy">No studies loaded yet.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/frontend/app.js" type="module"></script>
+  </body>
+</html>

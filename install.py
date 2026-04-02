@@ -30,7 +30,7 @@ def install():
     print("Setup complete!")
     print(f"To run the app:")
     print(f"1. {activate_cmd}")
-    print("2. streamlit run app.py")
+    print("2. python app.py")
 
 if __name__ == "__main__":
     install()

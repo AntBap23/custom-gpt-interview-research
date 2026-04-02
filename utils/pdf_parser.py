@@ -5,7 +5,10 @@ import openai
 import os
 from typing import List, Tuple
 import re
-import streamlit as st
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 def extract_text_from_pdf(pdf_file) -> str:
     """
@@ -40,7 +43,7 @@ def extract_text_from_pdf(pdf_file) -> str:
                 text_content += page.extract_text() + "\n"
                 
     except Exception as e:
-        st.error(f"Error extracting text from PDF: {str(e)}")
+        logger.exception("Error extracting text from PDF")
         return ""
     
     return text_content.strip()
@@ -95,7 +98,7 @@ def extract_questions_with_ai(text_content: str) -> List[str]:
         return questions
         
     except Exception as e:
-        st.error(f"Error using AI to extract questions: {str(e)}")
+        logger.exception("Error using AI to extract questions")
         return []
 
 def validate_and_improve_questions(questions: List[str]) -> List[str]:
@@ -148,7 +151,7 @@ def validate_and_improve_questions(questions: List[str]) -> List[str]:
         return improved_questions
         
     except Exception as e:
-        st.error(f"Error improving questions with AI: {str(e)}")
+        logger.exception("Error improving questions with AI")
         return questions  # Return original questions if improvement fails
 
 def extract_questions_from_text(text_content: str) -> List[str]:

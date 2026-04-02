@@ -50,4 +50,6 @@ outputs/*
 personas/*
 !personas/.gitkeep
 questions/*
-!questions/.gitkeep 
+!questions/.gitkeep
+backend_data/*
+!backend_data/.gitkeep

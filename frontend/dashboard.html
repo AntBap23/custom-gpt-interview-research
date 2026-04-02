@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | Qualitative AI Interview Studio</title>
+    <link rel="stylesheet" href="/frontend/styles.css" />
+  </head>
+  <body data-page="dashboard">
+    <div class="site-shell">
+      <header class="site-header" data-site-header></header>
+
+      <main class="page page--dashboard">
+        <section class="hero hero--dashboard">
+          <div class="hero__copy">
+            <p class="eyebrow">Dashboard</p>
+            <h1>The current operating picture for your research workspace.</h1>
+            <p class="hero__lede">
+              Review study activity, track preparation status, and use one shared entry point before moving into a
+              specific study workflow.
+            </p>
+          </div>
+
+          <aside class="hero__panel">
+            <div class="panel-card">
+              <span class="panel-card__label">Current Study</span>
+              <h2 id="dashboard-active-study">No study selected</h2>
+              <p id="dashboard-active-study-copy">
+                Select a study from the top bar to scope dashboard summaries and workflow links.
+              </p>
+            </div>
+          </aside>
+        </section>
+
+        <section class="metric-grid">
+          <article class="metric-card">
+            <span class="metric-card__label">Studies</span>
+            <strong id="dashboard-studies-count">0</strong>
+          </article>
+          <article class="metric-card">
+            <span class="metric-card__label">Protocols</span>
+            <strong id="dashboard-protocols-count">0</strong>
+          </article>
+          <article class="metric-card">
+            <span class="metric-card__label">Personas</span>
+            <strong id="dashboard-personas-count">0</strong>
+          </article>
+          <article class="metric-card">
+            <span class="metric-card__label">Simulations</span>
+            <strong id="dashboard-simulations-count">0</strong>
+          </article>
+        </section>
+
+        <section class="content-grid content-grid--two">
+          <article class="panel-card">
+            <span class="panel-card__label">Study Readiness</span>
+            <h2>Where the workflow currently stands</h2>
+            <div id="dashboard-readiness" class="stack-list">
+              <p class="muted-copy">Dashboard status will load here once API data is available.</p>
+            </div>
+          </article>
+
+          <article class="panel-card">
+            <span class="panel-card__label">Recent Collections</span>
+            <h2>Latest records in the active scope</h2>
+            <div id="dashboard-collections" class="stack-list">
+              <p class="muted-copy">Collection summaries will appear here.</p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="/frontend/app.js" type="module"></script>
+  </body>
+</html>

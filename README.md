@@ -1,226 +1,270 @@
 # Qualitative AI Interview Studio
 
-A Streamlit application for examining qualitative interview workflows that compare real interview transcripts with persona-based AI interview simulations.
+Qualitative AI Interview Studio is being built as a research platform for AI-assisted qualitative inquiry.
 
-This repository presents a research-oriented tool rather than a general-purpose chatbot or a production data platform. Its purpose is to support methodological exploration around the use of AI in interview-based qualitative research, especially in cases where a researcher wants to compare AI-generated interview material against real interview data using a shared interview guide.
+Its long-term purpose is not to generate polished demo transcripts. It is to give researchers a disciplined workspace for designing studies, simulating persona-based interviews, comparing AI-generated material against real interview data, and documenting where AI is useful, weak, biased, or methodologically risky.
 
-## Research Purpose
+The project is grounded in the NIU research context behind this repository: using a custom GPT-style workflow to compare persona-conditioned AI interviews with previously collected human interviews, then studying the differences through structured qualitative analysis.
 
-The central methodological question behind this project is:
+## Vision
 
-`How can AI-generated interview material be examined alongside real interview material in a structured qualitative workflow?`
+This repository is moving toward a platform where a researcher can:
 
-The application is intended to support inquiry into issues such as:
+- create a study workspace
+- define a protocol with shared context, interview style guidance, consistency rules, and analysis focus
+- build or extract personas from source material
+- upload interview guides and real transcripts
+- run AI interview simulations against the same semi-structured questions used with human participants
+- compare human and AI transcripts through structured tables, quote review, theme review, and narrative synthesis
+- generate analysis artifacts such as Gioia-style outputs and export-ready research documents
+- preserve researcher control, auditability, and privacy throughout the workflow
 
-- the degree to which AI-generated interviews resemble or diverge from real interviews
-- whether persona-conditioned prompting yields data that is analytically useful
-- where AI-generated responses become overly generic, overly polished, or insufficiently grounded in lived context
-- how AI may assist with early-stage qualitative comparison without replacing interpretive judgment
+The intended outcome is a serious methodological tool for research design, comparison, reflexivity, and validity checking, not a replacement for human interpretation.
 
-Rather than assuming AI output is either valid by default or invalid by default, the tool is designed to make differences visible and reviewable.
+## Research Direction
 
-## Scope Of The Application
+The NIU project framing behind this codebase is clear:
 
-The application supports a bounded qualitative workflow:
+- AI may help researchers pilot interview protocols, test personas, surface patterned differences, and accelerate early-stage comparison work
+- AI should be treated as a complementary method rather than a substitute for participants or for interpretive qualitative judgment
+- the important question is not whether AI is "good" or "bad" for qualitative research in the abstract
+- the important question is when it is useful, where it breaks down, and how those breakdowns become visible in a rigorous workflow
 
-- upload a real interview transcript
-- upload or extract a shared interview guide
-- create participant personas from text or documents
-- simulate AI interviews from those personas
-- compare real and AI-generated interview material
-- review differences through tables, quotes, themes, and narrative outputs
-- export interview and analysis artifacts
+This platform is therefore being shaped around a research agenda that examines:
 
-This workflow is particularly relevant to exploratory studies of AI-assisted qualitative methods, synthetic respondent workflows, and comparative evaluation of interview outputs.
+- thematic richness versus thematic flattening
+- contextual specificity versus generic language
+- emotional texture versus polished abstraction
+- consistency versus drift across an interview
+- analytic usefulness versus methodological distortion
+- efficiency gains versus ethical and epistemic risk
 
-## Intended Users
+## What This Will Become
 
-This project is most likely to be useful for:
+The target product is a multi-surface research environment with a shared domain model across the app:
+
+### 1. Study Workspace
+
+A study-centered workspace will organize all major research assets:
+
+- study records
+- protocols
+- personas
+- question guides
+- real transcripts
+- AI simulations
+- comparisons
+- analytic outputs
+
+The goal is for researchers to work inside a coherent project structure instead of juggling disconnected files, prompts, and exports.
+
+### 2. Protocol Builder
+
+Protocols will act as the methodological backbone of each study.
+
+They will store the instructions that shape both generation and analysis, including:
+
+- shared study context
+- interview style guidance
+- consistency rules
+- analysis focus
+
+This matters because the platform is meant to support repeatable research logic, not ad hoc prompting.
+
+### 3. Persona Lab
+
+The persona workflow will support the creation, extraction, refinement, and validation of interview personas from source documents.
+
+Over time this should become a place to:
+
+- ingest raw persona materials
+- structure persona attributes and opinions
+- retain original source text for traceability
+- compare multiple persona variants
+- study how persona quality affects AI interview quality
+
+### 4. Interview Guide And Transcript Library
+
+The platform is being shaped to accept interview guides and transcripts in researcher-friendly formats such as `txt`, `docx`, and `pdf`.
+
+This layer will make it possible to:
+
+- extract usable interview questions from uploaded material
+- preserve real interview transcripts as comparison anchors
+- reuse question guides across multiple simulations
+- connect study assets without reformatting everything manually
+
+### 5. Simulation Engine
+
+The simulation layer will run persona-conditioned AI interviews using shared protocol guidance and reusable question guides.
+
+The target experience is a controlled workflow where researchers can evaluate:
+
+- whether AI stays in character
+- whether answers remain concrete over time
+- whether the model becomes too neat, too consistent, or too generic
+- whether simulated material is useful for piloting, triangulation, or stress-testing a study design
+
+### 6. Comparison And Analysis Workbench
+
+The comparison workflow is one of the core reasons this project exists.
+
+It is being built to help researchers inspect AI outputs against real interview material through:
+
+- structured comparison matrices
+- quote review
+- theme review
+- narrative summaries
+- Gioia-oriented analytic scaffolding
+- researcher-authored notes and interpretation
+
+The platform should make differences visible rather than hiding them behind a single summary judgment.
+
+### 7. Export And Reporting Layer
+
+The long-term product should produce clean research artifacts that can move into papers, appendices, presentations, and internal review.
+
+That includes exports for:
+
+- transcripts
+- comparison tables
+- markdown and HTML summaries
+- spreadsheet-compatible outputs
+- printable research materials
+
+## Product Principles
+
+This project is being built around a few non-negotiable principles:
+
+### AI As Augmentation
+
+The system should support qualitative researchers without pretending to replace participants, fieldwork, or interpretation.
+
+### Methodological Transparency
+
+Researchers should be able to see what protocol, persona, prompt logic, and comparison frame produced a given result.
+
+### Structured Comparison Over Hype
+
+The platform should help users inspect strengths, misses, distortions, and implications instead of overselling AI realism.
+
+### Privacy And Researcher Control
+
+The NIU research context emphasizes careful handling of sensitive materials. The long-term platform should support private, controlled workflows rather than defaulting to broad data retention.
+
+### Reusable Research Infrastructure
+
+The goal is to turn a repetitive manual process into a repeatable research system that can support future studies, student researchers, conference outputs, and journal work.
+
+## Architecture Direction
+
+The repository already points toward the architecture this project is expected to grow into:
+
+- a FastAPI backend for the research workflow and domain objects
+- a browser-based frontend organized around studies and workspace pages
+- a NiceGUI prototype for rapid workflow experimentation
+- storage abstractions that can support local JSON today and Supabase-backed persistence later
+- scripts for simulation, Gioia analysis, and exports
+- parsers for common researcher document formats
+
+That architecture is important because the end state is not a single prompt wrapper. It is a platform with separable workflow layers and a reusable API.
+
+## Near-Term Roadmap
+
+Based on the codebase and the NIU research trajectory, the next phase of the project is heading toward:
+
+- a fuller study-first frontend that feels like a real research application
+- more robust persistence for studies and outputs
+- stronger authentication and user separation
+- cleaner provenance around uploaded source materials and generated artifacts
+- richer comparison views for human versus AI transcripts
+- improved export workflows for presentations, papers, and appendix-ready materials
+- better support for methodological notes, reflexive memos, and collaborative review
+- stronger safeguards around privacy, traceability, and responsible AI use
+
+## Who This Is For
+
+The platform is being designed for:
 
 - qualitative researchers
-- interview-based management and social science researchers
-- doctoral students and faculty working with qualitative methods
-- market, organizational, and UX researchers using semi-structured interviews
-- researchers investigating AI-supported methodological workflows
+- management and organizational scholars
+- market and consumer researchers
+- doctoral students and faculty
+- undergraduate researchers contributing to structured AI-methods projects
+- teams exploring AI as a research support tool rather than a replacement for inquiry
 
-## Current Analytical Structure
+## Current Repository As Foundation
 
-The application is organized into four sections:
+Today’s repository should be understood as the foundation for that platform.
 
-- `Study Design`
-  Researchers upload a real transcript, upload an interview guide, and define a simple study protocol to guide simulation and analysis.
+It already contains the major building blocks of the future system:
 
-- `Persona Studio`
-  Researchers create personas from manual descriptions or uploaded source documents and review extracted fields before saving.
+- backend models and API routes for studies, protocols, personas, guides, transcripts, simulations, analyses, comparisons, and exports
+- a multi-page frontend scaffold organized around the intended research workflow
+- a NiceGUI app for rapid prototyping of the end-to-end flow
+- storage and deployment scaffolding for local development and future hosted use
 
-- `Simulation Lab`
-  Researchers run persona-conditioned AI interviews using the shared guide and inspect generated responses.
+In other words, the codebase is no longer just experimenting with an idea. It is taking shape as research infrastructure.
 
-- `Analysis Studio`
-  Researchers compare real and AI interview material, review extracted quotes and themes, generate Gioia-style outputs, and export files.
+## Local Development
 
-## Current Features
+Install dependencies:
 
-- transcript upload in `txt`, `docx`, and `pdf`
-- interview guide upload in `txt` and `pdf`
-- persona creation from text, `docx`, or `pdf`
-- persona-conditioned AI interview simulation
-- reusable study protocol fields:
-  - `Shared study context`
-  - `Interview style guidance`
-  - `Consistency rules`
-  - `Analysis focus`
-- structured comparison review through:
-  - `Comparison Matrix`
-  - `Quote Review`
-  - `Theme Review`
-  - `Narrative Report`
-- Gioia-style analysis generation
-- researcher-authored notes within theme review
-- export support for AI interview transcripts in `docx`, `pdf`, `csv`, `txt`, and `html`
+```bash
+python install.py
+```
 
-## Methodological Orientation
+Run the NiceGUI prototype:
 
-The design of the application reflects several methodological commitments:
+```bash
+./run.sh
+```
 
-- AI-generated material should be reviewable rather than taken at face value.
-- Persona conditioning should be explicit and inspectable.
-- Shared interview guides matter for comparability across real and simulated interviews.
-- Differences in specificity, emotional texture, context, and interpretive richness are analytically important.
-- AI can be useful as an augmentative device without functioning as a substitute for qualitative interpretation.
+Run the FastAPI backend directly:
 
-The application should therefore be understood as a methodological aid for comparison, exploration, and reflective analysis, not as an automated replacement for qualitative research practice.
+```bash
+source .venv/bin/activate
+python -m uvicorn backend.main:app --reload
+```
 
-## Deployment Status
+The main environment variable required for AI-backed workflows is:
 
-At its current stage, the application is suitable for:
+- `OPENAI_API_KEY`
 
-- pilot deployment
-- demonstrations
-- exploratory use by a small number of researchers
-- early-stage methodological testing
+Optional configuration supports storage and deployment setup:
 
-It is not yet intended as:
-
-- a production multi-user platform
-- a persistent collaborative research environment
-- a full research project management system
-
-For the practical question, `Can this be deployed so researchers can try it online?`, the answer is yes.
-
-## Technical Stack
-
-- Streamlit
-- OpenAI API
-- Python
-- `python-docx`
-- `PyPDF2`
-- `pdfplumber`
-- `pymupdf`
-- `fpdf2`
+- `STORAGE_BACKEND`
+- `LOCAL_STORAGE_ROOT`
+- `SUPABASE_URL`
+- `SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `CORS_ORIGINS`
 
 ## Repository Structure
 
 ```text
-app.py
-config.py
-requirements.txt
-run.sh
-install.py
-
-personas/
-questions/
-study_protocols/
-data/
-  ai_responses/
-outputs/
-exports/
-
-scripts/
-  simulate_interviews.py
-  analyze_gioia.py
-  export_results.py
-
-utils/
-  pdf_parser.py
-  persona_parser.py
+app.py                         # NiceGUI prototype for the research workflow
+backend/                       # FastAPI app, schemas, services, storage
+frontend/                      # Multi-page browser UI scaffold
+scripts/                       # Simulation, analysis, and export logic
+utils/                         # Parsers for txt, docx, and pdf research inputs
+supabase/                      # Future persistence schema
+backend_data/                  # Local JSON storage during development
 ```
 
-## Local Setup
+## Status
 
-Recommended:
+The most useful way to read this repository is:
 
-```bash
-python install.py
-./run.sh
-```
+`a research platform under construction for AI-assisted qualitative comparison`
 
-Manual setup:
+It is being built for where the work is going:
 
-```bash
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-streamlit run app.py
-```
-
-## Environment Configuration
-
-Set `OPENAI_API_KEY` through one of the following:
-
-- shell environment variable
-- `.env`
-- Streamlit secrets
-
-Example:
-
-```bash
-export OPENAI_API_KEY="your-key-here"
-```
-
-## Deployment
-
-The simplest deployment path is Streamlit Community Cloud.
-
-High-level deployment steps:
-
-1. Push the repository to GitHub.
-2. Create a Streamlit app from the repository.
-3. Set `app.py` as the entry point.
-4. Add `OPENAI_API_KEY` in Streamlit secrets.
-5. Deploy.
-
-## Current Limitations
-
-- model outputs are variable across runs
-- AI-generated interviews may become repetitive when persona inputs are thin
-- local file storage is convenient but not persistent across all hosting environments
-- PDF extraction quality depends on source file quality
-- the current system is better suited to individual or light pilot use than sustained collaborative research use
-
-## Appropriate Uses
-
-- methodological experimentation with AI-assisted qualitative workflows
-- comparison of real and AI-generated interview material
-- pilot testing of interview guides
-- production of structured comparison artifacts for analytic reflection
-- early-stage thematic and Gioia-style scaffolding
-
-## Less Appropriate Uses
-
-- replacing human qualitative interpretation
-- large-scale collaborative project management
-- long-term persistent storage without added infrastructure
-- high-stakes use cases that require deterministic outputs
-
-## Future Directions
-
-- local named workspaces
-- persistent study storage
-- collaborative annotation
-- stronger project-level organization
-- richer review workflows around quotes and themes
+- from one-off prompting to reusable workflow
+- from manual comparisons to structured analytic review
+- from prototype tooling to research infrastructure
+- from isolated experiments to a system that can support papers, presentations, and future studies
 
 ## License
 
-Add the license you want if you plan to distribute the repository publicly.
+Add the license that matches how you want to share or publish the project.

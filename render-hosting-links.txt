@@ -1,0 +1,29 @@
+Render docs and links for hosting this app
+
+Official docs home:
+https://render.com/docs/
+
+Deploy apps on Render:
+https://render.com/docs/web-services
+
+Environment variables on Render:
+https://render.com/docs/configure-environment-variables
+
+Render dashboard:
+https://dashboard.render.com/
+
+Recommended start command for this Streamlit app on Render:
+python -m streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+
+Environment variables this app needs right now:
+- OPENAI_API_KEY
+- STREAMLIT_SERVER_HEADLESS=true
+- STREAMLIT_SERVER_ADDRESS=0.0.0.0
+
+Render note:
+- Render usually provides PORT automatically, so you normally do not need to set PORT yourself in the dashboard.
+
+Practical hosting shape:
+- Host the Streamlit app on Render as a web service
+- Add OPENAI_API_KEY in Render environment variables
+- Use Supabase later only if you want persistent file/project storage or auth

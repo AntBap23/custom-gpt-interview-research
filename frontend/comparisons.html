@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comparisons | Qualitative AI Interview Studio</title>
+    <link rel="stylesheet" href="/frontend/styles.css" />
+  </head>
+  <body data-page="comparisons">
+    <div class="site-shell">
+      <header class="site-header" data-site-header></header>
+
+      <main class="page page--detail">
+        <section class="hero hero--detail hero--comparisons">
+          <div class="hero__copy">
+            <p class="eyebrow">Comparisons</p>
+            <h1>Inspect where AI-generated interviews align with real data and where they fail.</h1>
+            <p class="hero__lede">
+              Comparative review deserves its own page, with room for structured tables, quotes, and narrative
+              synthesis rather than being squeezed into a stacked prototype view.
+            </p>
+          </div>
+        </section>
+
+        <nav class="workspace-nav" data-workspace-nav></nav>
+
+        <section class="content-grid content-grid--two">
+          <article class="panel-card">
+            <span class="panel-card__label">Run Comparison</span>
+            <h2>Compare transcript and simulation</h2>
+            <form id="comparison-form" class="stack-form">
+              <label>
+                Real transcript
+                <select name="transcript_id" id="comparison-transcript-select" required></select>
+              </label>
+              <label>
+                Simulation
+                <select name="simulation_id" id="comparison-simulation-select" required></select>
+              </label>
+              <label>
+                Protocol
+                <select name="protocol_id" id="comparison-protocol-select"></select>
+              </label>
+              <button class="button button--primary" type="submit">Generate comparison</button>
+            </form>
+            <div id="comparison-output" class="message-box">No comparison generated yet.</div>
+          </article>
+
+          <article class="panel-card">
+            <span class="panel-card__label">Latest Comparison</span>
+            <h2>Structured review output</h2>
+            <div id="comparison-report" class="report-shell">
+              <p class="muted-copy">Comparison output will appear here.</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel-card">
+          <span class="panel-card__label">Saved Comparisons</span>
+          <h2>Current study records</h2>
+          <div id="comparison-list" class="resource-list">
+            <p class="muted-copy">No comparisons loaded yet.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/frontend/app.js" type="module"></script>
+  </body>
+</html>

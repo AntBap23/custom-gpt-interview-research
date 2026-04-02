@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personas | Qualitative AI Interview Studio</title>
+    <link rel="stylesheet" href="/frontend/styles.css" />
+  </head>
+  <body data-page="personas">
+    <div class="site-shell">
+      <header class="site-header" data-site-header></header>
+
+      <main class="page page--detail">
+        <section class="hero hero--detail hero--persona">
+          <div class="hero__copy">
+            <p class="eyebrow">Personas</p>
+            <h1>Build grounded participant profiles for simulation work.</h1>
+            <p class="hero__lede">
+              Persona-conditioned interviewing works best when source material is specific, situated, and methodically
+              reviewed before simulation begins.
+            </p>
+          </div>
+        </section>
+
+        <nav class="workspace-nav" data-workspace-nav></nav>
+
+        <section class="content-grid content-grid--two">
+          <article class="panel-card">
+            <span class="panel-card__label">Persona Extraction</span>
+            <h2>Create a study-scoped persona</h2>
+            <p class="muted-copy">
+              Upload a source document first, then review or edit the extracted text before creating the persona.
+            </p>
+            <form id="persona-upload-form" class="stack-form upload-form">
+              <label>
+                Upload source document
+                <input type="file" name="file" accept=".pdf,.docx,.txt,.md" required />
+              </label>
+              <button class="button button--secondary" type="submit">Load document text</button>
+            </form>
+            <form id="persona-form" class="stack-form">
+              <label>
+                Suggested name
+                <input type="text" name="suggested_name" />
+              </label>
+              <label>
+                Persona text
+                <textarea name="text" rows="10" required></textarea>
+              </label>
+              <button class="button button--primary" type="submit">Extract persona</button>
+            </form>
+            <div id="persona-output" class="message-box">No persona created yet.</div>
+          </article>
+
+          <article class="panel-card">
+            <span class="panel-card__label">Saved Personas</span>
+            <h2>Current study records</h2>
+            <div id="persona-list" class="resource-list">
+              <p class="muted-copy">No personas loaded yet.</p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="/frontend/app.js" type="module"></script>
+  </body>
+</html>

@@ -1,26 +1,15 @@
+import logging
+from typing import Dict
+
 import PyPDF2
-import pdfplumber
 import fitz  # PyMuPDF
 import openai
-import os
-from typing import Dict, Optional
-import re
-import streamlit as st
-from docx import Document
+import pdfplumber
 
-def extract_text_from_docx(docx_file) -> str:
-    """
-    Extract text from DOCX file.
-    """
-    try:
-        doc = Document(docx_file)
-        text_content = ""
-        for paragraph in doc.paragraphs:
-            text_content += paragraph.text + "\n"
-        return text_content.strip()
-    except Exception as e:
-        st.error(f"Error extracting text from DOCX: {str(e)}")
-        return ""
+from utils.docx_parser import extract_text_from_docx
+
+
+logger = logging.getLogger(__name__)
 
 def extract_text_from_pdf_persona(pdf_file) -> str:
     """
@@ -55,7 +44,7 @@ def extract_text_from_pdf_persona(pdf_file) -> str:
                 text_content += page.extract_text() + "\n"
                 
     except Exception as e:
-        st.error(f"Error extracting text from PDF: {str(e)}")
+        logger.exception("Error extracting text from persona PDF")
         return ""
     
     return text_content.strip()
@@ -152,7 +141,7 @@ def extract_persona_info_with_ai(text_content: str, persona_counter: int) -> Dic
         return formatted_persona
         
     except Exception as e:
-        st.error(f"Error using AI to extract persona info: {str(e)}")
+        logger.exception("Error using AI to extract persona info")
         return create_default_persona(persona_counter)
 
 def create_default_persona(persona_counter: int) -> Dict:

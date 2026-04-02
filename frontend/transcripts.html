@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transcripts | Qualitative AI Interview Studio</title>
+    <link rel="stylesheet" href="/frontend/styles.css" />
+  </head>
+  <body data-page="transcripts">
+    <div class="site-shell">
+      <header class="site-header" data-site-header></header>
+
+      <main class="page page--detail">
+        <section class="hero hero--detail hero--transcripts">
+          <div class="hero__copy">
+            <p class="eyebrow">Transcripts</p>
+            <h1>Store the real interview material used for comparison.</h1>
+            <p class="hero__lede">
+              Keep transcripts attached to a study so comparison work remains anchored in the same research context as
+              your protocol, personas, and shared interview guide.
+            </p>
+          </div>
+        </section>
+
+        <nav class="workspace-nav" data-workspace-nav></nav>
+
+        <section class="content-grid content-grid--two">
+          <article class="panel-card">
+            <span class="panel-card__label">Add Transcript</span>
+            <h2>Save transcript text</h2>
+            <p class="muted-copy">
+              Upload the transcript document first. The extracted text can then be reviewed, cleaned, and saved to the study.
+            </p>
+            <form id="transcript-upload-form" class="stack-form upload-form">
+              <label>
+                Upload transcript document
+                <input type="file" name="file" accept=".pdf,.docx,.txt,.md" required />
+              </label>
+              <button class="button button--secondary" type="submit">Load transcript text</button>
+            </form>
+            <form id="transcript-form" class="stack-form">
+              <label>
+                Transcript name
+                <input type="text" name="name" required />
+              </label>
+              <label>
+                Transcript text
+                <textarea name="content" rows="12" required></textarea>
+              </label>
+              <button class="button button--primary" type="submit">Save transcript</button>
+            </form>
+            <div id="transcript-output" class="message-box">No transcript saved yet.</div>
+          </article>
+
+          <article class="panel-card">
+            <span class="panel-card__label">Saved Transcripts</span>
+            <h2>Current study records</h2>
+            <div id="transcript-list" class="resource-list">
+              <p class="muted-copy">No transcripts loaded yet.</p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="/frontend/app.js" type="module"></script>
+  </body>
+</html>

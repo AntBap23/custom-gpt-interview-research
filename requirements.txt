@@ -1,4 +1,9 @@
-streamlit
+nicegui
+fastapi
+uvicorn[standard]
+python-multipart
+supabase
+pydantic-settings
 openai
 python-docx
 python-dotenv

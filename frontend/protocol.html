@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Protocol | Qualitative AI Interview Studio</title>
+    <link rel="stylesheet" href="/frontend/styles.css" />
+  </head>
+  <body data-page="protocol">
+    <div class="site-shell">
+      <header class="site-header" data-site-header></header>
+
+      <main class="page page--detail">
+        <section class="hero hero--detail">
+          <div class="hero__copy">
+            <p class="eyebrow">Protocol</p>
+            <h1>Define the rules that hold the study together.</h1>
+            <p class="hero__lede">
+              Protocol guidance shapes interview behavior, consistency, and the analytical focus researchers use when
+              reviewing generated outputs.
+            </p>
+          </div>
+        </section>
+
+        <nav class="workspace-nav" data-workspace-nav></nav>
+
+        <section class="content-grid content-grid--two">
+          <article class="panel-card">
+            <span class="panel-card__label">Study Protocol</span>
+            <h2>Save protocol guidance</h2>
+            <form id="protocol-form" class="stack-form">
+              <label>
+                Protocol name
+                <input type="text" name="name" value="Default Protocol" required />
+              </label>
+              <label>
+                Shared study context
+                <textarea name="shared_context" rows="4"></textarea>
+              </label>
+              <label>
+                Interview style guidance
+                <textarea name="interview_style_guidance" rows="4"></textarea>
+              </label>
+              <label>
+                Consistency rules
+                <textarea name="consistency_rules" rows="4"></textarea>
+              </label>
+              <label>
+                Analysis focus
+                <textarea name="analysis_focus" rows="4"></textarea>
+              </label>
+              <button class="button button--primary" type="submit">Save protocol</button>
+            </form>
+            <div id="protocol-output" class="message-box">No protocol saved yet.</div>
+          </article>
+
+          <article class="panel-card">
+            <span class="panel-card__label">Saved Protocols</span>
+            <h2>Current study records</h2>
+            <div id="protocol-list" class="resource-list">
+              <p class="muted-copy">No protocols loaded yet.</p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="/frontend/app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workspace | Qualitative AI Interview Studio</title>
+    <link rel="stylesheet" href="/frontend/styles.css" />
+  </head>
+  <body data-page="workspace">
+    <div class="site-shell">
+      <header class="site-header" data-site-header></header>
+
+      <main class="page page--workspace">
+        <section class="hero hero--workspace">
+          <div class="hero__copy">
+            <p class="eyebrow">Study Workspace</p>
+            <h1 id="workspace-title">Choose a study to enter its workspace.</h1>
+            <p id="workspace-copy" class="hero__lede">
+              Once a study is active, this page becomes the operational hub for setup, simulation, and comparison work.
+            </p>
+          </div>
+
+          <aside class="hero__panel">
+            <div class="panel-card">
+              <span class="panel-card__label">Workspace Readiness</span>
+              <h2 id="workspace-stage">Waiting for study selection</h2>
+              <p id="workspace-stage-copy">Study status will appear here when scoped data is available.</p>
+            </div>
+          </aside>
+        </section>
+
+        <nav class="workspace-nav" data-workspace-nav></nav>
+
+        <section class="metric-grid">
+          <article class="metric-card">
+            <span class="metric-card__label">Protocols</span>
+            <strong id="workspace-protocol-count">0</strong>
+          </article>
+          <article class="metric-card">
+            <span class="metric-card__label">Personas</span>
+            <strong id="workspace-persona-count">0</strong>
+          </article>
+          <article class="metric-card">
+            <span class="metric-card__label">Guides</span>
+            <strong id="workspace-guide-count">0</strong>
+          </article>
+          <article class="metric-card">
+            <span class="metric-card__label">Comparisons</span>
+            <strong id="workspace-comparison-count">0</strong>
+          </article>
+        </section>
+
+        <section class="content-grid content-grid--two">
+          <article class="panel-card">
+            <span class="panel-card__label">Workflow Steps</span>
+            <h2>Move through the study deliberately</h2>
+            <div class="stack-list" id="workspace-workflow">
+              <p class="muted-copy">Workflow guidance will appear here for the active study.</p>
+            </div>
+          </article>
+
+          <article class="panel-card">
+            <span class="panel-card__label">Quick Links</span>
+            <h2>Jump into the next task</h2>
+            <div class="quick-links">
+              <a class="quick-link" href="/protocol">Define protocol</a>
+              <a class="quick-link" href="/personas">Prepare personas</a>
+              <a class="quick-link" href="/interview-guide">Build interview guide</a>
+              <a class="quick-link" href="/simulations">Run simulations</a>
+              <a class="quick-link" href="/comparisons">Review comparisons</a>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="/frontend/app.js" type="module"></script>
+  </body>
+</html>
