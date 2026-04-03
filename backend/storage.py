@@ -5,6 +5,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+from backend.errors import SupabaseOperationError
 from backend.settings import settings
 
 try:
@@ -80,17 +81,30 @@ class LocalJsonStorage(StorageAdapter):
 
 
 class SupabaseStorage(StorageAdapter):
-    def __init__(self, url: str, key: str):
+    def __init__(self, client: Client):
         if create_client is None:
             raise RuntimeError("Supabase client is not installed.")
-        self.client: Client = create_client(url, key)
+        self.client: Client = client
+
+    @staticmethod
+    def _safe_execute(fn, operation: str):
+        try:
+            return fn()
+        except Exception as exc:  # pragma: no cover - depends on network/runtime state
+            raise SupabaseOperationError(f"Supabase {operation} failed.") from exc
 
     def list_items(self, collection: str) -> list[dict[str, Any]]:
-        response = self.client.table(collection).select("*").execute()
+        response = self._safe_execute(
+            lambda: self.client.table(collection).select("*").execute(),
+            f"list_items({collection})",
+        )
         return response.data or []
 
     def get_item(self, collection: str, item_id: str) -> dict[str, Any] | None:
-        response = self.client.table(collection).select("*").eq("id", item_id).limit(1).execute()
+        response = self._safe_execute(
+            lambda: self.client.table(collection).select("*").eq("id", item_id).limit(1).execute(),
+            f"get_item({collection})",
+        )
         rows = response.data or []
         return rows[0] if rows else None
 
@@ -100,16 +114,40 @@ class SupabaseStorage(StorageAdapter):
             item["id"] = str(uuid.uuid4())
             item["created_at"] = timestamp
         item["updated_at"] = timestamp
-        response = self.client.table(collection).upsert(item).execute()
+        response = self._safe_execute(
+            lambda: self.client.table(collection).upsert(item).execute(),
+            f"upsert_item({collection})",
+        )
         rows = response.data or []
         return rows[0] if rows else item
 
 
+_supabase_client_singleton: Client | None = None
+_storage_singleton: StorageAdapter | None = None
+
+
+def get_supabase_client() -> Client:
+    global _supabase_client_singleton
+    if _supabase_client_singleton is not None:
+        return _supabase_client_singleton
+
+    if create_client is None:
+        raise RuntimeError("Supabase client is not installed.")
+    if not settings.supabase_url or not settings.supabase_service_role_key:
+        raise RuntimeError("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required for Supabase integration.")
+
+    _supabase_client_singleton = create_client(settings.supabase_url, settings.supabase_service_role_key)
+    return _supabase_client_singleton
+
+
 def get_storage() -> StorageAdapter:
+    global _storage_singleton
+    if _storage_singleton is not None:
+        return _storage_singleton
+
     if settings.storage_backend.lower() == "supabase":
-        if not settings.supabase_url or not settings.supabase_service_role_key:
-            raise RuntimeError(
-                "STORAGE_BACKEND is set to supabase, but SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is missing."
-            )
-        return SupabaseStorage(settings.supabase_url, settings.supabase_service_role_key)
-    return LocalJsonStorage(settings.local_storage_root)
+        _storage_singleton = SupabaseStorage(get_supabase_client())
+        return _storage_singleton
+
+    _storage_singleton = LocalJsonStorage(settings.local_storage_root)
+    return _storage_singleton

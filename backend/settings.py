@@ -13,6 +13,10 @@ class BackendSettings(BaseSettings):
     supabase_url: str | None = Field(default=None, alias="SUPABASE_URL")
     supabase_anon_key: str | None = Field(default=None, alias="SUPABASE_ANON_KEY")
     supabase_service_role_key: str | None = Field(default=None, alias="SUPABASE_SERVICE_ROLE_KEY")
+    auth_access_cookie_name: str = Field(default="qa_access_token", alias="AUTH_ACCESS_COOKIE_NAME")
+    auth_refresh_cookie_name: str = Field(default="qa_refresh_token", alias="AUTH_REFRESH_COOKIE_NAME")
+    auth_cookie_secure: bool = Field(default=False, alias="AUTH_COOKIE_SECURE")
+    auth_cookie_samesite: str = Field(default="lax", alias="AUTH_COOKIE_SAMESITE")
     cors_origins: str = Field(default="*", alias="CORS_ORIGINS")
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore", populate_by_name=True)

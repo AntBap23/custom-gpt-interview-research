@@ -159,3 +159,19 @@ class UploadTextResponse(BaseModel):
 class HealthResponse(BaseModel):
     status: str
     storage_backend: str
+
+
+class AuthSignInRequest(BaseModel):
+    email: str
+    password: str
+
+
+class AuthUserResponse(BaseModel):
+    id: str
+    email: str | None = None
+    role: str | None = None
+
+
+class AuthSessionResponse(BaseModel):
+    authenticated: bool
+    user: AuthUserResponse | None = None

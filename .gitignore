@@ -41,6 +41,14 @@ ENV/
 .DS_Store
 
 # Project specific
+notes.txt
+render-hosting-links.txt
+*.log
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+
 exports/*
 !exports/.gitkeep
 data/ai_responses/*

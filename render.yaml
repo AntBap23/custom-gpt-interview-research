@@ -10,14 +10,18 @@ services:
       - key: OPENAI_API_KEY
         sync: false
       - key: STORAGE_BACKEND
-        value: local
+        value: supabase
       - key: LOCAL_STORAGE_ROOT
         value: backend_data
       - key: CORS_ORIGINS
-        value: "*"
+        sync: false
       - key: SUPABASE_URL
         sync: false
       - key: SUPABASE_ANON_KEY
         sync: false
       - key: SUPABASE_SERVICE_ROLE_KEY
         sync: false
+      - key: AUTH_COOKIE_SECURE
+        value: "true"
+      - key: AUTH_COOKIE_SAMESITE
+        value: "lax"

@@ -1,11 +1,22 @@
 from pathlib import Path
 
-from fastapi import Depends, FastAPI, File, HTTPException, UploadFile
+from fastapi import Depends, FastAPI, File, HTTPException, Request, Response, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
+from backend.auth import (
+    get_auth_context_from_access_token,
+    get_optional_auth_context,
+    require_authenticated_user,
+    sign_in_with_password,
+    sign_out_with_token,
+)
+from backend.errors import AuthenticationError, SupabaseOperationError
 from backend.schemas import (
+    AuthSessionResponse,
+    AuthSignInRequest,
+    AuthUserResponse,
     ComparisonRequest,
     ComparisonResponse,
     GioiaAnalysisRequest,
@@ -42,8 +53,11 @@ app.add_middleware(
 )
 
 
+_service_singleton = ResearchBackendService(get_storage())
+
+
 def get_service() -> ResearchBackendService:
-    return ResearchBackendService(get_storage())
+    return _service_singleton
 
 
 frontend_dir = Path("frontend")
@@ -63,7 +77,8 @@ def health() -> HealthResponse:
     return HealthResponse(status="ok", storage_backend=settings.storage_backend)
 
 
-for route_path, filename in {
+PUBLIC_PAGE_ROUTES = {"/", "/sign-in"}
+FRONTEND_PAGE_ROUTES = {
     "/": "index.html",
     "/dashboard": "dashboard.html",
     "/studies": "studies.html",
@@ -76,8 +91,126 @@ for route_path, filename in {
     "/comparisons": "comparisons.html",
     "/settings": "settings.html",
     "/sign-in": "sign-in.html",
-}.items():
-    app.add_api_route(route_path, lambda filename=filename: serve_frontend_page(filename), include_in_schema=False)
+}
+PROTECTED_PAGE_ROUTES = set(FRONTEND_PAGE_ROUTES.keys()) - PUBLIC_PAGE_ROUTES
+
+
+def _set_session_cookies(response: Response, access_token: str, refresh_token: str) -> None:
+    secure = settings.auth_cookie_secure
+    samesite = settings.auth_cookie_samesite.lower()
+    response.set_cookie(
+        key=settings.auth_access_cookie_name,
+        value=access_token,
+        httponly=True,
+        secure=secure,
+        samesite=samesite,
+        path="/",
+    )
+    response.set_cookie(
+        key=settings.auth_refresh_cookie_name,
+        value=refresh_token,
+        httponly=True,
+        secure=secure,
+        samesite=samesite,
+        path="/",
+    )
+
+
+def _clear_session_cookies(response: Response) -> None:
+    response.delete_cookie(settings.auth_access_cookie_name, path="/")
+    response.delete_cookie(settings.auth_refresh_cookie_name, path="/")
+
+
+def _apply_refreshed_session_cookies(request: Request, response: Response) -> None:
+    refreshed_access = getattr(request.state, "refreshed_access_token", None)
+    refreshed_refresh = getattr(request.state, "refreshed_refresh_token", None)
+    if refreshed_access and refreshed_refresh:
+        _set_session_cookies(response, refreshed_access, refreshed_refresh)
+
+
+@app.exception_handler(SupabaseOperationError)
+async def handle_supabase_operation_error(_: Request, exc: SupabaseOperationError):
+    return JSONResponse(
+        status_code=status.HTTP_502_BAD_GATEWAY,
+        content={"detail": str(exc)},
+    )
+
+
+@app.exception_handler(AuthenticationError)
+async def handle_authentication_error(_: Request, exc: AuthenticationError):
+    return JSONResponse(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        content={"detail": str(exc)},
+    )
+
+
+@app.middleware("http")
+async def enforce_authentication(request: Request, call_next):
+    path = request.url.path
+
+    if path.startswith("/frontend") or path == "/health" or path == "/favicon.ico":
+        return await call_next(request)
+
+    if path in PROTECTED_PAGE_ROUTES and get_optional_auth_context(request) is None:
+        return RedirectResponse(url="/sign-in", status_code=status.HTTP_303_SEE_OTHER)
+
+    if path.startswith("/api") and not path.startswith("/api/auth"):
+        try:
+            require_authenticated_user(request)
+        except HTTPException as exc:
+            return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
+
+    response = await call_next(request)
+    _apply_refreshed_session_cookies(request, response)
+    return response
+
+
+def _make_frontend_page_handler(filename: str):
+    def endpoint():
+        return serve_frontend_page(filename)
+
+    return endpoint
+
+
+for route_path, filename in FRONTEND_PAGE_ROUTES.items():
+    app.add_api_route(route_path, _make_frontend_page_handler(filename), include_in_schema=False)
+
+
+@app.post("/api/auth/sign-in", response_model=AuthSessionResponse)
+def sign_in(payload: AuthSignInRequest):
+    access_token, refresh_token = sign_in_with_password(payload.email, payload.password)
+    context = get_auth_context_from_access_token(access_token)
+
+    response = JSONResponse(
+        content={
+            "authenticated": True,
+            "user": {"id": context.user_id, "email": context.email, "role": context.role},
+        }
+    )
+    _set_session_cookies(response, access_token, refresh_token)
+    return response
+
+
+@app.post("/api/auth/sign-out", response_model=AuthSessionResponse)
+def sign_out(request: Request):
+    context = get_optional_auth_context(request)
+    sign_out_with_token(context.access_token if context else None)
+
+    response = JSONResponse(content={"authenticated": False, "user": None})
+    _clear_session_cookies(response)
+    return response
+
+
+@app.get("/api/auth/session", response_model=AuthSessionResponse)
+def auth_session(request: Request, response: Response):
+    context = get_optional_auth_context(request)
+    _apply_refreshed_session_cookies(request, response)
+    if context is None:
+        return AuthSessionResponse(authenticated=False, user=None)
+    return AuthSessionResponse(
+        authenticated=True,
+        user=AuthUserResponse(id=context.user_id, email=context.email, role=context.role),
+    )
 
 
 @app.get("/api/studies", response_model=list[StudyRecord])
