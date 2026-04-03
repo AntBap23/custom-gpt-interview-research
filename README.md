@@ -162,7 +162,7 @@ The repository already points toward the architecture this project is expected t
 
 - a FastAPI backend for the research workflow and domain objects
 - a browser-based frontend organized around studies and workspace pages
-- a NiceGUI prototype for rapid workflow experimentation
+- a legacy prototype app retained in-repo but not used for the primary web runtime
 - storage abstractions that can support local JSON today and Supabase-backed persistence later
 - scripts for simulation, Gioia analysis, and exports
 - parsers for common researcher document formats
@@ -201,7 +201,7 @@ It already contains the major building blocks of the future system:
 
 - backend models and API routes for studies, protocols, personas, guides, transcripts, simulations, analyses, comparisons, and exports
 - a multi-page frontend scaffold organized around the intended research workflow
-- a NiceGUI app for rapid prototyping of the end-to-end flow
+- a legacy prototype app that remains available for reference only
 - storage and deployment scaffolding for local development and future hosted use
 
 In other words, the codebase is no longer just experimenting with an idea. It is taking shape as research infrastructure.
@@ -214,7 +214,7 @@ Install dependencies:
 python install.py
 ```
 
-Run the NiceGUI prototype:
+Run the current web app:
 
 ```bash
 ./run.sh

@@ -81,6 +81,23 @@ function installPageTransitions() {
   });
 }
 
+function installCardSpotlight() {
+  const targets = document.querySelectorAll(".panel-card, .showcase-card, .metric-card, .resource-card, .report-block");
+  targets.forEach((node) => {
+    node.addEventListener("pointermove", (event) => {
+      const rect = node.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      node.style.setProperty("--mx", `${x}px`);
+      node.style.setProperty("--my", `${y}px`);
+      node.style.setProperty("--glow", "1");
+    });
+    node.addEventListener("pointerleave", () => {
+      node.style.setProperty("--glow", "0");
+    });
+  });
+}
+
 async function callApi(path, options = {}) {
   const headers = { ...(options.headers || {}) };
   const isFormData = options.body instanceof FormData;
@@ -408,6 +425,9 @@ async function initProtocols() {
   const list = document.getElementById("protocol-list");
   const output = document.getElementById("protocol-output");
   const form = document.getElementById("protocol-form");
+  const uploadForm = document.getElementById("protocol-upload-form");
+  const sourceText = form?.querySelector('textarea[name="source_text"]');
+  const sharedContext = form?.querySelector('textarea[name="shared_context"]');
 
   async function refresh() {
     const protocols = await loadCollection("protocols");
@@ -415,6 +435,35 @@ async function initProtocols() {
       resourceCard(protocol.name, protocol.analysis_focus || "No analysis focus provided.", [formatDate(protocol.created_at)]),
     );
   }
+
+  uploadForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const formData = new FormData(uploadForm);
+    const file = formData.get("file");
+    if (!(file instanceof File) || !file.name) {
+      setNodeContent(output, "Choose a protocol document before uploading.");
+      return;
+    }
+
+    const payload = new FormData();
+    payload.append("file", file);
+
+    try {
+      const extracted = await callApi("/api/protocols/extract-upload", {
+        method: "POST",
+        body: payload,
+      });
+      if (sourceText) {
+        sourceText.value = extracted.text || "";
+      }
+      if (sharedContext && !sharedContext.value.trim()) {
+        sharedContext.value = extracted.text || "";
+      }
+      setNodeContent(output, `Loaded protocol text from ${file.name}. Review and split it across the protocol fields as needed.`);
+    } catch (error) {
+      setNodeContent(output, error.message);
+    }
+  });
 
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -857,6 +906,7 @@ async function initPage() {
     await loadStudies();
     renderHeader();
     renderWorkspaceNav();
+    installCardSpotlight();
 
     switch (page) {
       case "dashboard":

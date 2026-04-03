@@ -28,10 +28,25 @@
           <article class="panel-card">
             <span class="panel-card__label">Study Protocol</span>
             <h2>Save protocol guidance</h2>
+            <form id="protocol-upload-form" class="stack-form">
+              <label>
+                Upload existing protocol document
+                <input type="file" name="file" accept=".txt,.docx,.pdf" />
+              </label>
+              <button class="button button--secondary" type="submit">Load document</button>
+            </form>
             <form id="protocol-form" class="stack-form">
               <label>
                 Protocol name
                 <input type="text" name="name" value="Default Protocol" required />
+              </label>
+              <label>
+                Protocol source text
+                <textarea
+                  name="source_text"
+                  rows="6"
+                  placeholder="Paste or upload an existing protocol document here, then adapt it into the fields below."
+                ></textarea>
               </label>
               <label>
                 Shared study context

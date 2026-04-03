@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Activate virtual environment and run NiceGUI app
+# Activate virtual environment and run FastAPI + static frontend
 cd "$(dirname "$0")"
 if [ -f .venv/bin/activate ]; then
   # Created by: python install.py
@@ -20,5 +20,9 @@ if [ -z "$OPENAI_API_KEY" ]; then
     echo ""
 fi
 
-# Run NiceGUI app
-python app.py
+echo "Starting Qualitative AI Interview Studio (FastAPI)..."
+echo "Open: http://127.0.0.1:8000"
+echo ""
+
+# Run backend (serves /frontend and page routes)
+python -m uvicorn backend.main:app --reload

@@ -135,6 +135,13 @@ async def extract_questions_upload(file: UploadFile = File(...), service: Resear
     return UploadTextResponse(text=text)
 
 
+@app.post("/api/protocols/extract-upload", response_model=UploadTextResponse)
+async def extract_protocol_upload(file: UploadFile = File(...), service: ResearchBackendService = Depends(get_service)):
+    content = await file.read()
+    text = service.extract_text_from_upload(file.filename or "upload", file.content_type or "", content)
+    return UploadTextResponse(text=text)
+
+
 @app.post("/api/question-guides", response_model=QuestionGuideRecord)
 def create_question_guide(payload: QuestionGuideCreate, service: ResearchBackendService = Depends(get_service)):
     return service.save_question_guide(payload.name, payload.questions, payload.study_id)
