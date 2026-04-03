@@ -34,10 +34,15 @@ const WORKSPACE_NAV = [
 ];
 
 const WORKSPACE_PAGES = new Set(WORKSPACE_NAV.map((item) => item.key));
+const PUBLIC_PAGES = new Set(["home", "sign-in"]);
 const state = {
   studies: [],
   activeStudyId: localStorage.getItem(STORAGE_KEY) || "",
   extractedQuestions: [],
+  auth: {
+    authenticated: false,
+    user: null,
+  },
 };
 
 const page = document.body.dataset.page || "home";
@@ -120,6 +125,17 @@ async function callApi(path, options = {}) {
   return data;
 }
 
+async function loadAuthSession() {
+  try {
+    const session = await callApi("/api/auth/session");
+    state.auth.authenticated = Boolean(session?.authenticated);
+    state.auth.user = session?.user || null;
+  } catch {
+    state.auth.authenticated = false;
+    state.auth.user = null;
+  }
+}
+
 function currentStudy() {
   return state.studies.find((study) => study.id === state.activeStudyId) || null;
 }
@@ -158,6 +174,19 @@ function createMetaPills(items) {
   const row = el("div", { className: "meta-row" });
   items.forEach((item) => row.appendChild(el("span", { className: "pill", text: item })));
   return row;
+}
+
+async function signOutCurrentSession() {
+  try {
+    await callApi("/api/auth/sign-out", { method: "POST" });
+  } catch (error) {
+    console.error("Sign out request failed", error);
+  } finally {
+    state.auth.authenticated = false;
+    state.auth.user = null;
+    setActiveStudyId("");
+    window.location.assign("/sign-in");
+  }
 }
 
 function renderHeader() {
@@ -202,10 +231,29 @@ function renderHeader() {
   selectLabel.appendChild(select);
   switcher.appendChild(selectLabel);
 
-  const account = el("a", { className: "account-chip", attrs: { href: "/sign-in" } });
+  const account = el("div", { className: "account-chip" });
   account.appendChild(el("span", { className: "field-label", text: "Account" }));
-  account.appendChild(el("strong", { text: "Not signed in" }));
-  account.appendChild(el("span", { className: "brand__copy", text: "Future account access lives here." }));
+  account.appendChild(el("strong", { text: state.auth.authenticated ? state.auth.user?.email || "Signed in" : "Not signed in" }));
+  account.appendChild(
+    el("span", {
+      className: "brand__copy",
+      text: state.auth.authenticated ? "Session active for this browser." : "Sign in to access study operations.",
+    }),
+  );
+  if (state.auth.authenticated) {
+    const signOutButton = el("button", {
+      className: "button button--secondary account-chip__action",
+      text: "Sign out",
+      attrs: { type: "button" },
+    });
+    signOutButton.addEventListener("click", async () => {
+      await signOutCurrentSession();
+    });
+    account.appendChild(signOutButton);
+  } else {
+    const signInLink = el("a", { className: "text-link", text: "Sign in", attrs: { href: "/sign-in" } });
+    account.appendChild(signInLink);
+  }
 
   utility.append(switcher, account);
   bar.append(brand, nav, utility);
@@ -890,6 +938,7 @@ async function initSettings() {
   if (stateNode) {
     stateNode.replaceChildren(
       resourceCard("Current page", PAGE_LABELS[page] || page),
+      resourceCard("Auth session", state.auth.authenticated ? state.auth.user?.email || "Signed in" : "Not signed in"),
       resourceCard("Active study", currentStudy() ? currentStudy().name : "No active study selected"),
       resourceCard("Known studies in browser session", `${state.studies.length}`),
     );
@@ -901,9 +950,52 @@ async function initSettings() {
   });
 }
 
+async function initSignIn() {
+  if (state.auth.authenticated) {
+    window.location.assign("/dashboard");
+    return;
+  }
+
+  const form = document.getElementById("sign-in-form");
+  const output = document.getElementById("sign-in-output");
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const formData = new FormData(form);
+    const email = String(formData.get("email") || "").trim();
+    const password = String(formData.get("password") || "");
+    if (!email || !password) {
+      setNodeContent(output, "Email and password are required.");
+      return;
+    }
+
+    try {
+      await callApi("/api/auth/sign-in", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+      });
+      setNodeContent(output, "Signed in successfully. Redirecting...");
+      window.setTimeout(() => window.location.assign("/dashboard"), 250);
+    } catch (error) {
+      setNodeContent(output, error.message || "Sign in failed.");
+    }
+  });
+}
+
 async function initPage() {
   try {
-    await loadStudies();
+    await loadAuthSession();
+    if (state.auth.authenticated) {
+      await loadStudies();
+    } else {
+      state.studies = [];
+      setActiveStudyId("");
+    }
+
+    if (!PUBLIC_PAGES.has(page) && !state.auth.authenticated) {
+      window.location.assign("/sign-in");
+      return;
+    }
+
     renderHeader();
     renderWorkspaceNav();
     installCardSpotlight();
@@ -938,6 +1030,9 @@ async function initPage() {
         break;
       case "settings":
         await initSettings();
+        break;
+      case "sign-in":
+        await initSignIn();
         break;
       default:
         break;

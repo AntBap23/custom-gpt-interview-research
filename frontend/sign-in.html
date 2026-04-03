@@ -14,26 +14,26 @@
         <section class="auth-shell">
           <article class="panel-card panel-card--auth">
             <p class="eyebrow">Account Access</p>
-            <h1>Sign in placeholder for future researcher accounts.</h1>
+            <h1>Sign in to access your research workspace.</h1>
             <p class="hero__lede">
-              Authentication is not wired yet, but this page establishes where account access, organization membership,
-              and role-based entry would live in a fuller product.
+              Use your Supabase Auth credentials. Sessions are persisted across refresh so authenticated users can
+              return directly to their active workflow.
             </p>
 
-            <form class="stack-form">
+            <form id="sign-in-form" class="stack-form">
               <label>
                 Email
-                <input type="email" placeholder="researcher@example.edu" />
+                <input type="email" name="email" placeholder="researcher@example.edu" required />
               </label>
               <label>
                 Password
-                <input type="password" placeholder="Password" />
+                <input type="password" name="password" placeholder="Password" required />
               </label>
-              <button class="button button--primary" type="button">Sign in</button>
+              <button class="button button--primary" type="submit">Sign in</button>
             </form>
 
-            <div class="message-box">
-              Sign-in is a product placeholder only. Storage, auth, and permissions can be connected later.
+            <div id="sign-in-output" class="message-box">
+              Enter your credentials to start a session.
             </div>
           </article>
         </section>
