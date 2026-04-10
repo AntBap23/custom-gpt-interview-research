@@ -958,6 +958,30 @@ async function initSignIn() {
 
   const form = document.getElementById("sign-in-form");
   const output = document.getElementById("sign-in-output");
+  const signInModeButton = document.getElementById("auth-mode-sign-in");
+  const signUpModeButton = document.getElementById("auth-mode-sign-up");
+  const submitButton = form?.querySelector('button[type="submit"]');
+  let authMode = "sign-in";
+
+  function refreshAuthModeUi() {
+    if (!submitButton) return;
+    submitButton.textContent = authMode === "sign-up" ? "Create account" : "Sign in";
+    signInModeButton?.classList.toggle("is-active", authMode === "sign-in");
+    signUpModeButton?.classList.toggle("is-active", authMode === "sign-up");
+  }
+
+  signInModeButton?.addEventListener("click", () => {
+    authMode = "sign-in";
+    setNodeContent(output, "Enter your credentials to start a session.");
+    refreshAuthModeUi();
+  });
+  signUpModeButton?.addEventListener("click", () => {
+    authMode = "sign-up";
+    setNodeContent(output, "Create a new account with email and password.");
+    refreshAuthModeUi();
+  });
+  refreshAuthModeUi();
+
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
     const formData = new FormData(form);
@@ -969,12 +993,29 @@ async function initSignIn() {
     }
 
     try {
-      await callApi("/api/auth/sign-in", {
+      const endpoint = authMode === "sign-up" ? "/api/auth/sign-up" : "/api/auth/sign-in";
+      const result = await callApi(endpoint, {
         method: "POST",
         body: JSON.stringify({ email, password }),
       });
-      setNodeContent(output, "Signed in successfully. Redirecting...");
-      window.setTimeout(() => window.location.assign("/dashboard"), 250);
+
+      if (result?.authenticated) {
+        setNodeContent(output, result?.message || "Signed in successfully. Redirecting...");
+        window.setTimeout(() => window.location.assign("/dashboard"), 250);
+        return;
+      }
+
+      if (authMode === "sign-up") {
+        setNodeContent(
+          output,
+          result?.message || "Account created. Check your email to confirm, then sign in.",
+        );
+        authMode = "sign-in";
+        refreshAuthModeUi();
+        return;
+      }
+
+      setNodeContent(output, "Unable to start a session.");
     } catch (error) {
       setNodeContent(output, error.message || "Sign in failed.");
     }

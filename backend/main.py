@@ -10,12 +10,14 @@ from backend.auth import (
     get_optional_auth_context,
     require_authenticated_user,
     sign_in_with_password,
+    sign_up_with_password,
     sign_out_with_token,
 )
 from backend.errors import AuthenticationError, SupabaseOperationError
 from backend.schemas import (
     AuthSessionResponse,
     AuthSignInRequest,
+    AuthSignUpRequest,
     AuthUserResponse,
     ComparisonRequest,
     ComparisonResponse,
@@ -189,6 +191,36 @@ def sign_in(payload: AuthSignInRequest):
     )
     _set_session_cookies(response, access_token, refresh_token)
     return response
+
+
+@app.post("/api/auth/sign-up", response_model=AuthSessionResponse)
+def sign_up(payload: AuthSignUpRequest):
+    access_token, refresh_token, user = sign_up_with_password(payload.email, payload.password)
+
+    user_id = str(getattr(user, "id", "") or "")
+    email = getattr(user, "email", None)
+    role = None
+    app_metadata = getattr(user, "app_metadata", None)
+    if isinstance(app_metadata, dict) and app_metadata.get("role"):
+        role = str(app_metadata["role"])
+
+    if access_token and refresh_token:
+        context = get_auth_context_from_access_token(access_token)
+        response = JSONResponse(
+            content={
+                "authenticated": True,
+                "user": {"id": context.user_id, "email": context.email, "role": context.role},
+                "message": "Account created and signed in.",
+            }
+        )
+        _set_session_cookies(response, access_token, refresh_token)
+        return response
+
+    return AuthSessionResponse(
+        authenticated=False,
+        user=AuthUserResponse(id=user_id, email=email, role=role),
+        message="Account created. Check your email to confirm your account before signing in.",
+    )
 
 
 @app.post("/api/auth/sign-out", response_model=AuthSessionResponse)

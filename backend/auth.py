@@ -134,6 +134,23 @@ def sign_in_with_password(email: str, password: str) -> tuple[str, str]:
     return str(session.access_token), str(session.refresh_token)
 
 
+def sign_up_with_password(email: str, password: str) -> tuple[str | None, str | None, Any]:
+    client = get_supabase_client()
+    try:
+        auth_response = client.auth.sign_up({"email": email, "password": password})
+    except Exception as exc:  # pragma: no cover - external call
+        raise AuthenticationError("Sign up failed. Please verify the email/password and try again.") from exc
+
+    user = getattr(auth_response, "user", None)
+    if not user:
+        raise AuthenticationError("Sign up did not return a valid user.")
+
+    session = getattr(auth_response, "session", None)
+    access_token = str(session.access_token) if session and getattr(session, "access_token", None) else None
+    refresh_token = str(session.refresh_token) if session and getattr(session, "refresh_token", None) else None
+    return access_token, refresh_token, user
+
+
 def sign_out_with_token(access_token: str | None) -> None:
     if not access_token:
         return

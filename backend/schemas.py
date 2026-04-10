@@ -166,6 +166,11 @@ class AuthSignInRequest(BaseModel):
     password: str
 
 
+class AuthSignUpRequest(BaseModel):
+    email: str
+    password: str
+
+
 class AuthUserResponse(BaseModel):
     id: str
     email: str | None = None
@@ -175,3 +180,4 @@ class AuthUserResponse(BaseModel):
 class AuthSessionResponse(BaseModel):
     authenticated: bool
     user: AuthUserResponse | None = None
+    message: str | None = None

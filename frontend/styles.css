@@ -665,6 +665,18 @@ textarea {
   place-items: center;
 }
 
+.auth-mode-row {
+  display: flex;
+  gap: 0.45rem;
+  margin-bottom: 0.7rem;
+}
+
+.auth-mode-row .button.is-active {
+  border-color: var(--accent);
+  background: color-mix(in oklab, var(--accent), transparent 92%);
+  color: var(--text);
+}
+
 .empty-note {
   padding: 0.66rem 0.72rem;
   border: 1px dashed var(--line-strong);
