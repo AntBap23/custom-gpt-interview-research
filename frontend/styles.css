@@ -671,6 +671,22 @@ textarea {
   margin-bottom: 0.7rem;
 }
 
+.auth-mode-note {
+  margin-bottom: 0.75rem;
+  padding: 0.72rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: color-mix(in oklab, var(--surface), var(--base) 18%);
+}
+
+.auth-mode-note p {
+  margin: 0;
+}
+
+.auth-mode-note p + p {
+  margin-top: 0.18rem;
+}
+
 .auth-mode-row .button.is-active {
   border-color: var(--accent);
   background: color-mix(in oklab, var(--accent), transparent 92%);

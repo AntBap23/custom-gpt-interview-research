@@ -960,14 +960,34 @@ async function initSignIn() {
   const output = document.getElementById("sign-in-output");
   const signInModeButton = document.getElementById("auth-mode-sign-in");
   const signUpModeButton = document.getElementById("auth-mode-sign-up");
+  const authModeLabel = document.getElementById("auth-mode-label");
+  const authModeCopy = document.getElementById("auth-mode-copy");
   const submitButton = form?.querySelector('button[type="submit"]');
+  const title = document.querySelector(".panel-card--auth h1");
   let authMode = "sign-in";
 
   function refreshAuthModeUi() {
     if (!submitButton) return;
     submitButton.textContent = authMode === "sign-up" ? "Create account" : "Sign in";
+    if (title) {
+      title.textContent =
+        authMode === "sign-up"
+          ? "Create an account to access your research workspace."
+          : "Sign in to access your research workspace.";
+    }
+    if (authModeLabel) {
+      authModeLabel.textContent = authMode === "sign-up" ? "Current mode: Create account" : "Current mode: Sign in";
+    }
+    if (authModeCopy) {
+      authModeCopy.textContent =
+        authMode === "sign-up"
+          ? "Create-account mode is active. Enter your email and password, then click the Create account button below."
+          : "Sign-in mode is active. Enter your email and password, then submit the form.";
+    }
     signInModeButton?.classList.toggle("is-active", authMode === "sign-in");
     signUpModeButton?.classList.toggle("is-active", authMode === "sign-up");
+    signInModeButton?.setAttribute("aria-pressed", authMode === "sign-in" ? "true" : "false");
+    signUpModeButton?.setAttribute("aria-pressed", authMode === "sign-up" ? "true" : "false");
   }
 
   signInModeButton?.addEventListener("click", () => {
@@ -977,7 +997,7 @@ async function initSignIn() {
   });
   signUpModeButton?.addEventListener("click", () => {
     authMode = "sign-up";
-    setNodeContent(output, "Create a new account with email and password.");
+    setNodeContent(output, "Create-account mode enabled. Submit the form below to register.");
     refreshAuthModeUi();
   });
   refreshAuthModeUi();
