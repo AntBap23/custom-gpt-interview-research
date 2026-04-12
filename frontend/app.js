@@ -14,14 +14,20 @@ const PAGE_LABELS = {
   "sign-in": "Sign In",
 };
 
-const TOP_NAV = [
-  { key: "home", label: "Home", href: "/" },
-  { key: "dashboard", label: "Dashboard", href: "/dashboard" },
-  { key: "studies", label: "Studies", href: "/studies" },
-  { key: "workspace", label: "Workspace", href: "/workspace" },
-  { key: "settings", label: "Settings", href: "/settings" },
-  { key: "sign-in", label: "Sign In", href: "/sign-in" },
+const PRIMARY_NAV = [
+  { key: "home", label: "Home", href: "/", icon: "home" },
+  { key: "dashboard", label: "Dashboard", href: "/dashboard", icon: "grid" },
+  { key: "studies", label: "Studies", href: "/studies", icon: "folder" },
+  { key: "workspace", label: "Workspace", href: "/workspace", icon: "layers" },
+  { key: "protocol", label: "Protocol", href: "/protocol", icon: "clipboard" },
+  { key: "personas", label: "Personas", href: "/personas", icon: "users" },
+  { key: "interview-guide", label: "Interview Guide", href: "/interview-guide", icon: "spark" },
+  { key: "transcripts", label: "Transcripts", href: "/transcripts", icon: "file" },
+  { key: "simulations", label: "Simulations", href: "/simulations", icon: "play" },
+  { key: "comparisons", label: "Comparisons", href: "/comparisons", icon: "chart" },
 ];
+
+const UTILITY_NAV = [{ key: "settings", label: "Settings", href: "/settings", icon: "gear" }];
 
 const WORKSPACE_NAV = [
   { key: "workspace", label: "Overview", href: "/workspace" },
@@ -46,6 +52,12 @@ const state = {
 };
 
 const page = document.body.dataset.page || "home";
+const pageDateFormatter = new Intl.DateTimeFormat(undefined, {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+const relativeDateFormatter = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
 
 function el(tagName, options = {}) {
   const node = document.createElement(tagName);
@@ -161,6 +173,79 @@ function formatDate(value) {
   }
 }
 
+function formatRelativeDate(value) {
+  if (!value) return "No timestamp";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "No timestamp";
+  const diffMs = date.getTime() - Date.now();
+  const diffHours = Math.round(diffMs / (1000 * 60 * 60));
+  if (Math.abs(diffHours) < 24) {
+    return relativeDateFormatter.format(diffHours, "hour");
+  }
+  const diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
+  return relativeDateFormatter.format(diffDays, "day");
+}
+
+function formatUserDisplayName(user) {
+  const email = user?.email || "";
+  const localPart = email.split("@")[0] || "";
+  if (!localPart) return "Researcher";
+  return localPart
+    .split(/[._-]+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
+function userRoleLabel(user) {
+  return user?.role || "Research workspace";
+}
+
+function userInitials(user) {
+  const name = formatUserDisplayName(user);
+  const initials = name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part.charAt(0).toUpperCase())
+    .join("");
+  return initials || "R";
+}
+
+function latestRecord(items) {
+  return [...items].sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime())[0] || null;
+}
+
+function iconSprite(name) {
+  const sprites = {
+    home:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 10.5 8-6 8 6M6.5 9v10h11V9m-7.5 10v-5h4v5"/></svg>',
+    grid:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>',
+    folder:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H10l2 2h6.5A2.5 2.5 0 0 1 21 9.5v7A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5z"/></svg>',
+    layers:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 4 8 4.5-8 4.5-8-4.5zm-8 8 8 4.5 8-4.5M4 15.5 12 20l8-4.5"/></svg>',
+    clipboard:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.5h6M9.75 3h4.5A1.75 1.75 0 0 1 16 4.75V6h2.5A1.5 1.5 0 0 1 20 7.5v11A2.5 2.5 0 0 1 17.5 21h-11A2.5 2.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H8V4.75A1.75 1.75 0 0 1 9.75 3Z"/></svg>',
+    users:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm7 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM4.5 19a4.5 4.5 0 0 1 9 0m1 0a3.5 3.5 0 0 1 6.5-1.75"/></svg>',
+    spark:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.8 4.7L18.5 9 13.8 10.8 12 15.5l-1.8-4.7L5.5 9l4.7-1.3zm6.5 10.5.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9zM6 15l1 2.5L9.5 18 7 19l-1 2.5L5 19l-2.5-1L5 17.5z"/></svg>',
+    file:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4v13A1.5 1.5 0 0 1 16.5 22h-9A1.5 1.5 0 0 1 6 20.5v-15A2 2 0 0 1 8 3.5Zm7 1.5v3h3"/></svg>',
+    play:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6.5A2.5 2.5 0 0 1 8.8 4.4l8 5.1a2.5 2.5 0 0 1 0 4.2l-8 5.1A2.5 2.5 0 0 1 5 16.7z"/></svg>',
+    chart:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19.5h14M8 17V11m4 6V6m4 11v-8"/></svg>',
+    gear:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.3 2.6 2.9.5.9 2.8 2.4 1.7-1.1 2.7 1.1 2.7-2.4 1.7-.9 2.8-2.9.5L12 21l-1.3-2.6-2.9-.5-.9-2.8-2.4-1.7 1.1-2.7-1.1-2.7 2.4-1.7.9-2.8 2.9-.5zm0 5.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/></svg>',
+    arrow:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg>',
+  };
+  return sprites[name] || sprites.grid;
+}
+
 function setNodeContent(node, content) {
   if (!node) return;
   node.textContent = typeof content === "string" ? content : pretty(content);
@@ -193,26 +278,47 @@ function renderHeader() {
   const header = document.querySelector("[data-site-header]");
   if (!header) return;
 
-  const bar = el("div", { className: "header-bar" });
-  const brand = el("a", { className: "brand", attrs: { href: "/" } });
-  brand.appendChild(el("span", { className: "brand__kicker", text: "Qualitative Research Platform" }));
-  brand.appendChild(el("strong", { className: "brand__title", text: "Qualitative AI Interview Studio" }));
-  brand.appendChild(
-    el("span", {
-      className: "brand__copy",
-      text: "A multi-page research workspace for studies, simulations, and comparison review.",
-    }),
-  );
+  const shell = el("div", { className: "shell-chrome" });
+  const sidebar = el("aside", { className: "app-sidebar", attrs: { "aria-label": "Primary navigation" } });
+  const brand = el("a", { className: "app-brand", attrs: { href: "/dashboard" } });
+  brand.appendChild(el("span", { className: "app-brand__mark", html: iconSprite("spark") }));
+  const brandCopy = el("span", { className: "app-brand__copy" });
+  brandCopy.appendChild(el("strong", { text: "Qualitative AI" }));
+  brandCopy.appendChild(el("span", { text: "Interview Studio" }));
+  brand.appendChild(brandCopy);
 
-  const nav = el("nav", { className: "primary-nav", attrs: { "aria-label": "Primary navigation" } });
-  TOP_NAV.forEach((item) => {
+  const nav = el("nav", { className: "sidebar-nav", attrs: { "aria-label": "Application navigation" } });
+  PRIMARY_NAV.forEach((item) => {
     const link = el("a", {
-      className: `primary-nav__link${isTopNavActive(item.key) ? " is-active" : ""}`,
-      text: item.label,
-      attrs: { href: item.href },
+      className: `sidebar-nav__link${isTopNavActive(item.key) ? " is-active" : ""}`,
+      attrs: { href: item.href, title: item.label },
     });
+    link.appendChild(el("span", { className: "sidebar-nav__icon", html: iconSprite(item.icon) }));
+    link.appendChild(el("span", { className: "sidebar-nav__label", text: item.label }));
     nav.appendChild(link);
   });
+
+  const utilityNav = el("nav", { className: "sidebar-nav sidebar-nav--utility", attrs: { "aria-label": "Utility navigation" } });
+  UTILITY_NAV.forEach((item) => {
+    const link = el("a", {
+      className: `sidebar-nav__link${page === item.key ? " is-active" : ""}`,
+      attrs: { href: item.href, title: item.label },
+    });
+    link.appendChild(el("span", { className: "sidebar-nav__icon", html: iconSprite(item.icon) }));
+    link.appendChild(el("span", { className: "sidebar-nav__label", text: item.label }));
+    utilityNav.appendChild(link);
+  });
+
+  const topbar = el("div", { className: "header-bar" });
+  const pageIntro = el("div", { className: "page-intro" });
+  pageIntro.appendChild(el("span", { className: "page-intro__eyebrow", text: "Research Portal" }));
+  pageIntro.appendChild(el("strong", { className: "page-intro__title", text: PAGE_LABELS[page] || "Workspace" }));
+  pageIntro.appendChild(
+    el("span", {
+      className: "page-intro__copy",
+      text: currentStudy() ? `Scoped to ${currentStudy().name}` : "Choose a study to focus the workspace.",
+    }),
+  );
 
   const utility = el("div", { className: "header-utility" });
   const switcher = el("div", { className: "study-switcher" });
@@ -232,32 +338,40 @@ function renderHeader() {
   switcher.appendChild(selectLabel);
 
   const account = el("div", { className: "account-chip" });
-  account.appendChild(el("span", { className: "field-label", text: "Account" }));
-  account.appendChild(el("strong", { text: state.auth.authenticated ? state.auth.user?.email || "Signed in" : "Not signed in" }));
-  account.appendChild(
+  account.appendChild(el("span", { className: "account-chip__avatar", text: userInitials(state.auth.user) }));
+  const accountCopy = el("div", { className: "account-chip__copy" });
+  accountCopy.appendChild(
+    el("strong", { text: state.auth.authenticated ? formatUserDisplayName(state.auth.user) : "Guest session" }),
+  );
+  accountCopy.appendChild(
     el("span", {
       className: "brand__copy",
-      text: state.auth.authenticated ? "Session active for this browser." : "Sign in to access study operations.",
+      text: state.auth.authenticated
+        ? `${userRoleLabel(state.auth.user)} • ${state.auth.user?.email || "Signed in"}`
+        : "Sign in to access study operations.",
     }),
   );
+  account.appendChild(accountCopy);
+
   if (state.auth.authenticated) {
     const signOutButton = el("button", {
-      className: "button button--secondary account-chip__action",
-      text: "Sign out",
+      className: "button button--secondary sidebar-signout",
+      text: "Log out",
       attrs: { type: "button" },
     });
     signOutButton.addEventListener("click", async () => {
       await signOutCurrentSession();
     });
-    account.appendChild(signOutButton);
+    sidebar.appendChild(signOutButton);
   } else {
-    const signInLink = el("a", { className: "text-link", text: "Sign in", attrs: { href: "/sign-in" } });
-    account.appendChild(signInLink);
+    sidebar.appendChild(el("a", { className: "button button--secondary sidebar-signout", text: "Sign in", attrs: { href: "/sign-in" } }));
   }
 
   utility.append(switcher, account);
-  bar.append(brand, nav, utility);
-  header.replaceChildren(bar);
+  sidebar.append(brand, nav, utilityNav);
+  topbar.append(pageIntro, utility);
+  shell.append(sidebar, topbar);
+  header.replaceChildren(shell);
 }
 
 function renderWorkspaceNav() {
@@ -275,7 +389,6 @@ function renderWorkspaceNav() {
 }
 
 function isTopNavActive(key) {
-  if (key === "workspace") return WORKSPACE_PAGES.has(page);
   return page === key;
 }
 
@@ -305,6 +418,25 @@ function resourceCard(title, bodyText, pills = []) {
   return card;
 }
 
+function dashboardEntityCard({ label, title, count, copy, href, icon, meta }) {
+  const card = el("article", { className: "dashboard-entity-card" });
+  const header = el("div", { className: "dashboard-entity-card__header" });
+  header.appendChild(el("span", { className: "dashboard-entity-card__icon", html: iconSprite(icon) }));
+  const heading = el("div");
+  heading.appendChild(el("span", { className: "panel-card__label", text: label }));
+  heading.appendChild(el("h3", { text: title }));
+  header.appendChild(heading);
+
+  const countNode = el("strong", { className: "dashboard-entity-card__count", text: String(count) });
+  const copyNode = el("p", { text: copy });
+  const footer = el("div", { className: "dashboard-entity-card__footer" });
+  if (meta) footer.appendChild(el("span", { className: "dashboard-entity-card__meta", text: meta }));
+  footer.appendChild(el("a", { className: "button button--primary", text: "Open", attrs: { href } }));
+
+  card.append(header, countNode, copyNode, footer);
+  return card;
+}
+
 async function loadStudies() {
   state.studies = await callApi("/api/studies");
   if (state.activeStudyId && !state.studies.some((study) => study.id === state.activeStudyId)) {
@@ -317,37 +449,174 @@ async function loadCollection(name) {
 }
 
 async function initDashboard() {
-  const [protocols, personas, simulations, comparisons] = await Promise.all([
+  const [protocols, personas, guides, transcripts, simulations, comparisons] = await Promise.all([
     loadCollection("protocols"),
     loadCollection("personas"),
+    loadCollection("question-guides"),
+    loadCollection("transcripts"),
     loadCollection("simulations"),
     loadCollection("comparisons"),
   ]);
 
-  setNodeContent(document.getElementById("dashboard-studies-count"), state.studies.length);
-  setNodeContent(document.getElementById("dashboard-protocols-count"), protocols.length);
-  setNodeContent(document.getElementById("dashboard-personas-count"), personas.length);
-  setNodeContent(document.getElementById("dashboard-simulations-count"), simulations.length);
-
   const active = currentStudy();
+  const setupAssets = protocols.length + personas.length + guides.length + transcripts.length;
+  const analysisRuns = simulations.length + comparisons.length;
+  const workflowStage = !active
+    ? "Waiting for study selection"
+    : !protocols.length
+      ? "Protocol setup"
+      : !personas.length || !guides.length
+        ? "Asset preparation"
+        : !simulations.length
+          ? "Ready for simulation"
+          : !comparisons.length
+            ? "Comparison setup"
+            : "Analysis in progress";
+
+  setNodeContent(document.getElementById("dashboard-studies-count"), state.studies.length);
+  setNodeContent(document.getElementById("dashboard-assets-count"), setupAssets);
+  setNodeContent(document.getElementById("dashboard-analysis-count"), analysisRuns);
+
+  setNodeContent(document.getElementById("dashboard-date-label"), pageDateFormatter.format(new Date()));
+  setNodeContent(
+    document.getElementById("dashboard-greeting"),
+    state.auth.authenticated ? `Welcome back, ${formatUserDisplayName(state.auth.user)}.` : "Welcome to your research portal.",
+  );
+  setNodeContent(
+    document.getElementById("dashboard-greeting-copy"),
+    active
+      ? `Your current workspace is scoped to ${active.name}. Review setup coverage, recent records, and the next recommended move.`
+      : "Choose a study from the top bar to scope the dashboard and unlock study-specific workflow guidance.",
+  );
   setNodeContent(document.getElementById("dashboard-active-study"), active ? active.name : "No study selected");
+  setNodeContent(document.getElementById("dashboard-active-stage"), workflowStage);
+  setNodeContent(document.getElementById("dashboard-active-study-sidebar"), active ? active.name : "No study selected");
   setNodeContent(
     document.getElementById("dashboard-active-study-copy"),
-    active ? active.description || "This study is currently active across the app." : "Select a study from the top bar to scope dashboard summaries and workflow links.",
+    active
+      ? active.description || "This study is currently active across the app."
+      : "Select a study from the top bar to scope dashboard summaries and workflow links.",
+  );
+
+  const entityGrid = document.getElementById("dashboard-entity-grid");
+  entityGrid.replaceChildren(
+    dashboardEntityCard({
+      label: "Protocol",
+      title: "Protocol Guidance",
+      count: protocols.length,
+      copy: protocols.length ? "Review the rules shaping interview behavior and analysis focus." : "Create protocol guidance to anchor the study workflow.",
+      href: "/protocol",
+      icon: "clipboard",
+      meta: latestRecord(protocols) ? `Updated ${formatRelativeDate(latestRecord(protocols).created_at)}` : "No protocol records yet",
+    }),
+    dashboardEntityCard({
+      label: "Participants",
+      title: "Personas",
+      count: personas.length,
+      copy: personas.length ? "Ground participant profiles are ready for simulation work." : "Extract or author study personas before simulation begins.",
+      href: "/personas",
+      icon: "users",
+      meta: latestRecord(personas) ? `Updated ${formatRelativeDate(latestRecord(personas).created_at)}` : "No personas created yet",
+    }),
+    dashboardEntityCard({
+      label: "Interview Design",
+      title: "Interview Guide",
+      count: guides.length,
+      copy: guides.length ? "Shared interview questions are available for reuse." : "Extract and save a guide to standardize the interview flow.",
+      href: "/interview-guide",
+      icon: "spark",
+      meta: latestRecord(guides) ? `Updated ${formatRelativeDate(latestRecord(guides).created_at)}` : "No guides saved yet",
+    }),
+    dashboardEntityCard({
+      label: "Source Material",
+      title: "Transcripts",
+      count: transcripts.length,
+      copy: transcripts.length ? "Real interview material is stored for grounded comparison." : "Upload transcripts to compare AI outputs against real interviews.",
+      href: "/transcripts",
+      icon: "file",
+      meta: latestRecord(transcripts) ? `Updated ${formatRelativeDate(latestRecord(transcripts).created_at)}` : "No transcripts loaded yet",
+    }),
+    dashboardEntityCard({
+      label: "Generation",
+      title: "Simulations",
+      count: simulations.length,
+      copy: simulations.length ? "Generated interviews are ready for export and review." : "Run simulations once personas, guides, and protocol are in place.",
+      href: "/simulations",
+      icon: "play",
+      meta: latestRecord(simulations) ? `Updated ${formatRelativeDate(latestRecord(simulations).created_at)}` : "No simulations generated yet",
+    }),
+    dashboardEntityCard({
+      label: "Review",
+      title: "Comparisons",
+      count: comparisons.length,
+      copy: comparisons.length ? "Comparison reports are available for analytic review." : "Generate comparisons after transcripts and simulations are available.",
+      href: "/comparisons",
+      icon: "chart",
+      meta: latestRecord(comparisons) ? `Updated ${formatRelativeDate(latestRecord(comparisons).created_at)}` : "No comparisons saved yet",
+    }),
   );
 
   const readiness = document.getElementById("dashboard-readiness");
   readiness.replaceChildren(
-    resourceCard("Protocol coverage", protocols.length ? `${protocols.length} protocol record(s)` : "No protocol records yet."),
-    resourceCard("Persona coverage", personas.length ? `${personas.length} persona record(s)` : "No personas created yet."),
-    resourceCard("Comparison readiness", simulations.length ? "Simulations exist and can be compared." : "Run simulations to unlock comparison work."),
+    resourceCard("Protocol coverage", protocols.length ? `${protocols.length} protocol record(s) are available in the current scope.` : "No protocol records yet."),
+    resourceCard("Participant preparation", personas.length ? `${personas.length} persona record(s) are available for simulations.` : "No personas created yet."),
+    resourceCard(
+      "Interview assets",
+      guides.length && transcripts.length
+        ? `${guides.length} guide(s) and ${transcripts.length} transcript(s) are available for structured comparison work.`
+        : "Guides and transcripts are still incomplete in the current scope.",
+    ),
+    resourceCard(
+      "Analysis readiness",
+      simulations.length
+        ? comparisons.length
+          ? "Simulations and comparisons both exist, so analytic review is already underway."
+          : "Simulations exist and can now be paired with transcripts for comparison."
+        : "Run simulations to unlock comparison work.",
+    ),
   );
 
+  const recentRecords = [
+    ...protocols.map((item) => ({ label: "Protocol", name: item.name, created_at: item.created_at })),
+    ...personas.map((item) => ({ label: "Persona", name: item.name, created_at: item.created_at })),
+    ...guides.map((item) => ({ label: "Interview guide", name: item.name, created_at: item.created_at })),
+    ...transcripts.map((item) => ({ label: "Transcript", name: item.name, created_at: item.created_at })),
+    ...simulations.map((item) => ({ label: "Simulation", name: `Simulation ${item.id.slice(0, 8)}`, created_at: item.created_at })),
+    ...comparisons.map((item) => ({ label: "Comparison", name: `Comparison ${item.id.slice(0, 8)}`, created_at: item.created_at })),
+  ].sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime());
+
   const collections = document.getElementById("dashboard-collections");
-  collections.replaceChildren(
-    resourceCard("Comparisons", `${comparisons.length} saved comparison record(s)`),
-    resourceCard("Recent simulations", simulations[0] ? `Most recent simulation created ${formatDate(simulations[0].created_at)}.` : "No simulations yet."),
-  );
+  if (!recentRecords.length) {
+    collections.replaceChildren(makeEmptyNote("No scoped records yet. Start by creating a study asset."));
+  } else {
+    collections.replaceChildren(
+      ...recentRecords.slice(0, 4).map((record) =>
+        resourceCard(record.label, record.name, [formatRelativeDate(record.created_at), formatDate(record.created_at)]),
+      ),
+    );
+  }
+
+  const nextSteps = document.getElementById("dashboard-next-steps");
+  const nextStepCards = [];
+  if (!active) {
+    nextStepCards.push(resourceCard("Select a study", "Use the active study control in the top bar to focus the workspace."));
+  } else if (!protocols.length) {
+    nextStepCards.push(resourceCard("Define protocol", "Start in Protocol to establish study context, interview style, and consistency rules.", ["Recommended next move"]));
+  } else if (!personas.length) {
+    nextStepCards.push(resourceCard("Prepare personas", "Extract participant profiles from source material so the study can move into simulation.", ["Recommended next move"]));
+  } else if (!guides.length) {
+    nextStepCards.push(resourceCard("Build interview guide", "Save a shared guide so simulations follow the same question structure.", ["Recommended next move"]));
+  } else if (!simulations.length) {
+    nextStepCards.push(resourceCard("Run simulations", "The core study assets exist. Generate simulated interviews next.", ["Recommended next move"]));
+  } else if (!transcripts.length) {
+    nextStepCards.push(resourceCard("Load transcripts", "Add real interview material before generating comparisons.", ["Recommended next move"]));
+  } else if (!comparisons.length) {
+    nextStepCards.push(resourceCard("Generate comparisons", "Pair transcripts and simulations to produce structured comparison reports.", ["Recommended next move"]));
+  } else {
+    nextStepCards.push(resourceCard("Continue review", "Comparison artifacts already exist. Review the latest report and export any simulations you need.", ["Current focus"]));
+  }
+  nextStepCards.push(resourceCard("Open workspace", "Use the workspace overview to inspect the full study pipeline and quick links.", ["Shared navigation"]));
+  nextSteps.replaceChildren(...nextStepCards);
 }
 
 async function initStudies() {

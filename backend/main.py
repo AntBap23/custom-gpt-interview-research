@@ -95,6 +95,7 @@ FRONTEND_PAGE_ROUTES = {
     "/sign-in": "sign-in.html",
 }
 PROTECTED_PAGE_ROUTES = set(FRONTEND_PAGE_ROUTES.keys()) - PUBLIC_PAGE_ROUTES
+NO_CACHE_PATHS = {"/", *FRONTEND_PAGE_ROUTES.keys()}
 
 
 def _set_session_cookies(response: Response, access_token: str, refresh_token: str) -> None:
@@ -164,6 +165,10 @@ async def enforce_authentication(request: Request, call_next):
 
     response = await call_next(request)
     _apply_refreshed_session_cookies(request, response)
+    if path in NO_CACHE_PATHS or path.startswith("/frontend/"):
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
     return response
 
 
