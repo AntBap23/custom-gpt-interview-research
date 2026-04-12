@@ -5,7 +5,7 @@ from fastapi import HTTPException, Request, status
 
 from backend.errors import AuthenticationError, SupabaseOperationError
 from backend.settings import settings
-from backend.storage import get_supabase_client
+from backend.storage import get_supabase_admin_client, get_supabase_auth_client
 
 
 @dataclass
@@ -47,7 +47,7 @@ def _read_user_role(user: Any) -> str | None:
 
 
 def _profile_role_for_user(user_id: str) -> str | None:
-    client = get_supabase_client()
+    client = get_supabase_admin_client()
     try:
         response = client.table("profiles").select("role").eq("id", user_id).limit(1).execute()
     except Exception:
@@ -60,7 +60,7 @@ def _profile_role_for_user(user_id: str) -> str | None:
 
 
 def _resolve_auth_context_from_token(access_token: str) -> AuthContext:
-    client = get_supabase_client()
+    client = get_supabase_auth_client()
     try:
         user_response = client.auth.get_user(access_token)
     except Exception as exc:  # pragma: no cover - external call
@@ -99,7 +99,7 @@ def get_optional_auth_context(request: Request) -> AuthContext | None:
             return None
         # Refresh once, then re-validate the new access token.
         try:
-            session_response = get_supabase_client().auth.refresh_session(refresh_token)
+            session_response = get_supabase_auth_client().auth.refresh_session(refresh_token)
             refreshed_access = getattr(session_response.session, "access_token", None) if session_response else None
             refreshed_refresh = getattr(session_response.session, "refresh_token", None) if session_response else None
         except Exception:
@@ -122,7 +122,7 @@ def require_authenticated_user(request: Request) -> AuthContext:
 
 
 def sign_in_with_password(email: str, password: str) -> tuple[str, str]:
-    client = get_supabase_client()
+    client = get_supabase_auth_client()
     try:
         auth_response = client.auth.sign_in_with_password({"email": email, "password": password})
     except Exception as exc:  # pragma: no cover - external call
@@ -135,7 +135,7 @@ def sign_in_with_password(email: str, password: str) -> tuple[str, str]:
 
 
 def sign_up_with_password(email: str, password: str) -> tuple[str | None, str | None, Any]:
-    client = get_supabase_client()
+    client = get_supabase_auth_client()
     try:
         auth_response = client.auth.sign_up({"email": email, "password": password})
     except Exception as exc:  # pragma: no cover - external call
@@ -155,6 +155,6 @@ def sign_out_with_token(access_token: str | None) -> None:
     if not access_token:
         return
     try:
-        get_supabase_client().auth.admin.sign_out(access_token)
+        get_supabase_admin_client().auth.admin.sign_out(access_token)
     except Exception as exc:  # pragma: no cover - external call
         raise SupabaseOperationError("Supabase sign out failed.") from exc

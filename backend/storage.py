@@ -1,4 +1,5 @@
 import json
+import logging
 import uuid
 from abc import ABC, abstractmethod
 from datetime import UTC, datetime
@@ -13,6 +14,8 @@ try:
 except Exception:  # pragma: no cover - optional until installed/configured
     Client = Any
     create_client = None
+
+logger = logging.getLogger(__name__)
 
 
 def utc_now() -> datetime:
@@ -91,6 +94,7 @@ class SupabaseStorage(StorageAdapter):
         try:
             return fn()
         except Exception as exc:  # pragma: no cover - depends on network/runtime state
+            logger.exception("Supabase %s failed", operation)
             raise SupabaseOperationError(f"Supabase {operation} failed.") from exc
 
     def list_items(self, collection: str) -> list[dict[str, Any]]:
@@ -122,22 +126,40 @@ class SupabaseStorage(StorageAdapter):
         return rows[0] if rows else item
 
 
-_supabase_client_singleton: Client | None = None
+_supabase_admin_client_singleton: Client | None = None
+_supabase_auth_client_singleton: Client | None = None
 _storage_singleton: StorageAdapter | None = None
 
 
-def get_supabase_client() -> Client:
-    global _supabase_client_singleton
-    if _supabase_client_singleton is not None:
-        return _supabase_client_singleton
-
+def _require_supabase_client() -> None:
     if create_client is None:
         raise RuntimeError("Supabase client is not installed.")
     if not settings.supabase_url or not settings.supabase_service_role_key:
         raise RuntimeError("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required for Supabase integration.")
 
-    _supabase_client_singleton = create_client(settings.supabase_url, settings.supabase_service_role_key)
-    return _supabase_client_singleton
+
+def get_supabase_admin_client() -> Client:
+    global _supabase_admin_client_singleton
+    if _supabase_admin_client_singleton is not None:
+        return _supabase_admin_client_singleton
+
+    _require_supabase_client()
+    _supabase_admin_client_singleton = create_client(settings.supabase_url, settings.supabase_service_role_key)
+    return _supabase_admin_client_singleton
+
+
+def get_supabase_auth_client() -> Client:
+    global _supabase_auth_client_singleton
+    if _supabase_auth_client_singleton is not None:
+        return _supabase_auth_client_singleton
+
+    _require_supabase_client()
+    auth_key = settings.supabase_anon_key or settings.supabase_service_role_key
+    if not auth_key:
+        raise RuntimeError("SUPABASE_ANON_KEY or SUPABASE_SERVICE_ROLE_KEY is required for auth integration.")
+
+    _supabase_auth_client_singleton = create_client(settings.supabase_url, auth_key)
+    return _supabase_auth_client_singleton
 
 
 def get_storage() -> StorageAdapter:
@@ -146,7 +168,7 @@ def get_storage() -> StorageAdapter:
         return _storage_singleton
 
     if settings.storage_backend.lower() == "supabase":
-        _storage_singleton = SupabaseStorage(get_supabase_client())
+        _storage_singleton = SupabaseStorage(get_supabase_admin_client())
         return _storage_singleton
 
     _storage_singleton = LocalJsonStorage(settings.local_storage_root)
