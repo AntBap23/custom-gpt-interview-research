@@ -1118,6 +1118,7 @@ function renderComparisonReport(container, payload) {
 
   const table = payload.comparison_table || [];
   if (table.length) {
+    const tableWrap = el("div", { className: "comparison-table-wrap" });
     const tableNode = el("table", { className: "comparison-table" });
     tableNode.innerHTML = `
       <thead>
@@ -1138,7 +1139,8 @@ function renderComparisonReport(container, payload) {
       });
       tbody.appendChild(tr);
     });
-    container.appendChild(tableNode);
+    tableWrap.appendChild(tableNode);
+    container.appendChild(tableWrap);
   }
 
   if (payload.markdown_report) {

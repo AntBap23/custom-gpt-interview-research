@@ -932,11 +932,18 @@ a:focus-visible {
 
 .comparison-table {
   width: 100%;
+  min-width: 980px;
   border-collapse: collapse;
   overflow: hidden;
   border-radius: 16px;
   border: 1px solid var(--line);
   background: var(--surface);
+}
+
+.comparison-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 18px;
 }
 
 .comparison-table th,
@@ -1023,6 +1030,11 @@ pre {
     position: sticky;
     top: calc(var(--topbar-height) + 46px);
     align-self: start;
+  }
+
+  .page--detail[data-page="comparisons"] .content-grid--two > :last-child,
+  body[data-page="comparisons"] .content-grid--two > :last-child {
+    position: static;
   }
 }
 
