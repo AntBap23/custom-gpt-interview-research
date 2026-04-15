@@ -419,14 +419,11 @@ def export_simulation(
 ):
     context = require_authenticated_user(request)
     try:
-        files = service.export_simulation(simulation_id, context.user_id)
+        export_path = service.export_simulation(simulation_id, context.user_id, file_type)
     except ValueError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
-    path = files.get(file_type)
-    if not path:
-        raise HTTPException(status_code=404, detail="Export type not found.")
-    file_path = Path(path)
+    file_path = Path(export_path)
     if not file_path.exists():
         raise HTTPException(status_code=404, detail="Export file not found.")
     return FileResponse(file_path, filename=file_path.name)

@@ -9,7 +9,7 @@ import openai
 from backend.settings import settings
 from backend.storage import StorageAdapter, utc_now
 from scripts.analyze_gioia import analyze_gioia
-from scripts.export_results import export_all_formats
+from scripts.export_results import export_format
 from scripts.simulate_interviews import simulate_interview
 from utils.pdf_parser import extract_questions_with_ai, extract_text_from_pdf, validate_and_improve_questions
 from utils.persona_parser import (
@@ -279,7 +279,7 @@ class ResearchBackendService:
         }
         return self.storage.upsert_item("comparisons", result)
 
-    def export_simulation(self, simulation_id: str, user_id: str) -> dict[str, str]:
+    def export_simulation(self, simulation_id: str, user_id: str, file_type: str) -> str:
         simulation = self.get_item("simulations", simulation_id, user_id)
         export_root = settings.local_storage_root / "generated_exports"
         export_root.mkdir(parents=True, exist_ok=True)
@@ -288,8 +288,12 @@ class ResearchBackendService:
         with NamedTemporaryFile("w+", suffix=".json", delete=True) as simulation_file:
             json.dump(simulation["responses"], simulation_file)
             simulation_file.flush()
-            files = export_all_formats(simulation_file.name, f"simulation_{simulation_id}", output_dir=str(export_root))
-            return files
+            return export_format(
+                simulation_file.name,
+                f"simulation_{simulation_id}",
+                file_type=file_type,
+                output_dir=str(export_root),
+            )
 
     def extract_text_from_upload(self, filename: str, content_type: str, file_bytes: bytes) -> str:
         buffer = io.BytesIO(file_bytes)
