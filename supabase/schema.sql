@@ -12,6 +12,7 @@ $$;
 
 create table if not exists public.studies (
   id uuid primary key default gen_random_uuid(),
+  owner_user_id uuid not null references auth.users(id) on delete cascade,
   name text not null,
   description text not null default '',
   created_at timestamptz not null default timezone('utc', now()),
@@ -20,6 +21,7 @@ create table if not exists public.studies (
 
 create table if not exists public.protocols (
   id uuid primary key default gen_random_uuid(),
+  owner_user_id uuid not null references auth.users(id) on delete cascade,
   study_id uuid references public.studies(id) on delete cascade,
   name text not null,
   shared_context text not null default '',
@@ -32,6 +34,7 @@ create table if not exists public.protocols (
 
 create table if not exists public.personas (
   id uuid primary key default gen_random_uuid(),
+  owner_user_id uuid not null references auth.users(id) on delete cascade,
   study_id uuid references public.studies(id) on delete cascade,
   name text not null,
   age integer,
@@ -46,6 +49,7 @@ create table if not exists public.personas (
 
 create table if not exists public.question_guides (
   id uuid primary key default gen_random_uuid(),
+  owner_user_id uuid not null references auth.users(id) on delete cascade,
   study_id uuid references public.studies(id) on delete cascade,
   name text not null,
   questions jsonb not null default '[]'::jsonb,
@@ -55,6 +59,7 @@ create table if not exists public.question_guides (
 
 create table if not exists public.transcripts (
   id uuid primary key default gen_random_uuid(),
+  owner_user_id uuid not null references auth.users(id) on delete cascade,
   study_id uuid references public.studies(id) on delete cascade,
   name text not null,
   content text not null,
@@ -65,6 +70,7 @@ create table if not exists public.transcripts (
 
 create table if not exists public.simulations (
   id uuid primary key default gen_random_uuid(),
+  owner_user_id uuid not null references auth.users(id) on delete cascade,
   study_id uuid references public.studies(id) on delete cascade,
   persona_id uuid references public.personas(id) on delete set null,
   question_guide_id uuid references public.question_guides(id) on delete set null,
@@ -76,6 +82,7 @@ create table if not exists public.simulations (
 
 create table if not exists public.gioia_analyses (
   id uuid primary key default gen_random_uuid(),
+  owner_user_id uuid not null references auth.users(id) on delete cascade,
   study_id uuid references public.studies(id) on delete cascade,
   simulation_id uuid references public.simulations(id) on delete cascade,
   protocol_id uuid references public.protocols(id) on delete set null,
@@ -86,6 +93,7 @@ create table if not exists public.gioia_analyses (
 
 create table if not exists public.comparisons (
   id uuid primary key default gen_random_uuid(),
+  owner_user_id uuid not null references auth.users(id) on delete cascade,
   study_id uuid references public.studies(id) on delete cascade,
   transcript_id uuid references public.transcripts(id) on delete cascade,
   simulation_id uuid references public.simulations(id) on delete cascade,
@@ -134,3 +142,12 @@ drop trigger if exists trg_comparisons_updated_at on public.comparisons;
 create trigger trg_comparisons_updated_at
 before update on public.comparisons
 for each row execute function public.set_updated_at();
+
+create index if not exists idx_studies_owner_user_id on public.studies(owner_user_id);
+create index if not exists idx_protocols_owner_user_id on public.protocols(owner_user_id);
+create index if not exists idx_personas_owner_user_id on public.personas(owner_user_id);
+create index if not exists idx_question_guides_owner_user_id on public.question_guides(owner_user_id);
+create index if not exists idx_transcripts_owner_user_id on public.transcripts(owner_user_id);
+create index if not exists idx_simulations_owner_user_id on public.simulations(owner_user_id);
+create index if not exists idx_gioia_analyses_owner_user_id on public.gioia_analyses(owner_user_id);
+create index if not exists idx_comparisons_owner_user_id on public.comparisons(owner_user_id);

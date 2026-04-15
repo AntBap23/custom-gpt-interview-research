@@ -40,53 +40,71 @@ class ResearchBackendService:
     def __init__(self, storage: StorageAdapter):
         self.storage = storage
 
-    def list_collection(self, collection: str, study_id: str | None = None) -> list[dict[str, Any]]:
-        items = self.storage.list_items(collection)
+    @staticmethod
+    def _owner_filters(user_id: str) -> dict[str, Any]:
+        return {"owner_user_id": user_id}
+
+    def list_collection(self, collection: str, user_id: str, study_id: str | None = None) -> list[dict[str, Any]]:
+        items = self.storage.list_items(collection, filters=self._owner_filters(user_id))
         if study_id is None:
             return items
         return [item for item in items if item.get("study_id") == study_id]
 
-    def get_item(self, collection: str, item_id: str) -> dict[str, Any]:
-        item = self.storage.get_item(collection, item_id)
+    def get_item(self, collection: str, item_id: str, user_id: str) -> dict[str, Any]:
+        item = self.storage.get_item(collection, item_id, filters=self._owner_filters(user_id))
         if not item:
             raise ValueError(f"{collection.rstrip('s').title()} not found.")
         return item
 
-    def save_study(self, study: dict[str, Any]) -> dict[str, Any]:
+    def save_study(self, study: dict[str, Any], user_id: str) -> dict[str, Any]:
+        study["owner_user_id"] = user_id
         return self.storage.upsert_item("studies", study)
 
-    def ensure_study_exists(self, study_id: str | None) -> None:
+    def ensure_study_exists(self, study_id: str | None, user_id: str) -> None:
         if study_id is None:
             return
-        self.get_item("studies", study_id)
+        self.get_item("studies", study_id, user_id)
 
-    def save_protocol(self, protocol: dict[str, Any]) -> dict[str, Any]:
-        self.ensure_study_exists(protocol.get("study_id"))
+    def save_protocol(self, protocol: dict[str, Any], user_id: str) -> dict[str, Any]:
+        self.ensure_study_exists(protocol.get("study_id"), user_id)
+        protocol["owner_user_id"] = user_id
         return self.storage.upsert_item("protocols", protocol)
 
-    def save_persona(self, persona: dict[str, Any]) -> dict[str, Any]:
+    def save_persona(self, persona: dict[str, Any], user_id: str) -> dict[str, Any]:
         persona = validate_persona_data(persona)
-        self.ensure_study_exists(persona.get("study_id"))
+        self.ensure_study_exists(persona.get("study_id"), user_id)
+        persona["owner_user_id"] = user_id
         return self.storage.upsert_item("personas", persona)
 
-    def extract_persona(self, text: str, suggested_name: str | None = None) -> dict[str, Any]:
-        persona_counter = len(self.storage.list_items("personas")) + 1
+    def extract_persona(self, text: str, user_id: str, suggested_name: str | None = None) -> dict[str, Any]:
+        persona_counter = len(self.storage.list_items("personas", filters=self._owner_filters(user_id))) + 1
         persona = extract_persona_info_with_ai(text, persona_counter)
         if suggested_name and suggested_name.strip():
             persona["name"] = suggested_name.strip()
         return validate_persona_data(persona)
 
-    def save_question_guide(self, name: str, questions: list[str], study_id: str | None = None) -> dict[str, Any]:
-        self.ensure_study_exists(study_id)
-        return self.storage.upsert_item("question_guides", {"name": name, "questions": questions, "study_id": study_id})
+    def save_question_guide(
+        self, name: str, questions: list[str], user_id: str, study_id: str | None = None
+    ) -> dict[str, Any]:
+        self.ensure_study_exists(study_id, user_id)
+        return self.storage.upsert_item(
+            "question_guides",
+            {"name": name, "questions": questions, "study_id": study_id, "owner_user_id": user_id},
+        )
 
     def save_transcript(
-        self, name: str, content: str, source_type: str = "text", study_id: str | None = None
+        self, name: str, content: str, user_id: str, source_type: str = "text", study_id: str | None = None
     ) -> dict[str, Any]:
-        self.ensure_study_exists(study_id)
+        self.ensure_study_exists(study_id, user_id)
         return self.storage.upsert_item(
             "transcripts",
-            {"name": name, "content": content, "source_type": source_type, "study_id": study_id},
+            {
+                "name": name,
+                "content": content,
+                "source_type": source_type,
+                "study_id": study_id,
+                "owner_user_id": user_id,
+            },
         )
 
     def extract_questions(self, text: str, improve_with_ai: bool = False) -> list[str]:
@@ -96,13 +114,18 @@ class ResearchBackendService:
         return questions
 
     def run_simulation(
-        self, persona_id: str, question_guide_id: str, protocol_id: str | None = None, study_id: str | None = None
+        self,
+        persona_id: str,
+        question_guide_id: str,
+        user_id: str,
+        protocol_id: str | None = None,
+        study_id: str | None = None,
     ) -> dict[str, Any]:
-        persona = self.get_item("personas", persona_id)
-        guide = self.get_item("question_guides", question_guide_id)
-        protocol = self.get_item("protocols", protocol_id) if protocol_id else DEFAULT_PROTOCOL
+        persona = self.get_item("personas", persona_id, user_id)
+        guide = self.get_item("question_guides", question_guide_id, user_id)
+        protocol = self.get_item("protocols", protocol_id, user_id) if protocol_id else DEFAULT_PROTOCOL
         resolved_study_id = study_id or persona.get("study_id") or guide.get("study_id") or protocol.get("study_id")
-        self.ensure_study_exists(resolved_study_id)
+        self.ensure_study_exists(resolved_study_id, user_id)
 
         from tempfile import NamedTemporaryFile
 
@@ -130,18 +153,19 @@ class ResearchBackendService:
             "question_guide_id": question_guide_id,
             "protocol_id": protocol_id,
             "study_id": resolved_study_id,
+            "owner_user_id": user_id,
             "responses": responses,
             "created_at": utc_now().isoformat(),
         }
         return self.storage.upsert_item("simulations", simulation)
 
     def run_ai_gioia(
-        self, simulation_id: str, protocol_id: str | None = None, study_id: str | None = None
+        self, simulation_id: str, user_id: str, protocol_id: str | None = None, study_id: str | None = None
     ) -> dict[str, Any]:
-        simulation = self.get_item("simulations", simulation_id)
-        protocol = self.get_item("protocols", protocol_id) if protocol_id else DEFAULT_PROTOCOL
+        simulation = self.get_item("simulations", simulation_id, user_id)
+        protocol = self.get_item("protocols", protocol_id, user_id) if protocol_id else DEFAULT_PROTOCOL
         resolved_study_id = study_id or simulation.get("study_id") or protocol.get("study_id")
-        self.ensure_study_exists(resolved_study_id)
+        self.ensure_study_exists(resolved_study_id, user_id)
 
         from tempfile import NamedTemporaryFile
 
@@ -160,19 +184,25 @@ class ResearchBackendService:
             "simulation_id": simulation_id,
             "protocol_id": protocol_id,
             "study_id": resolved_study_id,
+            "owner_user_id": user_id,
             "markdown": markdown,
             "created_at": utc_now().isoformat(),
         }
         return self.storage.upsert_item("gioia_analyses", result)
 
     def run_structured_comparison(
-        self, transcript_id: str, simulation_id: str, protocol_id: str | None = None, study_id: str | None = None
+        self,
+        transcript_id: str,
+        simulation_id: str,
+        user_id: str,
+        protocol_id: str | None = None,
+        study_id: str | None = None,
     ) -> dict[str, Any]:
-        transcript = self.get_item("transcripts", transcript_id)
-        simulation = self.get_item("simulations", simulation_id)
-        protocol = self.get_item("protocols", protocol_id) if protocol_id else DEFAULT_PROTOCOL
+        transcript = self.get_item("transcripts", transcript_id, user_id)
+        simulation = self.get_item("simulations", simulation_id, user_id)
+        protocol = self.get_item("protocols", protocol_id, user_id) if protocol_id else DEFAULT_PROTOCOL
         resolved_study_id = study_id or transcript.get("study_id") or simulation.get("study_id") or protocol.get("study_id")
-        self.ensure_study_exists(resolved_study_id)
+        self.ensure_study_exists(resolved_study_id, user_id)
 
         client = openai.OpenAI(api_key=settings.openai_api_key)
         ai_text = "\n".join([f"Q: {item['question']}\nA: {item['answer']}" for item in simulation["responses"]])
@@ -243,13 +273,14 @@ class ResearchBackendService:
             "simulation_id": simulation_id,
             "protocol_id": protocol_id,
             "study_id": resolved_study_id,
+            "owner_user_id": user_id,
             "payload": payload or {"markdown_report": response.choices[0].message.content},
             "created_at": utc_now().isoformat(),
         }
         return self.storage.upsert_item("comparisons", result)
 
-    def export_simulation(self, simulation_id: str) -> dict[str, str]:
-        simulation = self.get_item("simulations", simulation_id)
+    def export_simulation(self, simulation_id: str, user_id: str) -> dict[str, str]:
+        simulation = self.get_item("simulations", simulation_id, user_id)
         export_root = settings.local_storage_root / "generated_exports"
         export_root.mkdir(parents=True, exist_ok=True)
         from tempfile import NamedTemporaryFile

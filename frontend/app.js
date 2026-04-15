@@ -43,7 +43,7 @@ const WORKSPACE_PAGES = new Set(WORKSPACE_NAV.map((item) => item.key));
 const PUBLIC_PAGES = new Set(["home", "sign-in"]);
 const state = {
   studies: [],
-  activeStudyId: localStorage.getItem(STORAGE_KEY) || "",
+  activeStudyId: "",
   extractedQuestions: [],
   auth: {
     authenticated: false,
@@ -152,9 +152,43 @@ function currentStudy() {
   return state.studies.find((study) => study.id === state.activeStudyId) || null;
 }
 
+function activeStudyStorageKey() {
+  const userId = state.auth.user?.id || "guest";
+  return `${STORAGE_KEY}:${userId}`;
+}
+
+function migrateLegacyActiveStudyKey() {
+  const legacyValue = localStorage.getItem(STORAGE_KEY);
+  if (!legacyValue || !state.auth.user?.id) return;
+  const scopedKey = activeStudyStorageKey();
+  if (!localStorage.getItem(scopedKey)) {
+    localStorage.setItem(scopedKey, legacyValue);
+  }
+  localStorage.removeItem(STORAGE_KEY);
+}
+
+function loadActiveStudyId() {
+  if (!state.auth.authenticated || !state.auth.user?.id) {
+    state.activeStudyId = "";
+    localStorage.removeItem(STORAGE_KEY);
+    return;
+  }
+  migrateLegacyActiveStudyKey();
+  state.activeStudyId = localStorage.getItem(activeStudyStorageKey()) || "";
+}
+
 function setActiveStudyId(studyId) {
   state.activeStudyId = studyId || "";
-  localStorage.setItem(STORAGE_KEY, state.activeStudyId);
+  if (!state.auth.authenticated || !state.auth.user?.id) {
+    localStorage.removeItem(STORAGE_KEY);
+    return;
+  }
+  const scopedKey = activeStudyStorageKey();
+  if (state.activeStudyId) {
+    localStorage.setItem(scopedKey, state.activeStudyId);
+  } else {
+    localStorage.removeItem(scopedKey);
+  }
 }
 
 function scopedPath(path) {
@@ -1317,10 +1351,12 @@ async function initPage() {
   try {
     await loadAuthSession();
     if (state.auth.authenticated) {
+      loadActiveStudyId();
       await loadStudies();
     } else {
       state.studies = [];
-      setActiveStudyId("");
+      state.activeStudyId = "";
+      localStorage.removeItem(STORAGE_KEY);
     }
 
     if (!PUBLIC_PAGES.has(page) && !state.auth.authenticated) {

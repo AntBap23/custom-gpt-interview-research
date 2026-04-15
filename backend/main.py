@@ -251,39 +251,46 @@ def auth_session(request: Request, response: Response):
 
 
 @app.get("/api/studies", response_model=list[StudyRecord])
-def list_studies(service: ResearchBackendService = Depends(get_service)):
-    return service.list_collection("studies")
+def list_studies(request: Request, service: ResearchBackendService = Depends(get_service)):
+    context = require_authenticated_user(request)
+    return service.list_collection("studies", context.user_id)
 
 
 @app.post("/api/studies", response_model=StudyRecord)
-def create_study(payload: StudyCreate, service: ResearchBackendService = Depends(get_service)):
-    return service.save_study(payload.model_dump())
+def create_study(payload: StudyCreate, request: Request, service: ResearchBackendService = Depends(get_service)):
+    context = require_authenticated_user(request)
+    return service.save_study(payload.model_dump(), context.user_id)
 
 
 @app.get("/api/protocols", response_model=list[StudyProtocol])
-def list_protocols(study_id: str | None = None, service: ResearchBackendService = Depends(get_service)):
-    return service.list_collection("protocols", study_id=study_id)
+def list_protocols(request: Request, study_id: str | None = None, service: ResearchBackendService = Depends(get_service)):
+    context = require_authenticated_user(request)
+    return service.list_collection("protocols", context.user_id, study_id=study_id)
 
 
 @app.post("/api/protocols", response_model=StudyProtocol)
-def create_protocol(payload: StudyProtocolCreate, service: ResearchBackendService = Depends(get_service)):
-    return service.save_protocol(payload.model_dump())
+def create_protocol(payload: StudyProtocolCreate, request: Request, service: ResearchBackendService = Depends(get_service)):
+    context = require_authenticated_user(request)
+    return service.save_protocol(payload.model_dump(), context.user_id)
 
 
 @app.get("/api/personas", response_model=list[PersonaRecord])
-def list_personas(study_id: str | None = None, service: ResearchBackendService = Depends(get_service)):
-    return service.list_collection("personas", study_id=study_id)
+def list_personas(request: Request, study_id: str | None = None, service: ResearchBackendService = Depends(get_service)):
+    context = require_authenticated_user(request)
+    return service.list_collection("personas", context.user_id, study_id=study_id)
 
 
 @app.post("/api/personas", response_model=PersonaRecord)
-def create_persona(payload: PersonaCreate, service: ResearchBackendService = Depends(get_service)):
-    return service.save_persona(payload.model_dump())
+def create_persona(payload: PersonaCreate, request: Request, service: ResearchBackendService = Depends(get_service)):
+    context = require_authenticated_user(request)
+    return service.save_persona(payload.model_dump(), context.user_id)
 
 
 @app.post("/api/personas/extract", response_model=PersonaRecord)
-def extract_persona(payload: PersonaExtractRequest, service: ResearchBackendService = Depends(get_service)):
-    persona = service.extract_persona(payload.text, payload.suggested_name)
-    return service.save_persona(persona)
+def extract_persona(payload: PersonaExtractRequest, request: Request, service: ResearchBackendService = Depends(get_service)):
+    context = require_authenticated_user(request)
+    persona = service.extract_persona(payload.text, context.user_id, payload.suggested_name)
+    return service.save_persona(persona, context.user_id)
 
 
 @app.post("/api/personas/extract-upload", response_model=UploadTextResponse)
@@ -313,18 +320,23 @@ async def extract_protocol_upload(file: UploadFile = File(...), service: Researc
 
 
 @app.post("/api/question-guides", response_model=QuestionGuideRecord)
-def create_question_guide(payload: QuestionGuideCreate, service: ResearchBackendService = Depends(get_service)):
-    return service.save_question_guide(payload.name, payload.questions, payload.study_id)
+def create_question_guide(payload: QuestionGuideCreate, request: Request, service: ResearchBackendService = Depends(get_service)):
+    context = require_authenticated_user(request)
+    return service.save_question_guide(payload.name, payload.questions, context.user_id, payload.study_id)
 
 
 @app.get("/api/question-guides", response_model=list[QuestionGuideRecord])
-def list_question_guides(study_id: str | None = None, service: ResearchBackendService = Depends(get_service)):
-    return service.list_collection("question_guides", study_id=study_id)
+def list_question_guides(
+    request: Request, study_id: str | None = None, service: ResearchBackendService = Depends(get_service)
+):
+    context = require_authenticated_user(request)
+    return service.list_collection("question_guides", context.user_id, study_id=study_id)
 
 
 @app.post("/api/transcripts", response_model=TranscriptRecord)
-def create_transcript(payload: TranscriptCreate, service: ResearchBackendService = Depends(get_service)):
-    return service.save_transcript(payload.name, payload.content, payload.source_type, payload.study_id)
+def create_transcript(payload: TranscriptCreate, request: Request, service: ResearchBackendService = Depends(get_service)):
+    context = require_authenticated_user(request)
+    return service.save_transcript(payload.name, payload.content, context.user_id, payload.source_type, payload.study_id)
 
 
 @app.post("/api/transcripts/extract-upload", response_model=UploadTextResponse)
@@ -335,55 +347,79 @@ async def extract_transcript_upload(file: UploadFile = File(...), service: Resea
 
 
 @app.get("/api/transcripts", response_model=list[TranscriptRecord])
-def list_transcripts(study_id: str | None = None, service: ResearchBackendService = Depends(get_service)):
-    return service.list_collection("transcripts", study_id=study_id)
+def list_transcripts(request: Request, study_id: str | None = None, service: ResearchBackendService = Depends(get_service)):
+    context = require_authenticated_user(request)
+    return service.list_collection("transcripts", context.user_id, study_id=study_id)
 
 
 @app.post("/api/simulations", response_model=SimulationResponse)
-def create_simulation(payload: SimulationRequest, service: ResearchBackendService = Depends(get_service)):
+def create_simulation(payload: SimulationRequest, request: Request, service: ResearchBackendService = Depends(get_service)):
+    context = require_authenticated_user(request)
     try:
-        return service.run_simulation(payload.persona_id, payload.question_guide_id, payload.protocol_id, payload.study_id)
+        return service.run_simulation(
+            payload.persona_id,
+            payload.question_guide_id,
+            context.user_id,
+            payload.protocol_id,
+            payload.study_id,
+        )
     except ValueError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
 
 @app.get("/api/simulations", response_model=list[SimulationResponse])
-def list_simulations(study_id: str | None = None, service: ResearchBackendService = Depends(get_service)):
-    return service.list_collection("simulations", study_id=study_id)
+def list_simulations(request: Request, study_id: str | None = None, service: ResearchBackendService = Depends(get_service)):
+    context = require_authenticated_user(request)
+    return service.list_collection("simulations", context.user_id, study_id=study_id)
 
 
 @app.post("/api/analyses/gioia", response_model=GioiaAnalysisResponse)
-def create_gioia_analysis(payload: GioiaAnalysisRequest, service: ResearchBackendService = Depends(get_service)):
+def create_gioia_analysis(
+    payload: GioiaAnalysisRequest, request: Request, service: ResearchBackendService = Depends(get_service)
+):
+    context = require_authenticated_user(request)
     try:
-        return service.run_ai_gioia(payload.simulation_id, payload.protocol_id, payload.study_id)
+        return service.run_ai_gioia(payload.simulation_id, context.user_id, payload.protocol_id, payload.study_id)
     except ValueError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
 
 @app.get("/api/analyses/gioia", response_model=list[GioiaAnalysisResponse])
-def list_gioia_analyses(study_id: str | None = None, service: ResearchBackendService = Depends(get_service)):
-    return service.list_collection("gioia_analyses", study_id=study_id)
+def list_gioia_analyses(
+    request: Request, study_id: str | None = None, service: ResearchBackendService = Depends(get_service)
+):
+    context = require_authenticated_user(request)
+    return service.list_collection("gioia_analyses", context.user_id, study_id=study_id)
 
 
 @app.post("/api/comparisons", response_model=ComparisonResponse)
-def create_comparison(payload: ComparisonRequest, service: ResearchBackendService = Depends(get_service)):
+def create_comparison(payload: ComparisonRequest, request: Request, service: ResearchBackendService = Depends(get_service)):
+    context = require_authenticated_user(request)
     try:
         return service.run_structured_comparison(
-            payload.transcript_id, payload.simulation_id, payload.protocol_id, payload.study_id
+            payload.transcript_id,
+            payload.simulation_id,
+            context.user_id,
+            payload.protocol_id,
+            payload.study_id,
         )
     except ValueError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
 
 @app.get("/api/comparisons", response_model=list[ComparisonResponse])
-def list_comparisons(study_id: str | None = None, service: ResearchBackendService = Depends(get_service)):
-    return service.list_collection("comparisons", study_id=study_id)
+def list_comparisons(request: Request, study_id: str | None = None, service: ResearchBackendService = Depends(get_service)):
+    context = require_authenticated_user(request)
+    return service.list_collection("comparisons", context.user_id, study_id=study_id)
 
 
 @app.get("/api/simulations/{simulation_id}/exports/{file_type}")
-def export_simulation(simulation_id: str, file_type: str, service: ResearchBackendService = Depends(get_service)):
+def export_simulation(
+    simulation_id: str, file_type: str, request: Request, service: ResearchBackendService = Depends(get_service)
+):
+    context = require_authenticated_user(request)
     try:
-        files = service.export_simulation(simulation_id)
+        files = service.export_simulation(simulation_id, context.user_id)
     except ValueError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
